@@ -26,7 +26,9 @@
             <div class="col xl12"></div>
         </div>
         <div class="row">
-            <div class="col xl6" id="imageDump"></div>
+            <div class="col xl6" id="imageDump">
+                <img src="" id="photoElement">
+            </div>
             <div class="col xl6" id="contentDump"></div>
         </div>
     </div>
@@ -37,9 +39,11 @@
         image_url: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/19510231_120767045191290_2553570141051417552_n.jpg?_nc_cat=0%26oh=9c63f567433a53fae18bbc811cc107e4%26oe=5C0EA2B7'
     }
     $.post(
-        'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url='+params.image_url+'&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
+        'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
+        params.image_url +
+        '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
         (req, res) => {
- $("#imageDump").css('background-image', 'url('+ params.image_url+')')
+            
             console.log(req);
             console.log(res);
         })
