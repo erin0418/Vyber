@@ -6,6 +6,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
   password: "JN3bHeGkTg7x"
 });
 
+// This text will be pulled for the user input on the front end.
 var text =
   "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!";
 
@@ -22,3 +23,5 @@ toneAnalyzer.tone(toneParams, function(error, analysis) {
   }
 });
 0;
+
+module.exports = toneAnalyzer;

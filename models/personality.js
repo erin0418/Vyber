@@ -6,8 +6,9 @@ var personalityInsights = new PersonalityInsightsV3({
 });
 
 var profileParams = {
-  // Get the content from the JSON file.
-  content: "Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works!",
+  // Get the content from the tweets JSON file sorted from the front end.
+  content:
+    "Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works! Hello, it is very nice to met you. This is the first attempt of learning my Twitter personality information. I hope it works!",
   content_type: "text/plain",
   consumption_preferences: true,
   raw_scores: true
@@ -20,3 +21,5 @@ personalityInsights.profile(profileParams, function(error, profile) {
     console.log(JSON.stringify(profile, null, 2));
   }
 });
+
+module.exports = personalityInsights;
