@@ -1,5 +1,4 @@
 "use strict";
-
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
@@ -7,14 +6,6 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-
-var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
-
-var personalityInsights = new PersonalityInsightsV3({
-    version: '{2017-10-13}',
-    username: '{mattlomet@live.com}',
-    password: '{Samp@123}'
-  });
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);

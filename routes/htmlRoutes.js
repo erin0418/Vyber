@@ -8,7 +8,9 @@ module.exports = function(app) {
   // app.get("*", function(req, res) {
   //   res.render("404");
   // });
-
+ app.get('/', (req, res) => {
+   res.sendFile(path.join(__dirname, "../public/index.html"));
+ })
   // facImage html file
    app.get('/images', (req, res) => {
      res.sendFile(path.join(__dirname, "../public/facImage.html"));
