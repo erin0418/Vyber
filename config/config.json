@@ -2,9 +2,10 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "exampledb",
+    "database": "animals_db",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 8889
   },
   "test": {
     "username": "root",

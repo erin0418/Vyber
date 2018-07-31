@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper z-depth-1 blue lighten">
+            <div style="margin-left: 10px; margin-top: 5px" class="brand-logo">
+                <i class="material-icons">
+                    flight_takeoff
+                </i>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col xl12"></div>
+        </div>
+        <div class="row">
+            <div class="col xl6" id="imageDump">
+                <img src="" id="photoElement">
+            </div>
+            <div class="col xl6" id="contentDump"></div>
+        </div>
+    </div>
+
+</body>
+<script>
+    var params = {
+        image_url: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/19510231_120767045191290_2553570141051417552_n.jpg?_nc_cat=0%26oh=9c63f567433a53fae18bbc811cc107e4%26oe=5C0EA2B7'
+    }
+    $.post(
+        'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
+        params.image_url +
+        '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
+        (req, res) => {
+            
+            console.log(req);
+            console.log(res);
+        })
+</script>
+
+</html>

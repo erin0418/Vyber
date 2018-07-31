@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+// Handlebars
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
