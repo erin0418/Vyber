@@ -1,18 +1,26 @@
-var db = require("../models");
 var path = require("path");
 
-
 module.exports = function(app) {
+  // Load login page
+  app.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
 
-  // Render 404 page for any unmatched routes
-  // app.get("*", function(req, res) {
-  //   res.render("404");
-  // });
- app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, "../public/index.html"));
- })
-  // facImage html file
-   app.get('/images', (req, res) => {
-     res.sendFile(path.join(__dirname, "../public/facImage.html"));
-   })
+  // Load index page
+  app.get("/index", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  // Load personality page
+  app.get("/personality", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/personality.html"));
+  });
+  // Load image page
+  app.get("/images", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/facImage.html"));
+  });
+  // Load tone page
+  app.get("/tone", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/tone.html"));
+  });
 };
