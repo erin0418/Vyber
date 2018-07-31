@@ -21,7 +21,7 @@ toneAnalyzer.tone(toneParams, function(error, analysis) {
   if (error) {
     console.log(error);
   } else {
-    console.log(JSON.stringify(analysis, null, 2));
+    JSON.stringify(analysis, null, 2);
     result = analysis;
   }
 });
