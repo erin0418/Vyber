@@ -23,11 +23,6 @@
         top: 25%;
         box-shadow: 0px 3px 20px 0px black;
     }
-    #photoElement {
-        display: none;
-        height: 400px;
-        width: 450px;
-    }
     #contentDump {
         display: none;
     }
@@ -62,36 +57,35 @@
         </div>
     </nav>
     <br>
-    <!-- modal container -->
-    <div class="container amber darken-1" id="modalContainer">
-        <div class="row" style="color:white">
-            <div class="col s4">
-
+        <!-- modal container -->
+        <div class="container amber darken-1" id="modalContainer">
+            <div class="row" style="color:white">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="twitterLogin">
+    
+                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                        <i class="material-icons left">person</i>Get My Tweets</a>
+                </div>
+                <div class="col s4">
+    
+                </div>
             </div>
-            <div class="col s4" id="twitterLogin">
-
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
-                    <i class="material-icons left">person</i>Get My Tweets</a>
-            </div>
-            <div class="col s4">
-
+            <div class="row" style="color:white">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="enterText">
+    
+                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                        <i class="material-icons left">person</i>Enter My Text</a>
+                </div>
+                <div class="col s4">
+    
+                </div>
             </div>
         </div>
-        <div class="row" style="color:white">
-            <div class="col s4">
-
-            </div>
-            <div class="col s4" id="enterText">
-
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
-                    <i class="material-icons left">person</i>Enter My Text</a>
-            </div>
-            <div class="col s4">
-
-            </div>
-        </div>
-    </div>
-
     <!-- main site container -->
     <div class="container mainPage">
         <div class="row">
@@ -100,140 +94,78 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s8 l6" id="imageDump">
-                <img src="" id="photoElement">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">Enter text to be analyzed</label>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
             <div class="col s4 l6" id="contentDump">
                 <ul class="collapsible popout">
-                    <li id="ageList">
+                    <li id="docToneList">
                         <div class="collapsible-header">
                             <i class="material-icons">
-                                calendar_today</i>
-                            Age
+                                chrome_reader_mode</i>
+                                Document Tone
                         </div>
                     </li>
-                    <li id="beautyList">
+                    <li id="sentToneList">
                         <div class="collapsible-header">
-                            <i class="material-icons">local_florist</i>
-                            Beauty
+                            <i class="material-icons">reorder</i>
+                            Sentence Tone
                         </div>
-                    </li>
-                    <li id="emotionList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">insert_emoticon</i>
-                            Emotion
-                        </div>
-                    </li>
-                    <li id="faceQualityList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">high_quality</i>
-                            Face Quality
-                        </div>
-                    </li>
-                    <li id="genderList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">directions_run</i>
-                            Gender
-                        </div>
-                    </li>
-                    <li id="skinStatusList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">
-                                layers_clear</i>
-                            Skin Status
-                        </div>
-                    </li>
-                    <li id="smileList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">brightness_5</i>
-                            Smile
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
-
+    <!-- <footer class="page-footer amber darken-1">
+        <div class="footer-copyright center">
+            <div class="container">
+                © 2018 Copyright
+            </div>
+        </div>
+    </footer> -->
 </body>
 <script>
     $(document).ready(function () {
+        // When Twitter button is clicked
         $('.collapsible').collapsible();
-        $("#twitterLogin").on("click", (event) => {
+        $("#twitterLogin").on("click", (event) => {  
+            $("#modalContainer").css("display", "none");   
             // Add twitter login fuction
-            
-            $("#modalContainer").css("display", "none");
-            
         })
+        // When enter text button is clicked
         $("#enterText").on("click", (event) => {
             $("#modalContainer").css("display", "none");
-            runPostFunction();
-        })
-        function runPostFunction() {
             $(".mainPage").css("display", "block")
-            // $.post(
-                // 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
-                // photoLink +
-                // '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
-                // (req, res, params) => {
-                //     var age = $("<div>");
-                //     age.text("Age: " + req.faces[0].attributes.age.value);
-                //     age.addClass("collapsible-body");
-                //     $("#ageList").append(age);
-                //     var beauty = $("<div>");
-                //     beauty.html("<div> Female Beauty: " + req.faces[0].attributes.beauty.female_score +
-                //         "</div>"+"<div> Male beauty: " + req.faces[
-                //             0].attributes.beauty
-                //         .male_score+"</div>");
-                //     beauty.addClass("collapsible-body");
-                //     $("#beautyList").append(beauty);
-                //     var emotion = $("<div>");
-                //     emotion.text("Anger : " + req.faces[0].attributes.emotion.anger + " Disgust : " + req.faces[
-                //             0].attributes
-                //         .emotion.disgust +
-                //         "  Fear : " + req.faces[0].attributes.emotion.fear + "  Happiness : " + req.faces[
-                //             0]
-                //         .attributes.emotion
-                //         .happiness +
-                //         "   Neutral : " + req.faces[0].attributes.emotion.neutral + "  Sadness : " +
-                //         req.faces[
-                //             0].attributes
-                //         .emotion.sadness +
-                //         "  Surprise : " + req.faces[0].attributes.emotion.surprise);
-                //     emotion.addClass("collapsible-body");
-                //     $("#emotionList").append(emotion);
-                //     var faceQuality = $("<div>");
-                //     faceQuality.text(" Face Quality Threshold : " + req.faces[0].attributes.facequality.threshold +
-                //         " Value: " + req.faces[
-                //             0].attributes.facequality.value);
-                //     faceQuality.addClass("collapsible-body");
-                //     $("#faceQualityList").append(faceQuality);
-                //     var gender = $("<div>");
-                //     gender.text("Gender : " + req.faces[0].attributes.gender.value);
-                //     gender.addClass("collapsible-body");
-                //     $("#genderList").append(gender);
-                //     var skinStatus = $("<div>");
-                //     skinStatus.text("Skin Status Acne : " + req.faces[0].attributes.skinstatus.acne +
-                //         " Dark Circles : " + req.faces[0].attributes
-                //         .skinstatus.dark_circle +
-                //         " Health : " + req.faces[0].attributes.skinstatus.health + "Stain : " + req.faces[
-                //             0]
-                //         .attributes.skinstatus
-                //         .stain);
-                //     skinStatus.addClass("collapsible-body")
-                //     $("#skinStatusList").append(skinStatus)
-                //     var smile = $("<div>");
-                //     smile.text("Smile Threshold : " + req.faces[0].attributes.smile.threshold + "  Value: " +
-                //         req.faces[0].attributes
-                //         .smile
-                //         .value);
-                //     smile.addClass("collapsible-body");
-                //     $("#smileList").append(smile);
-                //     $("#photoElement").attr("src", photoLink)
-                //     $("#photoElement").css("display", "block")
-                //     $("#contentDump").css("display", "block")
-                //     console.log(params);
-                // })
-        };
+            $(".btn").on("click", (event) => {
+                $("#contentDump").css("display", "block");
+                runPostFunction();
+            }) 
+        })
+        // Displays the results from the api/tone
+        function runPostFunction() {
+            var currentURL = window.location.origin;
+            $.ajax({ url: currentURL + "/api/tone", method: "GET" })
+            .then(function(data) {
+                // Should be getting tone of entire document.
+                for (var i = 0; i < data.document_tone.tones; i++){
+                var docTone = $("<div>");
+                docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
+                docTone.addClass("collapsible-body");
+                $("#docToneList").append(docTone);
+                };
+                // Should be getting tone sentence by sentence
+                for (var i = 0; i < data.sentence_tone; i++){
+                var sentTone = $("<div>");
+                sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
+                sentTone.addClass("collapsible-body");
+                $("#sentToneList").append(sentTone);
+                };
+            });
+        };   
     });
 </script>
 
