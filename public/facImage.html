@@ -27,7 +27,6 @@
 
     #photoElement {
         display: none;
-        height: 400px;
         width: 450px;
     }
 
@@ -38,6 +37,17 @@
     .mainPage {
         display: none;
     }
+    /* label focus color */
+.input-field input:focus + label {
+    color: #e65100 !important;
+  }
+  /* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #e65100 !important;
+    box-shadow: 0 1px 0 0 #e65100 !important
+  }
+
+    
 </style>
 
 <body>
@@ -76,7 +86,7 @@
             <div class="col s4">
 
             </div>
-            <div class="col s4">
+            <div class="col s4 input-field">
 
                 <input type="text" id="photoLink" placeholder="please enter in the url of an image">
                 <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
