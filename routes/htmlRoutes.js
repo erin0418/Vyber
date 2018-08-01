@@ -34,7 +34,7 @@ module.exports = function(app) {
     }),
     function (req, res) {
       // Successful authentication, redirect home.
-      res.send({object: req})
-      res.redirect('/index',req);
+
+      res.redirect('/index'+req);
     });
 };
