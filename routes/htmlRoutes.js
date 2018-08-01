@@ -35,6 +35,6 @@ module.exports = function(app) {
     function (req, res) {
       // Successful authentication, redirect home.
 
-      res.redirect('/index'+req);
+      res.json(req);
     });
 };
