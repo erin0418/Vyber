@@ -15,6 +15,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "login-with-twitter": "^1.2.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.38.0",
     "watson-developer-cloud": "^3.7.1"
