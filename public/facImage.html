@@ -26,17 +26,20 @@
     }
 
     #photoElement {
-        display: none;
-        height: 400px;
-        width: 450px;
+        visibility: hidden;
+        height: inherit;
+        width: inherit;
+        transition: visibility 0s, opacity 0.5s linear;
     }
 
     #contentDump {
-        display: none;
+        visibility: hidden;
+        transition: visibility 0s, opacity 0.5s linear;
     }
 
     .mainPage {
-        display: none;
+        visibility: hidden;
+        transition: visibility 0s, opacity 0.5s linear;
     }
 </style>
 
@@ -154,12 +157,12 @@
         var photoLink;
         $("#modalButton").on("click", (event) => {
             photoLink = ($("#photoLink").val().trim());
-            $("#modalContainer").css("display", "none");
+            $("#modalContainer").css("visibility", "hidden");
             runPostFunction();
         })
 
         function runPostFunction() {
-            $(".mainPage").css("display", "block")
+            $(".mainPage").css("visibility", "visible")
             $.post(
                 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
                 photoLink +
@@ -168,79 +171,85 @@
 
 
                     var age = $("<div>");
-                    age.text("Age: " + req.faces[0].attributes.age.value);
+                    age.html("<div> Age: " + req.faces[0].attributes.age.value + "</div>");
                     age.addClass("collapsible-body");
                     $("#ageList").append(age);
 
 
                     var beauty = $("<div>");
                     beauty.html("<div> Female Beauty: " + req.faces[0].attributes.beauty.female_score +
-                        "</div>"+"<div> Male beauty: " + req.faces[
+                        "</div>" + "<div> Male beauty: " + req.faces[
                             0].attributes.beauty
-                        .male_score+"</div>");
+                        .male_score + "</div>");
                     beauty.addClass("collapsible-body");
                     $("#beautyList").append(beauty);
 
 
 
                     var emotion = $("<div>");
-                    emotion.text("Anger : " + req.faces[0].attributes.emotion.anger + " Disgust : " + req.faces[
+                    emotion.html("<div> Anger : " + req.faces[0].attributes.emotion.anger + "</div>" +
+                        "<div> Disgust : " + req.faces[
                             0].attributes
-                        .emotion.disgust +
-                        "  Fear : " + req.faces[0].attributes.emotion.fear + "  Happiness : " + req.faces[
+                        .emotion.disgust + "</div>" +
+                        "<div> Fear : " + req.faces[0].attributes.emotion.fear + "</div>" +
+                        "<div> Happiness : " + req.faces[
                             0]
                         .attributes.emotion
-                        .happiness +
-                        "   Neutral : " + req.faces[0].attributes.emotion.neutral + "  Sadness : " +
+                        .happiness + "</div>" +
+                        "<div>  Neutral : " + req.faces[0].attributes.emotion.neutral + "</div>" +
+                        "<div> Sadness : " +
                         req.faces[
                             0].attributes
-                        .emotion.sadness +
-                        "  Surprise : " + req.faces[0].attributes.emotion.surprise);
+                        .emotion.sadness + "</div>" +
+                        "<div>  Surprise : " + req.faces[0].attributes.emotion.surprise + "</div>");
                     emotion.addClass("collapsible-body");
                     $("#emotionList").append(emotion);
 
 
 
                     var faceQuality = $("<div>");
-                    faceQuality.text(" Face Quality Threshold : " + req.faces[0].attributes.facequality.threshold +
-                        " Value: " + req.faces[
-                            0].attributes.facequality.value);
+                    faceQuality.html("<div> Threshold : " + req.faces[0].attributes.facequality.threshold +
+                        "</div>" +
+                        "<div> Value: " + req.faces[
+                            0].attributes.facequality.value + "</div>");
                     faceQuality.addClass("collapsible-body");
                     $("#faceQualityList").append(faceQuality);
 
 
 
                     var gender = $("<div>");
-                    gender.text("Gender : " + req.faces[0].attributes.gender.value);
+                    gender.html("<div> Gender : " + req.faces[0].attributes.gender.value + "</div>");
                     gender.addClass("collapsible-body");
                     $("#genderList").append(gender);
 
 
 
                     var skinStatus = $("<div>");
-                    skinStatus.text("Skin Status Acne : " + req.faces[0].attributes.skinstatus.acne +
-                        " Dark Circles : " + req.faces[0].attributes
-                        .skinstatus.dark_circle +
-                        " Health : " + req.faces[0].attributes.skinstatus.health + "Stain : " + req.faces[
+                    skinStatus.html("<div> Acne : " + req.faces[0].attributes.skinstatus.acne + "</div>" +
+                        "<div> Dark Circles : " + req.faces[0].attributes
+                        .skinstatus.dark_circle + "</div>" +
+                        "<div> Health : " + req.faces[0].attributes.skinstatus.health + "</div>" +
+                        "<div> Stain : " + req.faces[
                             0]
                         .attributes.skinstatus
-                        .stain);
+                        .stain + "</div>");
                     skinStatus.addClass("collapsible-body")
                     $("#skinStatusList").append(skinStatus)
 
 
 
                     var smile = $("<div>");
-                    smile.text("Smile Threshold : " + req.faces[0].attributes.smile.threshold + "  Value: " +
+                    smile.html("<div> Threshold : " + req.faces[0].attributes.smile.threshold + "</div>" +
+                        "<div> Value: " +
                         req.faces[0].attributes
                         .smile
-                        .value);
+                        .value + "</div>");
                     smile.addClass("collapsible-body");
                     $("#smileList").append(smile);
 
                     $("#photoElement").attr("src", photoLink)
-                    $("#photoElement").css("display", "block")
-                    $("#contentDump").css("display", "block")
+                    $("#photoElement").css("visibility", "visible")
+                    $("#contentDump").css("visibility", "visible")
 
 
 
