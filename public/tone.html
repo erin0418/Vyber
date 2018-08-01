@@ -35,8 +35,9 @@
 
     <nav>
         <div class="nav-wrapper amber darken-1">
-            </a>
-            <a href="/" class="brand-logo center">Vyber</a>
+                <a href="/" class="brand-logo" style="left:25px;">VYBER
+                    <i class="large material-icons">pie_chart</i>
+                </a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="/personality">
@@ -59,6 +60,9 @@
     <br>
         <!-- modal container -->
         <div class="container amber darken-1" id="modalContainer">
+            <div class="row" style="color:white; font-size: 20pt;">
+                Tone Analyzer
+            </div>
             <div class="row" style="color:white">
                 <div class="col s4">
     
@@ -98,7 +102,7 @@
                 <i class="material-icons prefix">mode_edit</i>
                 <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                 <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn amber darken1 waves-effect waves-orange" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -120,13 +124,14 @@
             </div>
         </div>
     </div>
-    <!-- <footer class="page-footer amber darken-1">
+     <!-- footer container -->
+     <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
         <div class="footer-copyright center">
             <div class="container">
                 © 2018 Copyright
             </div>
         </div>
-    </footer> -->
+    </footer>
 </body>
 <script>
     $(document).ready(function () {
