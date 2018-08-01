@@ -41,14 +41,26 @@
         visibility: hidden;
         transition: visibility 0s, opacity 0.5s linear;
     }
+    /* label focus color */
+.input-field input:focus + label {
+    color: #e65100 !important;
+  }
+  /* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #e65100 !important;
+    box-shadow: 0 1px 0 0 #e65100 !important
+  }
+
+    
 </style>
 
 <body>
 
     <nav>
         <div class="nav-wrapper amber darken-1">
-            </a>
-            <a href="/" class="brand-logo center">Vyber</a>
+                <a href="/" class="brand-logo" style="left:25px;">VYBER
+                    <i class="large material-icons">pie_chart</i>
+                </a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="/personality">
@@ -71,11 +83,14 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
+        <div class="row" style="color:white; font-size: 20pt;">
+            Image Analyzer
+        </div>
         <div class="row" style="color:white">
             <div class="col s4">
 
             </div>
-            <div class="col s4">
+            <div class="col s4 input-field">
 
                 <input type="text" id="photoLink" placeholder="please enter in the url of an image">
                 <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
@@ -148,7 +163,14 @@
             </div>
         </div>
     </div>
-
+    <!-- footer container -->
+    <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
+        <div class="footer-copyright center">
+            <div class="container">
+                © 2018 Copyright
+            </div>
+        </div>
+    </footer>
 </body>
 <script>
     $(document).ready(function () {

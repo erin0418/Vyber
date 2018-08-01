@@ -74,26 +74,26 @@
             $(".submit").on("click", function (event) {
                 event.preventDefault();
 
-                var newUser = {
-                    userName = $("#email").val().trim(),
-                    password = $("#password").val().trim(),
-                    profilePic = $("#profilePic").val().trim(),
-                    twitterUserName = $("").val().trim(),
-                    twitterPassword = $("").val().trim()
-                };
+                // var newUser = {
+                //     userName = $("#email").val().trim(),
+                //     password = $("#password").val().trim(),
+                //     profilePic = $("#profilePic").val().trim()
+                // };
 
-                console.log(newUser);
+                // console.log(newUser);
 
-                $.post(currentURL + "#(route)", newUser, function (data) {
-                    if (data) {
-                        console.log("New user added!");
-                        alert("Thanks for singing up! Welcome to Viber!");
-                    }
-                    else {
-                        console.log("ERROR no user added");
-                        alert("Sorry, try again later.")
-                    }
-                });
+                // $.post(currentURL + "#(route)", newUser, function (data) {
+                //     if (data) {
+                //         console.log("New user added!");
+                //         alert("Thanks for singing up! Welcome to Viber!");
+                //     }
+                //     else {
+                //         console.log("ERROR no user added");
+                //         alert("Sorry, try again later.")
+                //     }
+                // });
+
+                window.location = "index2.html"
             });
         });
     </script>
