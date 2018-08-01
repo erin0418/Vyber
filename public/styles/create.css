@@ -28,7 +28,12 @@ span, .btn {
     font-size: 20px;
 }
 
-/* .input-field input[type=text]:focus {
-    border-bottom: 1px solid #fff;
-    box-shadow: 0 1px 0 0 #000;
-  } */
+/* label focus color */
+.input-field input:focus + label {
+    color: #e65100 !important;
+  }
+  /* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #e65100 !important;
+    box-shadow: 0 1px 0 0 black !important
+  }
