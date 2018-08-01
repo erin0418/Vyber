@@ -1,14 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
+<style>
+    #modalContainer {
+        /* position: absolute; */
+        z-index: 2;
+        background: lightgrey;
+        padding: 25px;
+        text-align: center;
+        /* left: 10%; */
+        top: 25%;
+        box-shadow: 0px 3px 20px 0px black;
+    }
+    #contentDump {
+        display: none;
+    }
+    .mainPage {
+        display: none;
+    }
+</style>
+
 <body>
+
+    <nav>
+        <div class="nav-wrapper amber darken-1">
+            </a>
+            <a href="/" class="brand-logo center">Vyber</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="/personality">
+                        <i class="material-icons left">insert_chart</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tone">
+                        <i class="material-icons left">record_voice_over</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/images">
+                        <i class="material-icons left">photo_camera</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+        <!-- modal container -->
+        <div class="container amber darken-1" id="modalContainer">
+            <div class="row" style="color:white">
+                <div class="col s4">
     
-    <script src="js/tone.js" type="text/javascript"></script>
+                </div>
+                <div class="col s4" id="twitterLogin">
+    
+                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                        <i class="material-icons left">person</i>Get My Tweets</a>
+                </div>
+                <div class="col s4">
+    
+                </div>
+            </div>
+            <div class="row" style="color:white">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="enterText">
+    
+                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                        <i class="material-icons left">person</i>Enter My Text</a>
+                </div>
+                <div class="col s4">
+    
+                </div>
+            </div>
+        </div>
+    <!-- main site container -->
+    <div class="container mainPage">
+        <div class="row">
+            <div class="col xl12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">Enter text to be analyzed</label>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col s4 l6" id="contentDump">
+                <ul class="collapsible popout">
+                    <li id="docToneList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">
+                                chrome_reader_mode</i>
+                                Document Tone
+                        </div>
+                    </li>
+                    <li id="sentToneList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">reorder</i>
+                            Sentence Tone
+                        </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- <footer class="page-footer amber darken-1">
+        <div class="footer-copyright center">
+            <div class="container">
+                © 2018 Copyright
+            </div>
+        </div>
+    </footer> -->
 </body>
+<script>
+    $(document).ready(function () {
+        // When Twitter button is clicked
+        $('.collapsible').collapsible();
+        $("#twitterLogin").on("click", (event) => {  
+            $("#modalContainer").css("display", "none");   
+            // Add twitter login fuction
+        })
+        // When enter text button is clicked
+        $("#enterText").on("click", (event) => {
+            $("#modalContainer").css("display", "none");
+            $(".mainPage").css("display", "block")
+            $(".btn").on("click", (event) => {
+                $("#contentDump").css("display", "block");
+                runPostFunction();
+            }) 
+        })
+        // Displays the results from the api/tone
+        function runPostFunction() {
+            var currentURL = window.location.origin;
+            $.ajax({ url: currentURL + "/api/tone", method: "GET" })
+            .then(function(data) {
+                // Should be getting tone of entire document.
+                for (var i = 0; i < data.document_tone.tones; i++){
+                var docTone = $("<div>");
+                docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
+                docTone.addClass("collapsible-body");
+                $("#docToneList").append(docTone);
+                };
+                // Should be getting tone sentence by sentence
+                for (var i = 0; i < data.sentence_tone; i++){
+                var sentTone = $("<div>");
+                sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
+                sentTone.addClass("collapsible-body");
+                $("#sentToneList").append(sentTone);
+                };
+            });
+        };   
+    });
+</script>
+
 </html>
