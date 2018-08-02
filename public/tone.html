@@ -21,33 +21,48 @@
         text-align: center;
         /* left: 10%; */
         top: 25%;
-        box-shadow: 0px 3px 20px 0px black;
+        box-shadow: 0px 2px 10px 0px black;
     }
+
+    #modalButton {
+        background-color: #8ce3d4;
+    }
+
     #contentDump {
         display: none;
     }
+
     .mainPage {
         display: none;
     }
 
+    .collapsible-header {
+        background-color: #8ce3d4 !important;
+        color: white !important;
+    }
+
     /* label focus color */
-.input-field input:focus + label {
-    color: #e65100 !important;
-  }
-  /* label underline focus color */
-.input-field input:focus {
-    border-bottom: 1px solid #e65100 !important;
-    box-shadow: 0 1px 0 0 #e65100 !important
-  }
+
+    .input-field input:focus+label {
+        color: #e65100 !important;
+    }
+
+    /* label underline focus color */
+
+    .input-field input:focus {
+        color: #e65100 !important;
+        border-bottom: 1px solid #e65100 !important;
+        box-shadow: 0 1px 0 0 #e65100 !important
+    }
 </style>
 
 <body>
 
     <nav>
         <div class="nav-wrapper amber darken-1">
-                <a href="/" class="brand-logo" style="left:25px;">VYBER
-                    <i class="large material-icons">pie_chart</i>
-                </a>
+            <a href="/" class="brand-logo" style="left:25px; font-weight: lighter;">VYBER
+                <i class="large material-icons">pie_chart</i>
+            </a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="/personality">
@@ -68,11 +83,33 @@
         </div>
     </nav>
     <br>
-        <!-- modal container -->
-        <div class="container amber darken-1" id="modalContainer">
-            <div class="row" style="color:white; font-size: 20pt;">
-                Tone Analyzer
+    <!-- modal container -->
+    <div class="container amber darken-1" id="modalContainer">
+        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
+            Tone Analyzer
+        </div>
+        <div class="row" style="color:white">
+            <div class="col s4">
+
             </div>
+            <div class="col s4" id="twitterLogin">
+
+                <a class="waves-effect waves-light btn-large" id="modalButton">
+                    <i class="material-icons left">person</i>Get My Tweets</a>
+            </div>
+            <div class="col s4">
+
+            </div>
+        </div>
+        <div class="row" style="color:white">
+            <div class="col s4">
+
+            </div>
+
+            <div class="col s4" id="enterText">
+
+                <a class="waves-effect waves-light btn-large" id="modalButton">
+                    <i class="material-icons left">person</i>Enter My Text</a>
             <div class="row" style="color:white">
                 <div class="col s4">
     
@@ -86,20 +123,11 @@
     
                 </div>
             </div>
-            <div class="row" style="color:white">
-                <div class="col s4">
-    
-                </div>
-                <div class="col s4" id="enterText">
-    
-                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
-                        <i class="material-icons left">person</i>Enter My Text</a>
-                </div>
-                <div class="col s4">
-    
-                </div>
+            <div class="col s4">
+
             </div>
         </div>
+    </div>
     <!-- main site container -->
     <div class="container mainPage">
         <div class="row">
@@ -112,7 +140,7 @@
                 <i class="material-icons prefix">mode_edit</i>
                 <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                 <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn amber darken1 waves-effect waves-orange" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -122,7 +150,7 @@
                         <div class="collapsible-header">
                             <i class="material-icons">
                                 chrome_reader_mode</i>
-                                Document Tone
+                            Document Tone
                         </div>
                     </li>
                     <li id="sentToneList">
@@ -134,8 +162,8 @@
             </div>
         </div>
     </div>
-     <!-- footer container -->
-     <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
+    <!-- footer container -->
+    <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
         <div class="footer-copyright center">
             <div class="container">
                 © 2018 Copyright
@@ -147,8 +175,8 @@
     $(document).ready(function () {
         // When Twitter button is clicked
         $('.collapsible').collapsible();
-        $("#twitterLogin").on("click", (event) => {  
-            $("#modalContainer").css("display", "none");   
+        $("#twitterLogin").on("click", (event) => {
+            $("#modalContainer").css("display", "none");
             // Add twitter login fuction
         })
         // When enter text button is clicked
@@ -158,29 +186,29 @@
             $(".btn").on("click", (event) => {
                 $("#contentDump").css("display", "block");
                 runPostFunction();
-            }) 
+            })
         })
         // Displays the results from the api/tone
         function runPostFunction() {
             var currentURL = window.location.origin;
             $.ajax({ url: currentURL + "/api/tone", method: "GET" })
-            .then(function(data) {
-                // Should be getting tone of entire document.
-                for (var i = 0; i < data.document_tone.tones; i++){
-                var docTone = $("<div>");
-                docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
-                docTone.addClass("collapsible-body");
-                $("#docToneList").append(docTone);
-                };
-                // Should be getting tone sentence by sentence
-                for (var i = 0; i < data.sentence_tone; i++){
-                var sentTone = $("<div>");
-                sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
-                sentTone.addClass("collapsible-body");
-                $("#sentToneList").append(sentTone);
-                };
-            });
-        };   
+                .then(function (data) {
+                    // Should be getting tone of entire document.
+                    for (var i = 0; i < data.document_tone.tones; i++) {
+                        var docTone = $("<div>");
+                        docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
+                        docTone.addClass("collapsible-body");
+                        $("#docToneList").append(docTone);
+                    };
+                    // Should be getting tone sentence by sentence
+                    for (var i = 0; i < data.sentence_tone; i++) {
+                        var sentTone = $("<div>");
+                        sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
+                        sentTone.addClass("collapsible-body");
+                        $("#sentToneList").append(sentTone);
+                    };
+                });
+        };
     });
 </script>
 
