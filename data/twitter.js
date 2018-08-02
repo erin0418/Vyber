@@ -1,5 +1,4 @@
 var Twitter = require('twitter');
-var app = require('../server');
 
 var client = new Twitter({
     consumer_key: '1SCaB9nopXJmHtYkhhu21ziGK',
@@ -9,30 +8,34 @@ var client = new Twitter({
 });
 
 
-module.exports = function(app,screenName){
+module.exports = function (screenName) {
     // console.log(screenName)
-    var params = {
-        screen_name: screenName
-    };
-    client.get('statuses/user_timeline', params, function (error, tweets, response) {
-        if (!error) {
-            var content = {
-            "contentItems": []
-        };
-        for (var i = 0; i < tweets.length; i++) {
-            var tweetOjbect = {
-                "content": tweets[i].text,
-                "contenttype": "text/plain",
-                "created": tweets[i].created_at,
-                "id": tweets[i].id_str,
-                "language": tweets[i].lang
-            }
-            
-            content.contentItems.push(tweetOjbect)
-            
+    return new Promise((resolve, reject) => {
+            var params = {
+                screen_name: screenName
+            };
+            client.get('statuses/user_timeline', params, function (error, tweets, response) {
+                if (!error) {
+                    var content = {
+                        "contentItems": []
+                    };
+                    for (var i = 0; i < tweets.length; i++) {
+                        var tweetOjbect = {
+                            "content": tweets[i].text,
+                            "contenttype": "text/plain",
+                            "created": tweets[i].created_at,
+                            "id": tweets[i].id_str,
+                            "language": tweets[i].lang
+                        }
+
+                        content.contentItems.push(tweetOjbect)
+
+                    }
+                    require('./personality')(content)
+                    resolve(content);
+                }
+
+            })
         }
-        require('./personality')(app,content)
-        return content
-    }
-});
+    );
 }
