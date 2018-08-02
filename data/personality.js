@@ -1,5 +1,8 @@
-// Require twitter information
+
 var Tweets = require("../data/twitter")
+
+
+module.exports = function(app,Tweets){
 
 var PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3");
 var authPersonality = require("../keys/personalityKey");
@@ -10,24 +13,27 @@ var personalityInsights = new PersonalityInsightsV3({
     username: authPersonality.username,
     password: authPersonality.password
   })
+  var stringForParams;
+  for (var i = 0; i < Tweets.contentItems.length; i++) {
+    stringForParams += Tweets.contentItems[i].content;
+  }
 var profileParams = {
     // Add in tweets.contentItems to call all tweets
-    content: Tweets.contentItems, 
-    content_type: "json/application",
+    content: stringForParams, 
+    content_type: "text/plain",
     consumption_preferences: true,
     raw_scores: true
   }
 
   personalityInsights.profile(profileParams, function (error,analysis){
-    // if(err){
-    //   console.log(error);
-    // }
-    // else {
-    //   analysis
-    // }
+    if(error){
+      console.log(error);
+    }
+    else {
+      require('../routes/apiRoutes')(app,analysis);
+    }
   })
-
-
-module.exports = {
-  result: analysis
+  
 }
+
+

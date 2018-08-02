@@ -179,8 +179,10 @@
 
             var twitterScreenName = $("#twitterInput").val().trim();
 
+                $("#contentDump").css("display", "block")
             $.post('/twitterName', {"name": twitterScreenName}).then((data)=>{
                 location.reload('/personality')
+                runPostFunction();
             })
         })
         // When enter text button is clicked
@@ -195,39 +197,40 @@
         // Displays the results from the api/personality
         function runPostFunction() {
             var currentURL = window.location.origin;
-            $.ajax({ url: currentURL + "/api/personality", method: "GET" })
-                .then(function (data) {
-                    // Should be getting personality names and percentiles
-                    for (var i = 0; i < data.personality; i++) {
-                        var personality = $("<div>");
-                        personality.text(data.personality[i].name + data.personality[i].percentile);
-                        personality.append(data.personality[i].children.name + data.personality[i].percentile)
-                        personality.addClass("collapsible-body");
-                        $("#personalityList").append(personality);
-                    };
-                    // Should be getting needs names and percentiles
-                    for (var i = 0; i < data.needs; i++) {
-                        var needs = $("<div>");
-                        needs.text(data.needs[i].name + data.needs[i].percentile);
-                        needs.addClass("collapsible-body");
-                        $("#needsList").append(needs);
-                    };
-                    // Should be getting values names and percentiles
-                    for (var i = 0; i < data.values; i++) {
-                        var values = $("<div>");
-                        values.text(data.values[i].name + data.values[i].percentile);
-                        values.addClass("collapsible-body");
-                        $("#valuesList").append(values);
-                    };
-                    // Should be getting preferences names and percentiles
-                    for (var i = 0; i < data.consumption_preferences; i++) {
-                        var preferences = $("<div>");
-                        preferences.text(data.consumption_preferences[i].name + data.consumption_preferences[i].consumption_preferences.score);
-                        preferences.addClass("collapsible-body");
-                        $("#preferencesList").append(preferences);
-                    };
-                });
-        };
+            $.get("/api/personality")
+            .then(function(data) {
+                console.log(data);
+                // Should be getting personality names and percentiles
+                for (var i = 0; i < data.personality; i++){
+                var personality = $("<div>");
+                personality.text(data.personality[i].name + data.personality[i].percentile);
+                personality.append(data.personality[i].children.name + data.personality[i].percentile)
+                personality.addClass("collapsible-body");
+                $("#personalityList").append(personality);
+                };
+                // Should be getting needs names and percentiles
+                for (var i = 0; i < data.needs; i++){
+                var needs = $("<div>");
+                needs.text(data.needs[i].name + data.needs[i].percentile);
+                needs.addClass("collapsible-body");
+                $("#needsList").append(needs);
+                };
+                // Should be getting values names and percentiles
+                for (var i = 0; i < data.values; i++){
+                var values = $("<div>");
+                values.text(data.values[i].name + data.values[i].percentile);
+                values.addClass("collapsible-body");
+                $("#valuesList").append(values);
+                };
+                // Should be getting preferences names and percentiles
+                for (var i = 0; i < data.consumption_preferences; i++){
+                var preferences = $("<div>");
+                preferences.text(data.consumption_preferences[i].name + data.consumption_preferences[i].consumption_preferences.score);
+                preferences.addClass("collapsible-body");
+                $("#preferencesList").append(preferences);
+                };
+            });
+        };   
     });
 </script>
 
