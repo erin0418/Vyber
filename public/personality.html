@@ -154,8 +154,10 @@
 
             var twitterScreenName = $("#twitterInput").val().trim();
 
+                $("#contentDump").css("display", "block")
             $.post('/twitterName', {"name": twitterScreenName}).then((data)=>{
                 location.reload('/personality')
+                runPostFunction();
             })
         })
         // When enter text button is clicked
@@ -170,8 +172,9 @@
         // Displays the results from the api/personality
         function runPostFunction() {
             var currentURL = window.location.origin;
-            $.ajax({ url: currentURL + "/api/personality", method: "GET" })
+            $.get("/api/personality")
             .then(function(data) {
+                console.log(data);
                 // Should be getting personality names and percentiles
                 for (var i = 0; i < data.personality; i++){
                 var personality = $("<div>");

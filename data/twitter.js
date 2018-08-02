@@ -1,4 +1,5 @@
 var Twitter = require('twitter');
+var app = require('../server');
 
 var client = new Twitter({
     consumer_key: '1SCaB9nopXJmHtYkhhu21ziGK',
@@ -7,8 +8,9 @@ var client = new Twitter({
     access_token_secret: 'h1rl5Xg62zwAK6Wr4P0TJp6f7lQyPihQO3A37CaPnbvDI'
 });
 
-module.exports = function(screenName){
 
+module.exports = function(app,screenName){
+    // console.log(screenName)
     var params = {
         screen_name: screenName
     };
@@ -18,10 +20,10 @@ module.exports = function(screenName){
             "contentItems": []
         };
         for (var i = 0; i < tweets.length; i++) {
-            
             var tweetOjbect = {
                 "content": tweets[i].text,
-                "content-type": "text/plain",
+                "contenttype": "text/plain",
+                "created": tweets[i].created_at,
                 "id": tweets[i].id_str,
                 "language": tweets[i].lang
             }
@@ -29,6 +31,7 @@ module.exports = function(screenName){
             content.contentItems.push(tweetOjbect)
             
         }
+        require('./personality')(app,content)
         return content
     }
 });
