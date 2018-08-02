@@ -13,6 +13,9 @@ module.exports = function (passport) {
             User.findOrCreate({
                 twitterId: profile.id
             }, function (err, user) {
+                cosnole.log(err);
+                cosnole.log("hello");
+
                 return cb(err, user);
             });
         }
