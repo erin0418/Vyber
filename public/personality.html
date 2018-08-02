@@ -90,9 +90,9 @@
         </div>
         <div class="row" style="color:white; font-size: 26pt;">
             <div class="col s4">
+                <input type="text" name="twitterName" id="twitterInput">
             </div>
             <div class="col s4" id="twitterLogin">
-
                 <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Get My Tweets</a>
             </div>
@@ -174,9 +174,14 @@
     $(document).ready(function () {
         // When Twitter button is clicked
         $('.collapsible').collapsible();
-        $("#twitterLogin").on("click", (event) => {
-            $("#modalContainer").css("display", "none");
-            // Add twitter login fuction
+        $("#twitterLogin").on("click", (event) => {  
+            $("#modalContainer").css("display", "none");   
+
+            var twitterScreenName = $("#twitterInput").val().trim();
+
+            $.post('/twitterName', {"name": twitterScreenName}).then((data)=>{
+                location.reload('/personality')
+            })
         })
         // When enter text button is clicked
         $("#enterText").on("click", (event) => {
