@@ -31,13 +31,32 @@
     .mainPage {
         display: none;
     }
+
+    .collapsible-header {
+        background-color: #8ce3d4 !important;
+        color: white !important;
+    }
+
+    /* label focus color */
+
+    .input-field input:focus+label {
+        color: #e65100 !important;
+    }
+
+    /* label underline focus color */
+
+    .input-field input:focus {
+        color: #e65100 !important;
+        border-bottom: 1px solid #e65100 !important;
+        box-shadow: 0 1px 0 0 #e65100 !important
+    }
 </style>
 
 <body>
 
     <nav>
         <div class="nav-wrapper amber darken-1">
-            <a href="/" class="brand-logo" style="left:25px;">VYBER
+            <a href="/" class="brand-logo" style="left:25px; font-weight: lighter;">VYBER
                 <i class="large material-icons">pie_chart</i>
             </a>
             <ul class="right hide-on-med-and-down">
@@ -62,7 +81,7 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
-        <div class="row" style="color:white; font-size: 20pt;">
+        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
             Personality Analyzer
         </div>
         <div class="row" style="color:white; font-size: 26pt;">
@@ -70,7 +89,7 @@
                 <input type="text" name="twitterName" id="twitterInput">
             </div>
             <div class="col s4" id="twitterLogin">
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Get My Tweets</a>
             </div>
             <div class="col s4">
@@ -82,7 +101,7 @@
             </div>
             <div class="col s4" id="enterText">
 
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Enter My Text</a>
             </div>
             <div class="col s4">
@@ -103,8 +122,8 @@
                 <i class="material-icons prefix">mode_edit</i>
                 <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                 <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn amber darken1 waves-effect waves-orange" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
+                    <i class="material-icons right center">send</i>
                 </button>
             </div>
             <div class="col s4 l6" id="contentDump">
