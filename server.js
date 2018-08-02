@@ -6,9 +6,9 @@ var db = require("./models");
 
 
 // passport
-var passport = require('passport')
-var session = require("express-session")
-TwitterStrategy = require('passport-twitter').Strategy;
+// var passport = require('passport')
+// var session = require("express-session")
+// TwitterStrategy = require('passport-twitter').Strategy;
 
 
 var app = express();
@@ -21,14 +21,14 @@ app.use(express.static("public"));
 
 
 // passport middleware
-app.use(require('express-session')({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-require('./routes/auth')(passport)
+// app.use(require('express-session')({
+//   secret: 'keyboard cat',
+//   resave: true,
+//   saveUninitialized: true
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// require('./routes/auth')(passport)
 
 
 

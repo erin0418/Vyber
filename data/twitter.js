@@ -29,7 +29,7 @@ module.exports = function(screenName){
             content.contentItems.push(tweetOjbect)
             
         }
-        console.log(content)
+        return content
     }
 });
 }
