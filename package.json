@@ -15,7 +15,11 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
+    "login-with-twitter": "^1.2.0",
+=======
     "express-session": "^1.15.6",
+>>>>>>> 4246042e78bbe16c63cb2ea09149f217a523c4c1
     "mysql2": "^1.5.3",
     "nouislider": "^11.1.0",
     "passport": "^0.4.0",
