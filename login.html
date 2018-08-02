@@ -17,12 +17,14 @@
 
     <!-- FONT AWESOME ICONS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="public/styles/other.css">
+ 
 
     <title>Log that ish</title>
 </head>
+
 
 <body>
 
@@ -33,41 +35,64 @@
 
             <ul>
 
-                <a href="https://api.twitter.com/oauth/authenticate?oauth_token=1017229068247425024-OJ5c2jZPzDtCl8587jWhTtVCDwUHU6">
-                    <li>
-                        <i class="fab fa-twitter"></i>
-                    </li>
-                </a>
+                <!-- Button  -->
+                <li onclick="document.getElementById('log').style.display='' ">
+                    <!-- <li onclick=document.getElementById("your form id").style.display="block"> -->
+                    
+                    <i id="click" class="fas fa-key"></i>
+                </li>
 
-                <a href="https://www.google.com/gmail/about/#">
-                    <li>
-                        <i class="fab fa-google"></i>
-                    </li>
-                </a>
+                <div id="log" class="log-form">
+                    <h2>Login to your account</h2>
+                    <form>
+                        <input id="email" type="text" title="email"  placeholder="email" />
+                        <input id="pword" type="password" title="password" placeholder="password" />
+                        <button type="submit" class="btn submit"  href="public/index2.html">Login</button>
+                        <a class="forgot">Forgot Username?</a>
+                    </form>
+                </div>
 
-                <a href="https://github.com/">
+              
+
+                <!-- Create page -->
+                <a href="public/createAccount.html">
                     <li>
-                        <i class="fab fa-github-square"></i>
+                        <i class="far fa-user-circle"></i>
                     </li>
                 </a>
 
             </ul>
 
-
         </div>
     </div>
-
-    <script>
-
-        $(".fa-twitter").onclick(function () {
-            // working on receiving users twitter tokens, tweets etc...
-        })
-
-    </script>
-
-
-
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+            document.getElementById('log').style.display = 'none';
+
+            $(document).ready(function (){
+                $(".submit").on("click", function (event){
+                    event.preventDefault();
+
+                    var user = {
+                        email: $("#email").val().trim(),
+                        pword: $("#pword").val().trim()
+                    };
+
+                    $.get("#", user, function(data){
+                        if (user.email === data.user.email && user.pword === data.user.pword) {
+                            window.location = "index.html"
+                        } 
+                        else {
+                            window.location = "createAccount.html" 
+                        }
+                    })
+                })
+            })
+                
+        </script>
+
+    
 
 </body>
 

@@ -1,5 +1,11 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+CREATE DATABASE userdb;
+USE userdb;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+
+CREATE TABLE users ( 
+    id INT(11) AUTO_INCREMENT NOT NULL,
+    email VARCHAR (40),
+    pword VARCHAR (40),
+    PRIMARY KEY (id)
+)
+

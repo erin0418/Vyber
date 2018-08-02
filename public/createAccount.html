@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VYBER | Create Account</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <link rel="stylesheet" type="text/css" href="styles/create.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="amber darken-1">
+    <!-- Nav Bar -->
+    <!-- <nav>
+        <div class="nav-wrapper amber darken-1">
+            <a href="#" class="brand-logo" style="left:25px;">Viber
+                <i class="large material-icons">pie_chart</i>
+            </a>
+        </div>
+    </nav> -->
+    <div class="container">
+        <form class="">
+            <div class="col s6">
+                <h3 class="center white-text">VYBER</h3>
+                <h4 class="center white-text">CREATE ACCOUNT</h4>
+            </div>
+            <br><br>
+            <div class="col s6">
+                <div class="input-field">
+                    <input id="email" type="text" class="validate">
+                    <label for="email" class="white-text" id="p1">Email/User Name</label>
+                </div>
+            </div>
+            <br>
+            <div class="col s6">
+                <div class="input-field">
+                    <input id="password" type="password" class="validate">
+                    <label for="password" class="white-text" id="p1">Password</label>
+                </div>
+            </div>
+            <br>
+            <div class="col s6">
+                <div class="file-field input-field">
+                    <div class="btn amber lighten-5 waves-effect waves-orange">
+                        <span>Upload Profile Picture</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" id="profilePic">
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <button class="submit btn amber lighten-5 waves-effect waves-orange" type="submit" name="action">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".submit").on("click", function (event) {
+                event.preventDefault();
+
+                // var newUser = {
+                //     userName = $("#email").val().trim(),
+                //     password = $("#password").val().trim(),
+                //     profilePic = $("#profilePic").val().trim()
+                // };
+
+                // console.log(newUser);
+
+                // $.post(currentURL + "#(route)", newUser, function (data) {
+                //     if (data) {
+                //         console.log("New user added!");
+                //         alert("Thanks for singing up! Welcome to Viber!");
+                //     }
+                //     else {
+                //         console.log("ERROR no user added");
+                //         alert("Sorry, try again later.")
+                //     }
+                // });
+
+                window.location = "index2.html"
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,7 +1,15 @@
 body {
     /* font-family: Source San */
     background-color: #ffb300;
+    margin: 0;
+    padding: 0;
+
 }
+button{
+    border-color:none;
+    background-color: none;
+}
+
 h1 {
     font-weight: lighter;
     font-size: 80px;
@@ -46,4 +54,28 @@ li:hover {
     border: 1px solid crimson;
     transition: .5s;
 
+} 
+
+/* .modal {
+    max-height: 90%;
+  }
+  
+  .modal-form-row {
+    margin-bottom: 0px;
+  } */
+
+#modal1 {
+    width:  600px !important ; 
+    height:  100px !important ; 
 }
+
+.modal-content {
+	height:  300px;
+	width:  500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+

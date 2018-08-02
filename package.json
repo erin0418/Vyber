@@ -17,6 +17,8 @@
     "express-handlebars": "^3.0.0",
     "login-with-twitter": "^1.2.0",
     "mysql2": "^1.5.3",
+    "passport": "^0.4.0",
+    "passport-twitter": "^1.0.4",
     "sequelize": "^4.38.0",
     "watson-developer-cloud": "^3.7.1"
   },

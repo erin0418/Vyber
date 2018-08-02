@@ -6,47 +6,248 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
+<style>
+    #modalContainer {
+
+        /* position: absolute; */
+        z-index: 2;
+        background: lightgrey;
+        padding: 25px;
+        text-align: center;
+        /* left: 10%; */
+        top: 25%;
+        box-shadow: 0px 3px 20px 0px black;
+    }
+
+    #photoElement {
+        display: none;
+        height: 400px;
+        width: 450px;
+    }
+
+    #contentDump {
+        display: none;
+    }
+
+    .mainPage {
+        display: none;
+    }
+</style>
 
 <body>
+
     <nav>
-        <div class="nav-wrapper z-depth-1 blue lighten">
-            <div style="margin-left: 10px; margin-top: 5px" class="brand-logo">
-                <i class="material-icons">
-                    flight_takeoff
-                </i>
-            </div>
+        <div class="nav-wrapper amber darken-1">
+            </a>
+            <a href="/" class="brand-logo center">Vyber</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="/personality">
+                        <i class="material-icons left">insert_chart</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tone">
+                        <i class="material-icons left">record_voice_over</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/images">
+                        <i class="material-icons left">photo_camera</i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
-    <div class="container">
+    <br>
+    <!-- modal container -->
+    <div class="container amber darken-1" id="modalContainer">
+        <div class="row" style="color:white">
+            <div class="col s4">
+
+            </div>
+            <div class="col s4">
+
+                <input type="text" id="photoLink" placeholder="please enter in the url of an image">
+                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                    <i class="material-icons right">send</i>Submit</a>
+            </div>
+            <div class="col s4">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- main site container -->
+    <div class="container mainPage">
         <div class="row">
-            <div class="col xl12"></div>
+            <div class="col xl12">
+
+            </div>
         </div>
         <div class="row">
-            <div class="col xl6" id="imageDump">
+            <div class="col s8 l6" id="imageDump">
                 <img src="" id="photoElement">
             </div>
-            <div class="col xl6" id="contentDump"></div>
+            <div class="col s4 l6" id="contentDump">
+                <ul class="collapsible popout">
+                    <li id="ageList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">
+                                calendar_today</i>
+                            Age
+                        </div>
+                    </li>
+                    <li id="beautyList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">local_florist</i>
+                            Beauty
+                        </div>
+                    </li>
+                    <li id="emotionList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">insert_emoticon</i>
+                            Emotion
+                        </div>
+                    </li>
+                    <li id="faceQualityList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">high_quality</i>
+                            Face Quality
+                        </div>
+                    </li>
+                    <li id="genderList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">directions_run</i>
+                            Gender
+                        </div>
+                    </li>
+                    <li id="skinStatusList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">
+                                layers_clear</i>
+                            Skin Status
+                        </div>
+                    </li>
+                    <li id="smileList">
+                        <div class="collapsible-header">
+                            <i class="material-icons">brightness_5</i>
+                            Smile
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
 </body>
 <script>
-    var params = {
-        image_url: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/19510231_120767045191290_2553570141051417552_n.jpg?_nc_cat=0%26oh=9c63f567433a53fae18bbc811cc107e4%26oe=5C0EA2B7'
-    }
-    $.post(
-        'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
-        params.image_url +
-        '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
-        (req, res) => {
-            
-            console.log(req);
-            console.log(res);
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+        var photoLink;
+        $("#modalButton").on("click", (event) => {
+            photoLink = ($("#photoLink").val().trim());
+            $("#modalContainer").css("display", "none");
+            runPostFunction();
         })
+
+        function runPostFunction() {
+            $(".mainPage").css("display", "block")
+            $.post(
+                'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
+                photoLink +
+                '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
+                (req, res, params) => {
+
+
+                    var age = $("<div>");
+                    age.text("Age: " + req.faces[0].attributes.age.value);
+                    age.addClass("collapsible-body");
+                    $("#ageList").append(age);
+
+
+                    var beauty = $("<div>");
+                    beauty.html("<div> Female Beauty: " + req.faces[0].attributes.beauty.female_score +
+                        "</div>"+"<div> Male beauty: " + req.faces[
+                            0].attributes.beauty
+                        .male_score+"</div>");
+                    beauty.addClass("collapsible-body");
+                    $("#beautyList").append(beauty);
+
+
+
+                    var emotion = $("<div>");
+                    emotion.text("Anger : " + req.faces[0].attributes.emotion.anger + " Disgust : " + req.faces[
+                            0].attributes
+                        .emotion.disgust +
+                        "  Fear : " + req.faces[0].attributes.emotion.fear + "  Happiness : " + req.faces[
+                            0]
+                        .attributes.emotion
+                        .happiness +
+                        "   Neutral : " + req.faces[0].attributes.emotion.neutral + "  Sadness : " +
+                        req.faces[
+                            0].attributes
+                        .emotion.sadness +
+                        "  Surprise : " + req.faces[0].attributes.emotion.surprise);
+                    emotion.addClass("collapsible-body");
+                    $("#emotionList").append(emotion);
+
+
+
+                    var faceQuality = $("<div>");
+                    faceQuality.text(" Face Quality Threshold : " + req.faces[0].attributes.facequality.threshold +
+                        " Value: " + req.faces[
+                            0].attributes.facequality.value);
+                    faceQuality.addClass("collapsible-body");
+                    $("#faceQualityList").append(faceQuality);
+
+
+
+                    var gender = $("<div>");
+                    gender.text("Gender : " + req.faces[0].attributes.gender.value);
+                    gender.addClass("collapsible-body");
+                    $("#genderList").append(gender);
+
+
+
+                    var skinStatus = $("<div>");
+                    skinStatus.text("Skin Status Acne : " + req.faces[0].attributes.skinstatus.acne +
+                        " Dark Circles : " + req.faces[0].attributes
+                        .skinstatus.dark_circle +
+                        " Health : " + req.faces[0].attributes.skinstatus.health + "Stain : " + req.faces[
+                            0]
+                        .attributes.skinstatus
+                        .stain);
+                    skinStatus.addClass("collapsible-body")
+                    $("#skinStatusList").append(skinStatus)
+
+
+
+                    var smile = $("<div>");
+                    smile.text("Smile Threshold : " + req.faces[0].attributes.smile.threshold + "  Value: " +
+                        req.faces[0].attributes
+                        .smile
+                        .value);
+                    smile.addClass("collapsible-body");
+                    $("#smileList").append(smile);
+
+                    $("#photoElement").attr("src", photoLink)
+                    $("#photoElement").css("display", "block")
+                    $("#contentDump").css("display", "block")
+
+
+
+                    console.log(params);
+                })
+        }
+
+    });
 </script>
 
 </html>
