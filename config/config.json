@@ -5,18 +5,21 @@
     "database": "animals_db",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 8889
+    "port": 3306
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "testdb",
     "host": "localhost",
-    "dialect": "mysql",
-    "logging": false
-  },
-  "production": {
-    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
-  }
+  },
+   "production": {
+     "username": "root",
+     "password": null,
+     "database": "database_production",
+     "host": "127.0.0.1",
+     "dialect": "mysql",
+     "use_env_variable": "JAWSDB_URL"
+   }
 }

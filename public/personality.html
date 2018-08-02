@@ -21,13 +21,38 @@
         text-align: center;
         /* left: 10%; */
         top: 25%;
-        box-shadow: 0px 3px 20px 0px black;
-    } 
+        box-shadow: 0px 2px 10px 0px black;
+    }
+    
+    #modalButton {
+        background-color: #8ce3d4;
+    }
+
     #contentDump {
         display: none;
     }
+
     .mainPage {
         display: none;
+    }
+
+    .collapsible-header {
+        background-color: #8ce3d4 !important;
+        color: white !important;
+    }
+
+    /* label focus color */
+
+    .input-field input:focus+label {
+        color: #e65100 !important;
+    }
+
+    /* label underline focus color */
+
+    .input-field input:focus {
+        color: #e65100 !important;
+        border-bottom: 1px solid #e65100 !important;
+        box-shadow: 0 1px 0 0 #e65100 !important
     }
 </style>
 
@@ -35,8 +60,9 @@
 
     <nav>
         <div class="nav-wrapper amber darken-1">
+            <a href="/" class="brand-logo" style="left:25px; font-weight: lighter;">VYBER
+                <i class="large material-icons">pie_chart</i>
             </a>
-            <a href="/" class="brand-logo center">Vyber</a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="/personality">
@@ -59,17 +85,18 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
-        <div class="row" style="color:white">
+        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
+            Personality Analyzer
+        </div>
+        <div class="row" style="color:white; font-size: 26pt;">
             <div class="col s4">
-
+                <input type="text" name="twitterName" id="twitterInput">
             </div>
             <div class="col s4" id="twitterLogin">
-
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Get My Tweets</a>
             </div>
             <div class="col s4">
-
             </div>
         </div>
         <div class="row" style="color:white">
@@ -78,7 +105,7 @@
             </div>
             <div class="col s4" id="enterText">
 
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+                <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Enter My Text</a>
             </div>
             <div class="col s4">
@@ -99,8 +126,8 @@
                 <i class="material-icons prefix">mode_edit</i>
                 <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                 <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
+                    <i class="material-icons right center">send</i>
                 </button>
             </div>
             <div class="col s4 l6" id="contentDump">
@@ -109,7 +136,7 @@
                         <div class="collapsible-header">
                             <i class="material-icons">
                                 accessibility</i>
-                                Personality Traits
+                            Personality Traits
                         </div>
                     </li>
                     <li id="needsList">
@@ -134,13 +161,14 @@
             </div>
         </div>
     </div>
-    <!-- <footer class="page-footer amber darken-1">
+    <!-- footer container -->
+    <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
         <div class="footer-copyright center">
             <div class="container">
                 © 2018 Copyright
             </div>
         </div>
-    </footer> -->
+    </footer>
 </body>
 <script>
     $(document).ready(function () {
@@ -148,7 +176,14 @@
         $('.collapsible').collapsible();
         $("#twitterLogin").on("click", (event) => {  
             $("#modalContainer").css("display", "none");   
-            // Add twitter login fuction
+
+            var twitterScreenName = $("#twitterInput").val().trim();
+
+                $("#contentDump").css("display", "block")
+            $.post('/twitterName', {"name": twitterScreenName}).then((data)=>{
+                location.reload('/personality')
+                runPostFunction();
+            })
         })
         // When enter text button is clicked
         $("#enterText").on("click", (event) => {
@@ -157,13 +192,14 @@
             $(".btn").on("click", (event) => {
                 $("#contentDump").css("display", "block");
                 runPostFunction();
-            }) 
+            })
         })
         // Displays the results from the api/personality
         function runPostFunction() {
             var currentURL = window.location.origin;
-            $.ajax({ url: currentURL + "/api/personality", method: "GET" })
+            $.get("/api/personality")
             .then(function(data) {
+                console.log(data);
                 // Should be getting personality names and percentiles
                 for (var i = 0; i < data.personality; i++){
                 var personality = $("<div>");

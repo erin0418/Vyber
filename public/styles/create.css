@@ -35,5 +35,5 @@ span, .btn {
   /* label underline focus color */
 .input-field input:focus {
     border-bottom: 1px solid #e65100 !important;
-    box-shadow: 0 1px 0 0 black !important
+    box-shadow: 0 1px 0 0 #e65100 !important
   }

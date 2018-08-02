@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>VYBER | Image Analyzer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <!-- Google Chart CDN -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
@@ -22,21 +24,60 @@
         text-align: center;
         /* left: 10%; */
         top: 25%;
-        box-shadow: 0px 3px 20px 0px black;
+        box-shadow: 0px 2px 10px 0px black;
+    }
+
+    #modalButton {
+        color: white;
+        background-color: #8ce3d4;
+    }
+
+    button{
+        color: white;
+        background-color: #8ce3d4;
     }
 
     #photoElement {
-        display: none;
-        height: 400px;
-        width: 450px;
+        visibility: hidden;
+        height: inherit;
+        width: inherit;
+        transition: visibility 0s, opacity 0.5s linear;
     }
 
     #contentDump {
-        display: none;
+        visibility: hidden;
+        transition: visibility 0s, opacity 0.5s linear;
     }
 
     .mainPage {
-        display: none;
+        visibility: hidden;
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+
+    .collapsible-header {
+        background-color: #8ce3d4 !important;
+        color: white !important;
+    }
+
+    /* label focus color */
+
+    .input-field input:focus+label {
+        color: #e65100 !important;
+    }
+
+    /* label underline focus color */
+
+    .input-field input:focus {
+        color: #e65100 !important;
+        border-bottom: 1px solid #e65100 !important;
+        box-shadow: 0 1px 0 0 #e65100 !important
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 70px;
     }
 </style>
 
@@ -44,8 +85,9 @@
 
     <nav>
         <div class="nav-wrapper amber darken-1">
+            <a href="/" class="brand-logo" style="left:25px; font-weight: lighter;">VYBER
+                <i class="large material-icons">pie_chart</i>
             </a>
-            <a href="/" class="brand-logo center">Vyber</a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="/personality">
@@ -68,14 +110,17 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
+        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
+            Image Analyzer
+        </div>
         <div class="row" style="color:white">
             <div class="col s4">
 
             </div>
-            <div class="col s4">
-
-                <input type="text" id="photoLink" placeholder="please enter in the url of an image">
-                <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton">
+            <div class="col s4 input-field">
+                <input type="text" id="photoLink">
+                <label for="email" class="white-text">Please enter in the image URL</label>
+                <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons right">send</i>Submit</a>
             </div>
             <div class="col s4">
@@ -107,13 +152,14 @@
                     <li id="beautyList">
                         <div class="collapsible-header">
                             <i class="material-icons">local_florist</i>
-                            Beauty
+                            Beauty Scores
                         </div>
                     </li>
                     <li id="emotionList">
                         <div class="collapsible-header">
                             <i class="material-icons">insert_emoticon</i>
-                            Emotion
+                            Emotional Breakdown
+                            <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                         </div>
                     </li>
                     <li id="faceQualityList">
@@ -145,101 +191,353 @@
             </div>
         </div>
     </div>
-
+    <!-- footer container -->
+    <!-- <footer class="page-footer amber darken-1">
+        <div class="footer-copyright center">
+            <div class="container">
+                © 2018 Copyright
+            </div>
+        </div>
+    </footer> -->
 </body>
+
 <script>
+    // var nouislider = require("nouislider");
     $(document).ready(function () {
+
         $('.collapsible').collapsible();
         var photoLink;
         $("#modalButton").on("click", (event) => {
             photoLink = ($("#photoLink").val().trim());
-            $("#modalContainer").css("display", "none");
+            $("#modalContainer").css("visibility", "hidden");
             runPostFunction();
         })
 
+        // Draws the Emotional Breakdown Chart
+        var chartObj = {};
+
+        function drawChart() {
+            var emotion = $("<div>");
+            emotion.addClass("collapsible-body");
+            emotion.attr("id", "piechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Emotion', 'Emotional Breakdown'],
+                ['Anger', chartObj.anger],
+                ['Disgust', chartObj.disgust],
+                ['Fear', chartObj.fear],
+                ['Happiness', chartObj.happiness],
+                ['Neutral', chartObj.neutral],
+                ['Sadness', chartObj.sadness],
+                ['Surprise', chartObj.surprise]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#emotionList").append(emotion);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+        // Draws the Skin Status Chart
+        var chartSkinObj = {};
+
+        function drawSkinChart() {
+            var skinStatus = $("<div>");
+            skinStatus.addClass("collapsible-body");
+            skinStatus.attr("id", "skinPiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Skin', 'Skin Status'],
+                ['Acne', chartSkinObj.acne],
+                ['Dark Ciricles', chartSkinObj.dark_circle],
+                ['General Health', chartSkinObj.health],
+                ['Stain', chartSkinObj.stain]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#skinStatusList").append(skinStatus);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('skinPiechart'));
+            chart.draw(data, options);
+        }
+        // Draws the Face Quality Chart
+        var chartFaceObj = {};
+
+        function drawFaceChart() {
+            var faceQuality = $("<div>");
+            faceQuality.addClass("collapsible-body");
+            faceQuality.attr("id", "facePiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Face', 'Face Quality'],
+                ['Face Quality', chartFaceObj.value],
+                ['Remaining', (100 - chartFaceObj.value)]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#faceQualityList").append(faceQuality);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('facePiechart'));
+            chart.draw(data, options);
+        }
+        // Draws the Smile Chart
+        var chartSmileObj = {};
+
+        function drawSmileChart() {
+            var smile = $("<div>");
+            smile.addClass("collapsible-body");
+            smile.attr("id", "smilePiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Smile', 'Smile Quality'],
+                ['Smile', chartSmileObj.value],
+                ['Remaining', (100 - chartSmileObj.value)]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#smileList").append(smile);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('smilePiechart'));
+            chart.draw(data, options);
+        }
+        
+        // Draws the Beauty Chart
+        var chartBeautyObj = {};
+
+        function drawBeautyChart() {
+            var smile = $("<div>");
+            smile.addClass("collapsible-body");
+            smile.attr("id", "beautyPiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Beauty', 'Female Beauty'],
+                ['Female Beauty Score', chartBeautyObj.female_score],
+                ['Remaining', (100 - chartBeautyObj.female_score)]
+            ]);
+            var data2 = google.visualization.arrayToDataTable([
+                ['Beauty', 'Male Beauty'],
+                ['Male Beauty Score', chartBeautyObj.male_score],
+                ['Remaining', (100 - chartBeautyObj.male_score)]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#beautyList").append(beauty);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('beautyPiechart'));
+            chart.draw(data, data2, options);
+        }
+
+        // Draws the Female Beauty Chart
+        var chartFBeautyObj = {};
+
+        function drawFBeautyChart() {
+            var fBeauty = $("<div>");
+            fBeauty.addClass("collapsible-body");
+            fBeauty.attr("id", "beautyPiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Beauty', 'Female Beauty'],
+                ['Female Beauty Score', chartFBeautyObj.female_score],
+                ['Remaining', (100 - chartFBeautyObj.female_score)]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#beautyList").append(fBeauty);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('beautyPiechart'));
+            chart.draw(data, options);
+        }
+        
+        // Draws the Male Beauty Chart
+        var chartMBeautyObj = {};
+
+        function drawMBeautyChart() {
+            var mBeauty = $("<div>");
+            mBeauty.addClass("collapsible-body");
+            mBeauty.attr("id", "mBeautyPiechart");
+            var data = google.visualization.arrayToDataTable([
+                ['Beauty', 'Male Beauty'],
+                ['Male Beauty Score', chartMBeautyObj.male_score],
+                ['Remaining', (100 - chartMBeautyObj.male_score)]
+            ]);
+
+            var options = { 'width': 375, 'height': 375 };
+
+            $("#beautyList").append(mBeauty);
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('mBeautyPiechart'));
+            chart.draw(data, options);
+        }
+
         function runPostFunction() {
+
             $(".mainPage").css("display", "block")
+
+            $(".mainPage").css("visibility", "visible")
+
             $.post(
                 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
                 photoLink +
                 '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus',
                 (req, res, params) => {
 
+                    // Emotional Breakdown Chart Params
+                    chartObj.anger = req.faces[0].attributes.emotion.anger;
+                    chartObj.fear = req.faces[0].attributes.emotion.fear;
+                    chartObj.disgust = req.faces[0].attributes.emotion.disgust;
+                    chartObj.happiness = req.faces[0].attributes.emotion.happiness;
+                    chartObj.neutral = req.faces[0].attributes.emotion.neutral;
+                    chartObj.sadness = req.faces[0].attributes.emotion.sadness;
+                    chartObj.surprise = req.faces[0].attributes.emotion.surprise;
+
+                    // Skin Status Chart Params
+                    chartSkinObj.acne = req.faces[0].attributes.skinstatus.acne;
+                    chartSkinObj.dark_circle = req.faces[0].attributes.skinstatus.dark_circle;
+                    chartSkinObj.health = req.faces[0].attributes.skinstatus.health;
+                    chartSkinObj.stain = req.faces[0].attributes.skinstatus.stain;
+
+                    // Face Quality Chart Params
+                    chartFaceObj.value = req.faces[0].attributes.facequality.value;
+
+                    // Smile Chart Params
+                    chartSmileObj.value = req.faces[0].attributes.smile.value;
+
+                    // Beauty Chart Params
+                    chartFBeautyObj.female_score = req.faces[0].attributes.beauty.female_score;
+                    chartMBeautyObj.male_score = req.faces[0].attributes.beauty.male_score;
+
+                    // Loads Google Charts and calls draw chart functions
+                    google.charts.load('current', { 'packages': ['corechart'] });
+                    google.charts.setOnLoadCallback(drawChart);
+                    google.charts.setOnLoadCallback(drawSkinChart);
+                    google.charts.setOnLoadCallback(drawFaceChart);
+                    google.charts.setOnLoadCallback(drawSmileChart);
+                    google.charts.setOnLoadCallback(drawFBeautyChart);
+                    google.charts.setOnLoadCallback(drawMBeautyChart);
 
                     var age = $("<div>");
-                    age.text("Age: " + req.faces[0].attributes.age.value);
+                    age.html("<div> Age: " + req.faces[0].attributes.age.value + "</div>");
                     age.addClass("collapsible-body");
+                    age.attr("id", "test-slider");
                     $("#ageList").append(age);
-
 
                     var beauty = $("<div>");
                     beauty.html("<div> Female Beauty: " + req.faces[0].attributes.beauty.female_score +
-                        "</div>"+"<div> Male beauty: " + req.faces[
+                        "</div>" + "<div> Male beauty: " + req.faces[
                             0].attributes.beauty
-                        .male_score+"</div>");
+                        .male_score + "</div>");
                     beauty.addClass("collapsible-body");
                     $("#beautyList").append(beauty);
 
 
 
                     var emotion = $("<div>");
-                    emotion.text("Anger : " + req.faces[0].attributes.emotion.anger + " Disgust : " + req.faces[
+                    emotion.html("<div> Anger : " + req.faces[0].attributes.emotion.anger + "</div>" +
+                        "<div> Disgust : " + req.faces[
                             0].attributes
-                        .emotion.disgust +
-                        "  Fear : " + req.faces[0].attributes.emotion.fear + "  Happiness : " + req.faces[
+                        .emotion.disgust + "</div>" +
+                        "<div> Fear : " + req.faces[0].attributes.emotion.fear + "</div>" +
+                        "<div> Happiness : " + req.faces[
                             0]
                         .attributes.emotion
-                        .happiness +
-                        "   Neutral : " + req.faces[0].attributes.emotion.neutral + "  Sadness : " +
+                        .happiness + "</div>" +
+                        "<div>  Neutral : " + req.faces[0].attributes.emotion.neutral + "</div>" +
+                        "<div> Sadness : " +
                         req.faces[
                             0].attributes
-                        .emotion.sadness +
-                        "  Surprise : " + req.faces[0].attributes.emotion.surprise);
+                        .emotion.sadness + "</div>" +
+                        "<div>  Surprise : " + req.faces[0].attributes.emotion.surprise + "</div>");
                     emotion.addClass("collapsible-body");
                     $("#emotionList").append(emotion);
 
 
 
                     var faceQuality = $("<div>");
-                    faceQuality.text(" Face Quality Threshold : " + req.faces[0].attributes.facequality.threshold +
-                        " Value: " + req.faces[
-                            0].attributes.facequality.value);
+                    faceQuality.html("<div> Threshold : " + req.faces[0].attributes.facequality.threshold +
+                        "</div>" +
+                        "<div> Value: " + req.faces[
+                            0].attributes.facequality.value + "</div>");
                     faceQuality.addClass("collapsible-body");
                     $("#faceQualityList").append(faceQuality);
 
-
-
                     var gender = $("<div>");
-                    gender.text("Gender : " + req.faces[0].attributes.gender.value);
+                    gender.html("<div> Gender : " + req.faces[0].attributes.gender.value + "</div>");
                     gender.addClass("collapsible-body");
                     $("#genderList").append(gender);
 
 
+                    // var beauty = $("<div>");
+                    // beauty.html(
+                    //     "<div> Female Beauty Score: " + req.faces[0].attributes.beauty.female_score + "</div>" +
+                    //     "<div> Male Beauty Score: " + req.faces[0].attributes.beauty.male_score + "</div>"
+                    // );
+                    // beauty.addClass("collapsible-body");
+                    // $("#beautyList").append(beauty);
+
+
+
+                    // var faceQuality = $("<div>");
+                    // faceQuality.text(
+                    //     " Face Quality Threshold : " + req.faces[0].attributes.facequality.threshold +
+                    //     " Value: " + req.faces[0].attributes.facequality.value
+                    // );
+                    // faceQuality.addClass("collapsible-body");
+                    // $("#faceQualityList").append(faceQuality);
+
+                    // var skinStatus = $("<div>");
+                    // skinStatus.text(
+                    //     "Skin Status Acne : " + req.faces[0].attributes.skinstatus.acne +
+                    //     " Dark Circles : " + req.faces[0].attributes.skinstatus.dark_circle +
+                    //     " Health : " + req.faces[0].attributes.skinstatus.health + 
+                    //     " Stain : " + req.faces[0].attributes.skinstatus.stain
+                    // );
+                    // skinStatus.addClass("collapsible-body")
+                    // $("#skinStatusList").append(skinStatus)
+
+                    // var smile = $("<div>");
+                    // smile.text(
+                    //     "Smile Threshold : " + req.faces[0].attributes.smile.threshold +
+                    //     "  Value: " + req.faces[0].attributes.smile.value
+                    // );
+                    // smile.addClass("collapsible-body");
+                    // $("#smileList").append(smile);
+
+
 
                     var skinStatus = $("<div>");
-                    skinStatus.text("Skin Status Acne : " + req.faces[0].attributes.skinstatus.acne +
-                        " Dark Circles : " + req.faces[0].attributes
-                        .skinstatus.dark_circle +
-                        " Health : " + req.faces[0].attributes.skinstatus.health + "Stain : " + req.faces[
+                    skinStatus.html("<div> Acne : " + req.faces[0].attributes.skinstatus.acne + "</div>" +
+                        "<div> Dark Circles : " + req.faces[0].attributes
+                        .skinstatus.dark_circle + "</div>" +
+                        "<div> Health : " + req.faces[0].attributes.skinstatus.health + "</div>" +
+                        "<div> Stain : " + req.faces[
                             0]
                         .attributes.skinstatus
-                        .stain);
+                        .stain + "</div>");
                     skinStatus.addClass("collapsible-body")
                     $("#skinStatusList").append(skinStatus)
 
 
 
                     var smile = $("<div>");
-                    smile.text("Smile Threshold : " + req.faces[0].attributes.smile.threshold + "  Value: " +
+                    smile.html("<div> Threshold : " + req.faces[0].attributes.smile.threshold + "</div>" +
+                        "<div> Value: " +
                         req.faces[0].attributes
                         .smile
-                        .value);
+                        .value + "</div>");
                     smile.addClass("collapsible-body");
                     $("#smileList").append(smile);
 
+
                     $("#photoElement").attr("src", photoLink)
-                    $("#photoElement").css("display", "block")
-                    $("#contentDump").css("display", "block")
+                    $("#photoElement").css("visibility", "visible")
+                    $("#contentDump").css("visibility", "visible")
 
 
 

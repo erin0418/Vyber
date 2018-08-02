@@ -1,21 +1,30 @@
 var Personality = require("../data/personality.js");
-var dataTone = require("../data/tone.js");
+var Tone = require("../data/tone.js");
+// var personality = require("../data/personalityArray");
+var tone = require("../data/toneArray");
+module.exports = function(app,personalityData) {
+  // console.log(app);
+  // console.log(personalityData);
+  app.get("api/personality", function (req,res){
+    console.log(req);
+    console.log(personalityData);
 
-module.exports = function(app) {
+    res.json(personalityData);
+  })
+  app.get("api/tone", function (req,res){
+    res.json(tone);
+  })
   app.post("api/personality", function(req, res) {
-    Personality.personalityInsights.profile(Personality.profileParams, function(
-      error,
-      profile
-    ) {
-      if (error) {
-        console.log(error);
-      } else {
-        res.send(JSON.stringify(profile, null, 2));
-      }
-    });
+    personality.push(Personality.result);
   });
 
   app.post("api/tone", function(req, res) {
-    res.send(dataTone);
+    tone.push(Tone.result);
   });
+  app.post('/twitterName',(req,res)=>{
+    console.log(req.body.name);
+    var screenName = req.body.name;
+    require('../data/twitter')(app,screenName);
+
+  })
 };
