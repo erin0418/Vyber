@@ -1,5 +1,5 @@
 var path = require("path");
-var passport = require('passport')
+// var passport = require('passport')
 
 
 module.exports = function(app) {
@@ -26,15 +26,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/tone.html"));
   });
 
-  app.get('/auth/twitter', passport.authenticate('twitter'));
+  // app.get('/auth/twitter', passport.authenticate('twitter'));
 
-  app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', {
-      failureRedirect: '/login'
-    }),
-    function (req, res) {
-      // Successful authentication, redirect home.
-      res.json(req);
-      res.redirect('/');
-    });
+  // app.get('/auth/twitter/callback',
+  //   passport.authenticate('twitter', {
+  //     failureRedirect: '/login'
+  //   }),
+  //   function (req, res) {
+  //     // Successful authentication, redirect home.
+  //     res.json(req);
+  //     res.redirect('/');
+  //   });
 };

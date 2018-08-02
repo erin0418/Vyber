@@ -19,12 +19,12 @@ var profileParams = {
   }
 
   personalityInsights.profile(profileParams, function (error,analysis){
-    if(err){
-      console.log(error);
-    }
-    else {
-      analysis
-    }
+    // if(err){
+    //   console.log(error);
+    // }
+    // else {
+    //   analysis
+    // }
   })
 
 

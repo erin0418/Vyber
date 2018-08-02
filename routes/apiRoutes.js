@@ -1,12 +1,11 @@
-var Personality = require("../data/personality.js");
+// var Personality = require("../data/personality.js");
 var Tone = require("../data/tone.js");
-var personality = require("../data/personalityArray");
+// var personality = require("../data/personalityArray");
 var tone = require("../data/toneArray");
-
 module.exports = function(app) {
-  app.get("api/personality", function (req,res){
-    res.json(personality);
-  })
+  // app.get("api/personality", function (req,res){
+  //   res.json(personality);
+  // })
   app.get("api/tone", function (req,res){
     res.json(tone);
   })
@@ -17,4 +16,10 @@ module.exports = function(app) {
   app.post("api/tone", function(req, res) {
     tone.push(Tone.result);
   });
+  app.post('/twitterName',(req,res)=>{
+    console.log(req.body.name);
+    var screenName = req.body.name;
+    require('../data/twitter')(screenName);
+
+  })
 };
