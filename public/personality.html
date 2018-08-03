@@ -86,11 +86,10 @@
         </div>
         <div class="row" style="color:white; font-size: 26pt;">
             <div class="col s4">
-                <input type="text" name="twitterName" id="twitterInput">
+
             </div>
-            <div class="col s4" id="twitterLogin">
-                <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Get My Tweets</a>
+            <div class="col s4" id="twitterName">
+                <input type="text" name="twitterName" id="twitterInput">
             </div>
             <div class="col s4">
             </div>
@@ -99,10 +98,9 @@
             <div class="col s4">
 
             </div>
-            <div class="col s4" id="enterText">
-
+            <div class="col s4" id="twitterLogin">
                 <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Enter My Text</a>
+                    <i class="material-icons left">person</i>Get My Tweets</a>
             </div>
             <div class="col s4">
 
@@ -114,24 +112,29 @@
     <div class="container mainPage">
         <div class="row">
             <div class="col xl12">
-
+                <h5 id="twitterNameDisplay" style="color: #ffb300; text-align: center;"></h5>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
-                    <i class="material-icons right center">send</i>
-                </button>
+        <hr>
+        <div class="row" id="contentDump">
+            <div class="col s3" id="personalityList">
+                    <i class="material-icons">
+                            accessibility</i>Personality Traits
             </div>
-            <div class="col s4 l6" id="contentDump">
-                <ul class="collapsible popout">
+            <div class="col s3" id="needsList">
+                    <i class="material-icons">local_florist</i>Needs List
+            </div>
+            <div class="col s3" id="valuesList">
+                    <i class="material-icons">bubble_chart</i>Values List
+            </div>
+            <div class="col s3" id="perferencesList">
+                    <i class="material-icons">shopping_cart</i>Perferences List
+            </div>
+        </div>
+                <!-- <ul class="collapsible popout">
                     <li id="personalityList">
                         <div class="collapsible-header">
-                            <i class="material-icons">
-                                accessibility</i>
+                            
                             Personality Traits
                         </div>
                     </li>
@@ -147,15 +150,9 @@
                             Values
                         </div>
                     </li>
-                    <li id="preferencesList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">shopping_cart</i>
-                            Preferences
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                </ul> -->
+            <!-- </div>
+        </div> -->
     </div>
     <!-- footer container -->
     <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
@@ -172,59 +169,131 @@
         $('.collapsible').collapsible();
         $("#twitterLogin").on("click", (event) => {
             $("#modalContainer").css("display", "none");
-
             var twitterScreenName = $("#twitterInput").val().trim();
             $(".mainPage").css("display", "block")
-
             $("#contentDump").css("display", "block")
-
+            
+            // This is getting the twitter data
             $.post('/twitterName', {
                 "name": twitterScreenName
             }).then((data) => {
-                for (var i = 0; i < data.personality; i++) {
-                    var personality = $("<div>");
-                    personality.text(data.personality[i].name + data.personality[i].percentile);
-                    personality.append(data.personality[i].children.name + data.personality[i].percentile)
-                    personality.addClass("collapsible-body");
+                console.log(data)
+                $("#twitterNameDisplay").text("Results from twitter user " + twitterScreenName)
+
+                var personality = $("<div>");
+                    personality.html("<div> Openness : " + data.personality[0].raw_score + "</div>" +
+                        "<div> Conscientiousness : " + data.personality[1].raw_score + "</div>" +
+                        "<div> Extraversion : " + data.personality[2].raw_score + "</div>" +
+                        "<div> Agreeableness : " + data.personality[3].raw_score + "</div>" +
+                        "<div>  Neuroticism : " + data.personality[4].raw_score + "</div>");
                     $("#personalityList").append(personality);
-                };
-                // Should be getting needs names and percentiles
-                for (var i = 0; i < data.needs; i++) {
-                    var needs = $("<div>");
-                    needs.text(data.needs[i].name + data.needs[i].percentile);
-                    needs.addClass("collapsible-body");
+                
+                var needs = $("<div>");
+                    needs.html("<div> Challenge : " + data.needs[0].raw_score + "</div>" +
+                        "<div> Closeness: " + data.needs[1].raw_score + "</div>" +
+                        "<div> Curiousity: " + data.needs[2].raw_score + "</div>" +
+                        "<div> Excitement: " + data.needs[3].raw_score + "</div>" +
+                        "<div> Harmony: " + data.needs[4].raw_score + "</div>" +
+                        "<div> Ideal: " + data.needs[5].raw_score + "</div>" +
+                        "<div> Liberty: " + data.needs[6].raw_score + "</div>" +
+                        "<div> Love: " + data.needs[7].raw_score + "</div>" +
+                        "<div> Practicality: " + data.needs[8].raw_score + "</div>" +
+                        "<div> Self-Expression: " + data.needs[9].raw_score + "</div>" +
+                        "<div> Stability: " + data.needs[10].raw_score + "</div>" +
+                        "<div>  Structure : " + data.needs[11].raw_score + "</div>");
                     $("#needsList").append(needs);
-                };
-                // Should be getting values names and percentiles
-                for (var i = 0; i < data.values; i++) {
-                    var values = $("<div>");
-                    values.text(data.values[i].name + data.values[i].percentile);
-                    values.addClass("collapsible-body");
+                
+                var values = $("<div>");
+                    values.html("<div> Conservation : " + data.values[0].raw_score + "</div>" +
+                        "<div> Openness to Change: " + data.values[1].raw_score + "</div>" +
+                        "<div> Hedonism: " + data.values[2].raw_score + "</div>" +
+                        "<div> Self-Enhancement: " + data.values[3].raw_score + "</div>" +
+                        "<div> Self-Transcendence: " + data.values[4].raw_score + "</div>");
                     $("#valuesList").append(values);
-                };
-                // Should be getting preferences names and percentiles
-                for (var i = 0; i < data.consumption_preferences; i++) {
-                    var preferences = $("<div>");
-                    preferences.text(data.consumption_preferences[i].name + data.consumption_preferences[
-                        i].consumption_preferences.score);
-                    preferences.addClass("collapsible-body");
-                    $("#preferencesList").append(preferences);
-                };
 
-                // location.reload('/personality')
-            })
-        })
-        // When enter text button is clicked
-        $("#enterText").on("click", (event) => {
-            $("#modalContainer").css("display", "none");
-            $(".mainPage").css("display", "block")
-            $(".btn").on("click", (event) => {
-                $("#contentDump").css("display", "block");
-                runPostFunction();
-            })
-        })
-        // Displays the results from the api/personality
-
+                var perferences = $("<div>");
+                    for (var i = 0; i < data.consumption_preferences[0].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[0].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[0].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[1].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[1].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[1].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[2].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[2].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[2].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[3].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[3].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[3].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[4].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[4].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[4].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[5].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[5].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[5].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[6].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[6].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[6].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+                    for (var i = 0; i < data.consumption_preferences[7].consumption_preferences.length; i++) {
+                    if (data.consumption_preferences[7].consumption_preferences[i].score == 1){
+                        {
+                            var perferencesTrue;
+                            perferencesTrue += ("<li>" + data.consumption_preferences[7].consumption_preferences[i].name + "</li>");
+                        }
+                            perferences.html(perferencesTrue)
+                            $("#perferencesList").append(perferences);
+                        }
+                    }
+            });
+        });
     });
 </script>
 
