@@ -76,7 +76,7 @@
                     password: $("#pword").val().trim()
                 };
 
-                $.post("/api/users", {
+                $.post("https://thawing-peak-96935.herokuapp.com/api/users", {
                     "username" : user.username,
                     "password": user.password
                 }).then(function (data) {
