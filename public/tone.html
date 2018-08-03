@@ -90,7 +90,7 @@
         </div>
         <div class="row" style="color:white">
             <div class="col s4">
-
+                <input type="text" name="twitterName" id="twitterInput">
             </div>
             <div class="col s4" id="twitterLogin">
 
@@ -110,66 +110,66 @@
 
                 <a class="waves-effect waves-light btn-large" id="modalButton">
                     <i class="material-icons left">person</i>Enter My Text</a>
-            <div class="row" style="color:white">
-                <div class="col s4">
-    
-                </div>
-                <div class="col s4" id="twitterLogin">
-    
-                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton" href="/auth/twitter">
-                        <i class="material-icons left">person</i>Get My Tweets</a>
-                </div>
-                <div class="col s4">
-    
-                </div>
-            </div>
-            <div class="col s4">
+                <div class="row" style="color:white">
+                    <div class="col s4">
 
-            </div>
-        </div>
-    </div>
-    <!-- main site container -->
-    <div class="container mainPage">
-        <div class="row">
-            <div class="col xl12">
+                    </div>
+                    <div class="col s4" id="twitterLogin">
 
+                        <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton" href="/auth/twitter">
+                            <i class="material-icons left">person</i>Get My Tweets</a>
+                    </div>
+                    <div class="col s4">
+
+                    </div>
+                </div>
+                <div class="col s4">
+
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
-                    <i class="material-icons right">send</i>
-                </button>
+        <!-- main site container -->
+        <div class="container mainPage">
+            <div class="row">
+                <div class="col xl12">
+
+                </div>
             </div>
-            <div class="col s4 l6" id="contentDump">
-                <ul class="collapsible popout">
-                    <li id="docToneList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">
-                                chrome_reader_mode</i>
-                            Document Tone
-                        </div>
-                    </li>
-                    <li id="sentToneList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">reorder</i>
-                            Sentence Tone
-                        </div>
-                </ul>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                    <label for="icon_prefix2">Enter text to be analyzed</label>
+                    <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                <div class="col s4 l6" id="contentDump">
+                    <ul class="collapsible popout">
+                        <li id="docToneList">
+                            <div class="collapsible-header">
+                                <i class="material-icons">
+                                    chrome_reader_mode</i>
+                                Document Tone
+                            </div>
+                        </li>
+                        <li id="sentToneList">
+                            <div class="collapsible-header">
+                                <i class="material-icons">reorder</i>
+                                Sentence Tone
+                            </div>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- footer container -->
-    <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
-        <div class="footer-copyright center">
-            <div class="container">
-                © 2018 Copyright
+        <!-- footer container -->
+        <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
+            <div class="footer-copyright center">
+                <div class="container">
+                    © 2018 Copyright
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 </body>
 <script>
     $(document).ready(function () {
@@ -177,6 +177,18 @@
         $('.collapsible').collapsible();
         $("#twitterLogin").on("click", (event) => {
             $("#modalContainer").css("display", "none");
+
+            var twitterScreenName = $("#twitterInput").val().trim();
+            $(".mainPage").css("display", "block")
+
+            $("#contentDump").css("display", "block")
+
+            $.post('/toneRoute', {
+                "name": twitterScreenName
+            }).then((data) => {
+                // console.log("hello")
+                console.log(data);
+            })
             // Add twitter login fuction
         })
         // When enter text button is clicked
@@ -188,27 +200,6 @@
                 runPostFunction();
             })
         })
-        // Displays the results from the api/tone
-        function runPostFunction() {
-            var currentURL = window.location.origin;
-            $.ajax({ url: currentURL + "/api/tone", method: "GET" })
-                .then(function (data) {
-                    // Should be getting tone of entire document.
-                    for (var i = 0; i < data.document_tone.tones; i++) {
-                        var docTone = $("<div>");
-                        docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
-                        docTone.addClass("collapsible-body");
-                        $("#docToneList").append(docTone);
-                    };
-                    // Should be getting tone sentence by sentence
-                    for (var i = 0; i < data.sentence_tone; i++) {
-                        var sentTone = $("<div>");
-                        sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
-                        sentTone.addClass("collapsible-body");
-                        $("#sentToneList").append(sentTone);
-                    };
-                });
-        };
     });
 </script>
 
