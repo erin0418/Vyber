@@ -31,9 +31,17 @@ p {
 
 .media {
     position: absolute;
-    top: 40%;
+    top: 60%;
     left: 50%;
-    transform: translate(-53%, -50%)
+    transform: translate(-50%, -50%)
+}
+
+.btn {
+    color: #ff8f00;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 20px;
+    margin-top: 0;
 }
 
 
@@ -50,11 +58,21 @@ li {
 }
 
 li:hover {
-    color: crimson;
-    border: 1px solid crimson;
+    color: #e65100;
+    border: 1px solid #e65100;
     transition: .5s;
 
 } 
+
+/* label focus color */
+.input-field input:focus + label {
+    color: #e65100 !important;
+  }
+  /* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #e65100 !important;
+    box-shadow: 0 1px 0 0 #e65100 !important
+  }
 
 /* .modal {
     max-height: 90%;
