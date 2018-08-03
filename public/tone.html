@@ -85,91 +85,73 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
-        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
-            Tone Analyzer
-        </div>
-        <div class="row" style="color:white">
-            <div class="col s4">
-
+            <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
+                Tone Analyzer
             </div>
-            <div class="col s4" id="twitterLogin">
-
-                <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Get My Tweets</a>
+            <div class="row" style="color:white; font-size: 26pt;">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="twitterName">
+                    <input type="text" name="twitterName" id="twitterInput">
+                </div>
+                <div class="col s4">
+                </div>
             </div>
-            <div class="col s4">
-
-            </div>
-        </div>
-        <div class="row" style="color:white">
-            <div class="col s4">
-
-            </div>
-
-            <div class="col s4" id="enterText">
-
-                <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Enter My Text</a>
             <div class="row" style="color:white">
                 <div class="col s4">
     
                 </div>
                 <div class="col s4" id="twitterLogin">
-    
-                    <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton" href="/auth/twitter">
+                    <a class="waves-effect waves-light btn-large" id="modalButton">
                         <i class="material-icons left">person</i>Get My Tweets</a>
                 </div>
                 <div class="col s4">
     
                 </div>
             </div>
-            <div class="col s4">
-
-            </div>
         </div>
-    </div>
-    <!-- main site container -->
-    <div class="container mainPage">
-        <div class="row">
-            <div class="col xl12">
 
+        <!-- main site container -->
+        <div class="container mainPage">
+            <div class="row">
+                <div class="col xl12">
+                        <h5 id="twitterNameDisplay" style="color: #0f6e5f; text-align: center;"></h5>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">Enter text to be analyzed</label>
-                <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-            <div class="col s4 l6" id="contentDump">
-                <ul class="collapsible popout">
-                    <li id="docToneList">
-                        <div class="collapsible-header">
-                            <i class="material-icons">
-                                chrome_reader_mode</i>
-                            Document Tone
-                        </div>
-                    </li>
-                    <li id="sentToneList">
-                        <div class="collapsible-header">
+            <hr>
+                <div class="col s4 l6" id="contentDump">
+                        <div id="sentToneList">
                             <i class="material-icons">reorder</i>
-                            Sentence Tone
+                                Tone Analysis
+                                <p id="tweet1" style="font-size: 14pt;"></p>
+                                <p id="tweet1analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <hr style="color: #0f6e5f">
+                                <p id="tweet2" style="font-size: 14pt;"></p>
+                                <p id="tweet2analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <hr style="color: #0f6e5f">
+                                <p id="tweet3" style="font-size: 14pt;"></p>
+                                <p id="tweet3analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <hr style="color: #0f6e5f">
+                                <p id="tweet4" style="font-size: 14pt;"></p>
+                                <p id="tweet4analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <hr style="color: #0f6e5f">
+                                <p id="tweet5" style="font-size: 14pt;"></p>
+                                <p id="tweet5analysis" style="text-align:center; font-size: 16pt;">Result: </p>
                         </div>
-                </ul>
+
+                </div>
             </div>
         </div>
-    </div>
-    <!-- footer container -->
-    <!-- <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
-        <div class="footer-copyright center">
-            <div class="container">
-                © 2018 Copyright
-            </div>
-        </div>
-    </footer> -->
+        <!-- footer container -->
+        <footer class="page-footer amber darken-1" style="margin-top: 40px; bottom:0; width:100%;height:70px;">
+                <div class="footer-copyright center">
+                    <div class="container">
+                        © 2018 Copyright
+                    </div>
+                </div>
+            </footer>
+
 </body>
 <script>
     $(document).ready(function () {
@@ -177,38 +159,42 @@
         $('.collapsible').collapsible();
         $("#twitterLogin").on("click", (event) => {
             $("#modalContainer").css("display", "none");
-            // Add twitter login fuction
-        })
-        // When enter text button is clicked
-        $("#enterText").on("click", (event) => {
-            $("#modalContainer").css("display", "none");
+
+            var twitterScreenName = $("#twitterInput").val().trim();
             $(".mainPage").css("display", "block")
-            $(".btn").on("click", (event) => {
-                $("#contentDump").css("display", "block");
-                runPostFunction();
+
+            $("#contentDump").css("display", "block")
+
+            $.post('/toneRoute', {
+                "name": twitterScreenName
+            }).then((data) => {
+                // console.log("hello")
+                console.log(data);
+                $("#twitterNameDisplay").text("Results from twitter user " + twitterScreenName)
+                $("#tweet1").append(data.utterances_tone[0].utterance_text);
+                $("#tweet1analysis").append(data.utterances_tone[0].tones[0].tone_name);
+                $("#tweet2").append(data.utterances_tone[1].utterance_text);
+                $("#tweet2analysis").append(data.utterances_tone[1].tones[0].tone_name);
+                $("#tweet3").append(data.utterances_tone[3].utterance_text);
+                $("#tweet3analysis").append(data.utterances_tone[3].tones[0].tone_name);
+                $("#tweet4").append(data.utterances_tone[4].utterance_text);
+                $("#tweet4analysis").append(data.utterances_tone[4].tones[0].tone_name);
+                $("#tweet5").append(data.utterances_tone[5].utterance_text);
+                $("#tweet5analysis").append(data.utterances_tone[5].tones[0].tone_name);
+               
+                // var sentence1 = $("<div>");
+                //     for (var i = 0; i < data.consumption_preferences[0].consumption_preferences.length; i++) {
+                //     if (data.consumption_preferences[0].consumption_preferences[i].score == 1){
+                //         {
+                //             var perferencesTrue;
+                //             perferencesTrue += ("<li>" + data.consumption_preferences[0].consumption_preferences[i].name + "</li>");
+                //         }
+                //             perferences.html(perferencesTrue)
+                //             $("#perferencesList").append(perferences);
+                //         }
+                //     }
             })
         })
-        // Displays the results from the api/tone
-        function runPostFunction() {
-            var currentURL = window.location.origin;
-            $.ajax({ url: currentURL + "/api/tone", method: "GET" })
-                .then(function (data) {
-                    // Should be getting tone of entire document.
-                    for (var i = 0; i < data.document_tone.tones; i++) {
-                        var docTone = $("<div>");
-                        docTone.text(data.document_tone.tones[i].tone_name + data.document_tone.tones[i].score);
-                        docTone.addClass("collapsible-body");
-                        $("#docToneList").append(docTone);
-                    };
-                    // Should be getting tone sentence by sentence
-                    for (var i = 0; i < data.sentence_tone; i++) {
-                        var sentTone = $("<div>");
-                        sentTone.text(data.sentence_tone[i].tones[i].tone_id + data.sentence_tone[i].tones[i].score);
-                        sentTone.addClass("collapsible-body");
-                        $("#sentToneList").append(sentTone);
-                    };
-                });
-        };
     });
 </script>
 
