@@ -5,7 +5,7 @@
     "database": "localLoginTesting",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 8889
+    "port": 3306
   },
   "test": {
     "username": "root",
@@ -15,9 +15,9 @@
     "dialect": "mysql"
   },
    "production": {
-     "username": "root",
-     "password": null,
-     "database": "database_production",
+     "username": "mw3vg0fdhqafxyyc",
+     "password": "j0vfsxuu87et1904",
+     "database": "vyberBackend",
      "host": "127.0.0.1",
      "dialect": "mysql",
      "use_env_variable": "JAWSDB_URL"
