@@ -116,26 +116,56 @@
     <div class="container mainPage">
         <div class="row">
             <div class="col xl12">
-                <h5 id="twitterNameDisplay" style="color: #ffb300; text-align: center;"></h5>
+                <h5 id="twitterNameDisplay" style="color: #0f6e5f; text-align: center;"></h5>
             </div>
         </div>
         <hr>
         <div class="row" id="contentDump">
-            <div class="col s6">
-            <div class="row" id="personalityList">
+            <div class="col s4" id="personalityList">
                     <p style="font-size:14pt;"><i class="material-icons">
                             accessibility</i>Personality Traits</p>
+                        <p id="openness">Openness:</p>
+                        <p id="conscientiousness">Conscientiousness:</p>
+                        <p id="extraversion">Extraversion:</p>
+                        <p id="agreeableness">Agreeableness:</p>
+                        <p id="neuroticism">Neuroticism:</p>
             </div>
+            <div class="col s4">
             <div class="row" id="needsList">
                     <p style="font-size:14pt;"><i class="material-icons">local_florist</i>Needs List</p>
-            </div>
-            <div class="row" id="valuesList">
+                <div class="col s6">
+                    <p id="challenge">Challenge:</p>
+                    <p id="closeness">Closeness:</p>
+                    <p id="curiousity">Curiousity:</p>
+                    <p id="excitement">Excitement:</p>
+                    <p id="harmony">Harmony:</p>
+                    <p id="ideal">Ideal:</p>
+                </div>  
+                <div class="col s6">
+                    <p id="liberty">Liberty:</p>
+                    <p id="love">Love:</p>
+                    <p id="practicality">Practicality:</p>
+                    <p id="self-expression">Self-Expression:</p>
+                    <p id="stability">Stability:</p>
+                    <p id="structure">Structure:</p>
+                </div> 
+            </div>   
+            </div> 
+            <div class="col s4" id="valuesList">
                     <p style="font-size:14pt;"><i class="material-icons">bubble_chart</i>Values List</p>
+                    <p id="conservation">Conservation:</p>
+                    <p id="change">Openness to Change:</p>
+                    <p id="hedonism">Hedonism:</p>
+                    <p id="enhancement">Self-Enhancement:</p>
+                    <p id="transcendence">Self-Transcedence:</p>
             </div>
-        </div>
+            <div class="row">
             <div class="col s6" id="perferencesList">
                     <p style="font-size:14pt;"><i class="material-icons">shopping_cart</i>Perferences List</p>
             </div>
+            <div class="col s6" id="perferencesList2">
+            </div>
+        </div>
         </div>
     </div>
     <!-- footer container -->
@@ -163,37 +193,184 @@
             }).then((data) => {
                 console.log(data)
                 $("#twitterNameDisplay").text("Results from twitter user " + twitterScreenName)
+                
+            // Personality sliders
+                opennessScore = (data.personality[0].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = opennessScore;
+                    slider.step = 0.1;
+                    $("#openness").append(slider);
 
-                var personality = $("<div>");
-                    personality.html("<div> Openness : " + data.personality[0].raw_score + "</div>" +
-                        "<div> Conscientiousness : " + data.personality[1].raw_score + "</div>" +
-                        "<div> Extraversion : " + data.personality[2].raw_score + "</div>" +
-                        "<div> Agreeableness : " + data.personality[3].raw_score + "</div>" +
-                        "<div>  Neuroticism : " + data.personality[4].raw_score + "</div>");
-                    $("#personalityList").append(personality);
+                conscientiousnessScore = (data.personality[1].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = conscientiousnessScore;
+                    slider.step = 0.1;
+                    $("#conscientiousness").append(slider);
+
+                extraversionScore = (data.personality[2].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = extraversionScore;
+                    slider.step = 0.1;
+                    $("#extraversion").append(slider);
+
+                agreeablenessScore = (data.personality[1].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = agreeablenessScore;
+                    slider.step = 0.1;
+                    $("#agreeableness").append(slider);
+
+                neuroticismScore = (data.personality[1].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = neuroticismScore;
+                    slider.step = 0.1;
+                    $("#neuroticism").append(slider);
+            // Needs sliders
+                challengeScore = (data.needs[0].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = neuroticismScore;
+                    slider.step = 0.1;
+                    $("#challenge").append(slider);
                 
-                var needs = $("<div>");
-                    needs.html("<div> Challenge : " + data.needs[0].raw_score + "</div>" +
-                        "<div> Closeness: " + data.needs[1].raw_score + "</div>" +
-                        "<div> Curiousity: " + data.needs[2].raw_score + "</div>" +
-                        "<div> Excitement: " + data.needs[3].raw_score + "</div>" +
-                        "<div> Harmony: " + data.needs[4].raw_score + "</div>" +
-                        "<div> Ideal: " + data.needs[5].raw_score + "</div>" +
-                        "<div> Liberty: " + data.needs[6].raw_score + "</div>" +
-                        "<div> Love: " + data.needs[7].raw_score + "</div>" +
-                        "<div> Practicality: " + data.needs[8].raw_score + "</div>" +
-                        "<div> Self-Expression: " + data.needs[9].raw_score + "</div>" +
-                        "<div> Stability: " + data.needs[10].raw_score + "</div>" +
-                        "<div>  Structure : " + data.needs[11].raw_score + "</div>");
-                    $("#needsList").append(needs);
+                closenessScore = (data.needs[1].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = closenessScore;
+                    slider.step = 0.1;
+                    $("#closeness").append(slider);
                 
-                var values = $("<div>");
-                    values.html("<div> Conservation : " + data.values[0].raw_score + "</div>" +
-                        "<div> Openness to Change: " + data.values[1].raw_score + "</div>" +
-                        "<div> Hedonism: " + data.values[2].raw_score + "</div>" +
-                        "<div> Self-Enhancement: " + data.values[3].raw_score + "</div>" +
-                        "<div> Self-Transcendence: " + data.values[4].raw_score + "</div>");
-                    $("#valuesList").append(values);
+                curiosityScore = (data.needs[2].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = curiosityScore;
+                    slider.step = 0.1;
+                    $("#curiousity").append(slider);
+
+                excitementScore = (data.needs[3].raw_score * 100);
+                    var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = excitementScore;
+                    slider.step = 0.1;
+                    $("#excitement").append(slider);
+                
+                harmonyScore = (data.needs[4].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = harmonyScore;
+                    slider.step = 0.1;
+                    $("#harmony").append(slider);
+                
+                idealScore = (data.needs[5].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = idealScore;
+                    slider.step = 0.1;
+                    $("#ideal").append(slider);
+                
+                libertyScore = (data.needs[6].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = libertyScore;
+                    slider.step = 0.1;
+                    $("#liberty").append(slider);
+                
+                loveScore = (data.needs[7].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = loveScore;
+                    slider.step = 0.1;
+                    $("#love").append(slider);
+                
+                practicalityScore = (data.needs[8].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = practicalityScore;
+                    slider.step = 0.1;
+                    $("#practicality").append(slider);
+
+                expressionScore = (data.needs[9].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = expressionScore;
+                    slider.step = 0.1;
+                    $("#self-expression").append(slider);
+
+                stabilityScore = (data.needs[10].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = stabilityScore;
+                    slider.step = 0.1;
+                    $("#stability").append(slider);
+
+                structureScore = (data.needs[11].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = structureScore;
+                    slider.step = 0.1;
+                    $("#structure").append(slider);                    
+                
+                // values sliders
+                conservationScore = (data.values[0].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = conservationScore;
+                    slider.step = 0.1;
+                    $("#conservation").append(slider);
+                
+                changeScore = (data.values[1].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = changeScore;
+                    slider.step = 0.1;
+                    $("#change").append(slider);
+
+                hedonismScore = (data.values[2].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = hedonismScore;
+                    slider.step = 0.1;
+                    $("#hedonism").append(slider);
+
+                enhancementScore = (data.values[3].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = enhancementScore;
+                    slider.step = 0.1;
+                    $("#enhancement").append(slider);
+
+                transcendenceScore = (data.values[4].raw_score * 100);
+                var slider = document.createElement('input');
+                    slider.id = "volume";
+                    slider.type = 'range';
+                    slider.value = transcendenceScore;
+                    slider.step = 0.1;
+                    $("#transcendence").append(slider); 
 
                 var perferences = $("<div>");
                     for (var i = 0; i < data.consumption_preferences[0].consumption_preferences.length; i++) {
@@ -233,7 +410,7 @@
                             perferencesTrue += ("<li>" + data.consumption_preferences[3].consumption_preferences[i].name + "</li>");
                         }
                             perferences.html(perferencesTrue)
-                            $("#perferencesList").append(perferences);
+                            $("#perferencesList2").append(perferences);
                         }
                     }
                     for (var i = 0; i < data.consumption_preferences[4].consumption_preferences.length; i++) {
@@ -243,7 +420,7 @@
                             perferencesTrue += ("<li>" + data.consumption_preferences[4].consumption_preferences[i].name + "</li>");
                         }
                             perferences.html(perferencesTrue)
-                            $("#perferencesList").append(perferences);
+                            $("#perferencesList2").append(perferences);
                         }
                     }
                     for (var i = 0; i < data.consumption_preferences[5].consumption_preferences.length; i++) {
@@ -253,7 +430,7 @@
                             perferencesTrue += ("<li>" + data.consumption_preferences[5].consumption_preferences[i].name + "</li>");
                         }
                             perferences.html(perferencesTrue)
-                            $("#perferencesList").append(perferences);
+                            $("#perferencesList2").append(perferences);
                         }
                     }
                     for (var i = 0; i < data.consumption_preferences[6].consumption_preferences.length; i++) {
@@ -263,7 +440,7 @@
                             perferencesTrue += ("<li>" + data.consumption_preferences[6].consumption_preferences[i].name + "</li>");
                         }
                             perferences.html(perferencesTrue)
-                            $("#perferencesList").append(perferences);
+                            $("#perferencesList2").append(perferences);
                         }
                     }
                     for (var i = 0; i < data.consumption_preferences[7].consumption_preferences.length; i++) {
@@ -273,7 +450,7 @@
                             perferencesTrue += ("<li>" + data.consumption_preferences[7].consumption_preferences[i].name + "</li>");
                         }
                             perferences.html(perferencesTrue)
-                            $("#perferencesList").append(perferences);
+                            $("#perferencesList2").append(perferences);
                         }
                     }
             });
