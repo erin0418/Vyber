@@ -5,7 +5,7 @@
     "database": "localLoginTesting",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 8889
+    "port": 3306
   },
   "test": {
     "username": "root",
@@ -15,10 +15,10 @@
     "dialect": "mysql"
   },
    "production": {
-     "username": "root",
-     "password": null,
-     "database": "database_production",
-     "host": "127.0.0.1",
+     "username": "mw3vg0fdhqafxyyc",
+     "password": "j0vfsxuu87et1904",
+     "database": "hxkwgps934ysub6d",
+     "host": "k3xio06abqa902qt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
      "dialect": "mysql",
      "use_env_variable": "JAWSDB_URL"
    }
