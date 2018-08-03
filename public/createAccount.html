@@ -82,7 +82,7 @@
 
                 console.log(newUser);
 
-                $.post("/api/users/", {
+ $.post("https://thawing-peak-96935.herokuapp.com/api/users/", {
                     "username" : newUser.username,
                     "password" : newUser.password
                 }).then( function (data) {
