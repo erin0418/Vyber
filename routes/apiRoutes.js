@@ -60,16 +60,16 @@ module.exports = function(app) {
       });
   });
 
-};
-
+  
   app.post('/ToneRoute', (req, res) => {
     var screenName = req.body.name;
     twitterContent(screenName)
-      .then(function (content) {
-        Tone(content).then(function (analysis) {
-            res.json(analysis);
+    .then(function (content) {
+      Tone(content).then(function (analysis) {
+        res.json(analysis);
           })
-      });
-  })
-
+        });
+      })
+      
+    };
 
