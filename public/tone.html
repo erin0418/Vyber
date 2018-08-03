@@ -116,25 +116,25 @@
         <div class="container mainPage">
             <div class="row">
                 <div class="col xl12">
-                        <h5 id="twitterNameDisplay" style="color: #ffb300; text-align: center;"></h5>
+                        <h5 id="twitterNameDisplay" style="color: #0f6e5f; text-align: center;"></h5>
                 </div>
             </div>
             <hr>
                 <div class="col s4 l6" id="contentDump">
-                    <ul class="collapsible popout">
-                        <li id="docToneList">
-                            <div class="collapsible-header">
-                                <i class="material-icons">
-                                    chrome_reader_mode</i>
-                                Document Tone
-                            </div>
-                        </li>
-                        <li id="sentToneList">
-                            <div class="collapsible-header">
-                                <i class="material-icons">reorder</i>
-                                Sentence Tone
-                            </div>
-                    </ul>
+                        <div id="sentToneList">
+                            <i class="material-icons">reorder</i>
+                                Tone Analysis
+                                <p id="tweet1" style="font-size: 14pt;"></p>
+                                <p id="tweet1analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <p id="tweet2" style="font-size: 14pt;"></p>
+                                <p id="tweet2analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <p id="tweet3" style="font-size: 14pt;"></p>
+                                <p id="tweet3analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <p id="tweet4" style="font-size: 14pt;"></p>
+                                <p id="tweet4analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                                <p id="tweet5" style="font-size: 14pt;"></p>
+                                <p id="tweet5analysis" style="text-align:center; font-size: 16pt;">Result: </p>
+                        </div>
                 </div>
             </div>
         </div>
@@ -164,6 +164,29 @@
             }).then((data) => {
                 // console.log("hello")
                 console.log(data);
+                $("#twitterNameDisplay").text("Results from twitter user " + twitterScreenName)
+                $("#tweet1").append(data.utterances_tone[0].utterance_text);
+                $("#tweet1analysis").append(data.utterances_tone[0].tones[0].tone_name);
+                $("#tweet2").append(data.utterances_tone[1].utterance_text);
+                $("#tweet2analysis").append(data.utterances_tone[1].tones[0].tone_name);
+                $("#tweet3").append(data.utterances_tone[3].utterance_text);
+                $("#tweet3analysis").append(data.utterances_tone[3].tones[0].tone_name);
+                $("#tweet4").append(data.utterances_tone[4].utterance_text);
+                $("#tweet4analysis").append(data.utterances_tone[4].tones[0].tone_name);
+                $("#tweet5").append(data.utterances_tone[5].utterance_text);
+                $("#tweet5analysis").append(data.utterances_tone[5].tones[0].tone_name);
+               
+                // var sentence1 = $("<div>");
+                //     for (var i = 0; i < data.consumption_preferences[0].consumption_preferences.length; i++) {
+                //     if (data.consumption_preferences[0].consumption_preferences[i].score == 1){
+                //         {
+                //             var perferencesTrue;
+                //             perferencesTrue += ("<li>" + data.consumption_preferences[0].consumption_preferences[i].name + "</li>");
+                //         }
+                //             perferences.html(perferencesTrue)
+                //             $("#perferencesList").append(perferences);
+                //         }
+                //     }
             })
         })
     });
