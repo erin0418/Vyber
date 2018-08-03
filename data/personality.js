@@ -1,8 +1,4 @@
 
-var Tweets = require("../data/twitter")
-// console.log(Tweets);
-
-
 module.exports =  function (Tweets) {
 
   return new Promise((resolve, reject) =>{
@@ -33,7 +29,6 @@ module.exports =  function (Tweets) {
       if (error) {
         console.log(error);
       } else {
-        // require('../routes/apiRoutes')(analysis);
         resolve(analysis);
       }
     })
