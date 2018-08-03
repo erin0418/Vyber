@@ -189,7 +189,7 @@
             
             // This is getting the twitter data
             $.post('/twitterName', {
-                "name": twitterScreenName
+                "name": twitterScreenName,
             }).then((data) => {
                 console.log(data)
                 $("#twitterNameDisplay").text("Results from twitter user " + twitterScreenName)
