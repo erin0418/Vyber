@@ -17,6 +17,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "login-with-twitter": "^1.2.0",
+    "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^1.5.3",
     "nouislider": "^11.1.0",
     "passport": "^0.4.0",

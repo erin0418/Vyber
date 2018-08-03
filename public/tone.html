@@ -85,65 +85,41 @@
     <br>
     <!-- modal container -->
     <div class="container amber darken-1" id="modalContainer">
-        <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
-            Tone Analyzer
-        </div>
-        <div class="row" style="color:white">
-            <div class="col s4">
-                <input type="text" name="twitterName" id="twitterInput">
+            <div class="row" style="color:white; font-size: 30pt; font-weight: lighter;">
+                Personality Analyzer
             </div>
-            <div class="col s4" id="twitterLogin">
-
-                <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Get My Tweets</a>
-            </div>
-            <div class="col s4">
-
-            </div>
-        </div>
-        <div class="row" style="color:white">
-            <div class="col s4">
-
-            </div>
-
-            <div class="col s4" id="enterText">
-
-                <a class="waves-effect waves-light btn-large" id="modalButton">
-                    <i class="material-icons left">person</i>Enter My Text</a>
-                <div class="row" style="color:white">
-                    <div class="col s4">
-
-                    </div>
-                    <div class="col s4" id="twitterLogin">
-
-                        <a class="waves-effect waves-light btn-large grey lighten-1" id="modalButton" href="/auth/twitter">
-                            <i class="material-icons left">person</i>Get My Tweets</a>
-                    </div>
-                    <div class="col s4">
-
-                    </div>
+            <div class="row" style="color:white; font-size: 26pt;">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="twitterName">
+                    <input type="text" name="twitterName" id="twitterInput">
                 </div>
                 <div class="col s4">
-
+                </div>
+            </div>
+            <div class="row" style="color:white">
+                <div class="col s4">
+    
+                </div>
+                <div class="col s4" id="twitterLogin">
+                    <a class="waves-effect waves-light btn-large" id="modalButton">
+                        <i class="material-icons left">person</i>Get My Tweets</a>
+                </div>
+                <div class="col s4">
+    
                 </div>
             </div>
         </div>
+
         <!-- main site container -->
         <div class="container mainPage">
             <div class="row">
                 <div class="col xl12">
-
+                        <h5 id="twitterNameDisplay" style="color: #ffb300; text-align: center;"></h5>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                    <label for="icon_prefix2">Enter text to be analyzed</label>
-                    <button class="btn waves-effect waves-orange" type="submit" name="action" style="background-color:#8ce3d4;">Submit
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
+            <hr>
                 <div class="col s4 l6" id="contentDump">
                     <ul class="collapsible popout">
                         <li id="docToneList">
@@ -163,13 +139,13 @@
             </div>
         </div>
         <!-- footer container -->
-        <footer class="page-footer amber darken-1" style="position:absolute; bottom:0; width:100%;height:70px;">
-            <div class="footer-copyright center">
-                <div class="container">
-                    © 2018 Copyright
+        <footer class="page-footer amber darken-1" style="margin-top: 40px; bottom:0; width:100%;height:70px;">
+                <div class="footer-copyright center">
+                    <div class="container">
+                        © 2018 Copyright
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
 </body>
 <script>
     $(document).ready(function () {
@@ -188,16 +164,6 @@
             }).then((data) => {
                 // console.log("hello")
                 console.log(data);
-            })
-            // Add twitter login fuction
-        })
-        // When enter text button is clicked
-        $("#enterText").on("click", (event) => {
-            $("#modalContainer").css("display", "none");
-            $(".mainPage").css("display", "block")
-            $(".btn").on("click", (event) => {
-                $("#contentDump").css("display", "block");
-                runPostFunction();
             })
         })
     });
