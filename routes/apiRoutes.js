@@ -62,7 +62,6 @@ module.exports = function(app) {
 
 };
 
-  })
   app.post('/ToneRoute', (req, res) => {
     var screenName = req.body.name;
     twitterContent(screenName)
@@ -72,5 +71,5 @@ module.exports = function(app) {
           })
       });
   })
-};
+
 
