@@ -1,6 +1,12 @@
 var Personality = require("../data/personality.js");
 var Tone = require("../data/tone.js");
 var twitterContent = require("../data/twitter.js");
+
+
+var db = require("../models");
+
+
+
 var Tone = require("../data/tone.js");
 module.exports = function(app) {
 
@@ -29,6 +35,33 @@ module.exports = function(app) {
         res.json(analysis);
       })
     });
+
+  });
+
+  app.post("/api/users", function (req, res) {
+    db.localUser.findOne({
+      where: {
+        username: req.body.username
+      } 
+    }).then(function(dbusers) {
+      res.json(dbusers);
+    });
+  });
+   app.post("/api/users", function(req, res){
+    db.localUser.create({
+      username: req.body.username,
+      password: req.body.password
+    }).then(function(dbusers) {
+      // if name
+      res.json(dbusers);
+    })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
+
+};
+
   })
   app.post('/ToneRoute', (req, res) => {
     var screenName = req.body.name;
@@ -40,3 +73,4 @@ module.exports = function(app) {
       });
   })
 };
+

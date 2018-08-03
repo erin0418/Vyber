@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var localUser = sequelize.define("localuser", {
+    var localUser = sequelize.define("localUser", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -21,4 +21,4 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
     return localUser;
-};
+ };

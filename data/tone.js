@@ -2,7 +2,6 @@
 module.exports = function (Tweets) {
   return new Promise((resolve, reject) => {
 
-
     var authTone = require("../keys/toneKey");
 
     var ToneAnalyzerV3 = require("watson-developer-cloud/tone-analyzer/v3");

@@ -40,19 +40,19 @@
             <br><br>
             <div class="col s6">
                 <div class="input-field">
-                    <input id="email" type="text" class="validate">
-                    <label for="email" class="white-text" id="p1">Email/User Name</label>
+                    <input id="userName" type="text" class="validate">
+                    <label for="userName" class="white-text" id="p1">User Name</label>
                 </div>
             </div>
             <br>
             <div class="col s6">
                 <div class="input-field">
-                    <input id="password" type="password" class="validate">
-                    <label for="password" class="white-text" id="p1">Password</label>
+                    <input id="pword" type="password" class="validate">
+                    <label for="pword" class="white-text" id="p1">Password</label>
                 </div>
             </div>
             <br>
-            <div class="col s6">
+            <!-- <div class="col s6">
                 <div class="file-field input-field">
                     <div class="btn amber lighten-5 waves-effect waves-orange">
                         <span>Upload Profile Picture</span>
@@ -62,7 +62,7 @@
                         <input class="file-path validate" type="text" id="profilePic">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col s6">
                 <button class="submit btn amber lighten-5 waves-effect waves-orange" type="submit" name="action">Submit</button>
             </div>
@@ -74,26 +74,27 @@
             $(".submit").on("click", function (event) {
                 event.preventDefault();
 
-                // var newUser = {
-                //     userName = $("#email").val().trim(),
-                //     password = $("#password").val().trim(),
-                //     profilePic = $("#profilePic").val().trim()
-                // };
+                var newUser = {
+                    username: $("#userName").val().trim(),
+                    password: $("#pword").val().trim(),
+                    // profilePic = $("#profilePic").val().trim()
+                };
 
-                // console.log(newUser);
+                console.log(newUser);
 
-                // $.post(currentURL + "#(route)", newUser, function (data) {
-                //     if (data) {
-                //         console.log("New user added!");
-                //         alert("Thanks for singing up! Welcome to Viber!");
-                //     }
-                //     else {
-                //         console.log("ERROR no user added");
-                //         alert("Sorry, try again later.")
-                //     }
-                // });
+                $.post("/api/users/", {
+                    "username" : newUser.username,
+                    "password" : newUser.password
+                }).then( function (data) {
+                    if (data) {
+                        console.log(data);
+                    }
+                    else {
+                        console.log("ERROR no user added");
+                    }
+                });
 
-                window.location = "index2.html"
+                window.location = "index.html"
             });
         });
     </script>

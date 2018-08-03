@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "animals_db",
+    "database": "localLoginTesting",
     "host": "localhost",
     "dialect": "mysql",
     "port": 8889
