@@ -15,10 +15,10 @@
     "dialect": "mysql"
   },
    "production": {
-     "username": "mw3vg0fdhqafxyyc",
-     "password": "j0vfsxuu87et1904",
-     "database": "vyberBackend",
-     "host": "127.0.0.1",
+     "username": "b542ye3cwoyzq2ta",
+     "password": "ol7pt2u781nt1rw8",
+     "database": "a9bojdf8seddyw41",
+     "host": "umabrisfx8afs3ja.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
      "dialect": "mysql",
      "use_env_variable": "JAWSDB_URL"
    }
