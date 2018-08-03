@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="public/styles/other.css">
- 
+    <link rel="stylesheet" type="text/css" href="styles/other.css">
 
-    <title>Log that ish</title>
+
+    <title>VYBER | Log that ish</title>
 </head>
 
 
@@ -30,69 +30,68 @@
 
     <div class="wrapper">
         <h1>VYBER</h1>
-        <P>LOGIN WITH THE SOCIAL OF CHOICE</P>
+        <P>LOGIN TO YOUR ACCOUNT</P>
         <div class="media">
-
             <ul>
-
                 <!-- Button  -->
                 <li onclick="document.getElementById('log').style.display='' ">
                     <!-- <li onclick=document.getElementById("your form id").style.display="block"> -->
-                    
-                    <i id="click" class="fas fa-key"></i>
+
+                    <i id="hide" class="fas fa-key"></i>
                 </li>
 
-                <div id="log" class="log-form">
-                    <h2>Login to your account</h2>
-                    <form>
-                        <input id="email" type="text" title="email"  placeholder="username" />
-                        <input id="pword" type="password" title="password" placeholder="password" />
-                        <button type="submit" class="btn submit"  href="public/index2.html">Login</button>
-                        <a class="forgot">Forgot Username?</a>
-                    </form>
-                </div>
-
-              
-
                 <!-- Create page -->
-                <a href="public/createAccount.html">
+                <a href="createAccount.html">
                     <li>
-                        <i class="far fa-user-circle"></i>
+                        <i id="hide" class="far fa-user-circle"></i>
                     </li>
                 </a>
-
             </ul>
-
+            <div id="log" class="log-form input-field">
+                <form>
+                    <input id="userName" type="text" title="email" />
+                    <label for="userName" class="white-text" id="p1">User Name</label>
+                    <input id="pword" type="password" title="password" />
+                    <label for="pword" class="white-text" id="p1">Password</label>
+                    <br>
+                    <br>
+                    <button type="submit" class="submit btn amber lighten-5 waves-effect waves-orange" href="index.html">Login</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-            document.getElementById('log').style.display = 'none';
+        document.getElementById('log').style.display = 'none';
 
-            $(document).ready(function (){
-                $(".submit").on("click", function (event){
-                    event.preventDefault();
+        $(document).ready(function () {
+            $(".submit").on("click", function (event) {
+                event.preventDefault();
 
-                    var user = {
-                        email: $("#email").val().trim(),
-                        pword: $("#pword").val().trim()
-                    };
+                var user = {
+                    username: $("#userName").val().trim(),
+                    password: $("#pword").val().trim()
+                };
 
-                    $.get("#", user, function(data){
-                        if (user.email === data.user.email && user.pword === data.user.pword) {
-                            window.location = "index.html"
-                        } 
-                        else {
-                            window.location = "createAccount.html" 
-                        }
-                    })
+                $.post("/api/users", {
+                    "username" : user.username,
+                    "password": user.password
+                }).then(function (data) {
+                    console.log(data);
+                    if (user.username == data.username && user.password == data.password) {
+                        window.location = "index.html"
+                    }
+                    else {
+                        window.location = "createAccount.html"
+                    }
                 })
             })
-                
-        </script>
+        })
 
-    
+    </script>
+
+
 
 </body>
 

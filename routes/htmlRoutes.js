@@ -18,6 +18,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/createAccount.html"));
   });
 
+  app.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
   // Load personality page
   app.get("/personality", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/personality.html"));
