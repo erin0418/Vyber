@@ -1,75 +1,61 @@
 var Personality = require("../data/personality.js");
 var Tone = require("../data/tone.js");
 var twitterContent = require("../data/twitter.js");
-
-
 var db = require("../models");
 
 
+module.exports = function (app) {
 
-var Tone = require("../data/tone.js");
-module.exports = function(app) {
-
-  // app.get("/twitterName", function (req,res){
-  //   // console.log(req)
-    
-  // })
-  // app.get("/api/tone", function (req,res){
-  //   res.json(tone);
-  // })
-  // app.post("/api/personality", function(req, res) {
-  //   personality.push(Personality.result);
-  // });
-
-  // app.post("/api/tone", function(req, res) {
-  //   tone.push(Tone.result);
-  // });
-  app.post('https://thawing-peak-96935.herokuapp.com/twitterName', (req, res) => {
+  app.post('/twitterName', (req, res) => {
     console.log(req.body.name);
     var screenName = req.body.name;
-    
+
     twitterContent(screenName)
-    .then(function(content){
-      Personality(content)
-      .then(function(analysis){
-        res.json(analysis);
-      })
-    });
+      .then(function (content) {
+        Personality(content)
+          .then(function (analysis) {
+            res.json(analysis);
+          })
+      });
 
   });
 
-  app.post("https://thawing-peak-96935.herokuapp.com/api/users", function (req, res) {
+  app.post("/api/users", function (req, res) {
     db.localUser.findOne({
       where: {
         username: req.body.username
-      } 
-    }).then(function(dbusers) {
+      }
+    }).then(function (dbusers) {
       res.json(dbusers);
     });
   });
-   app.post("https://thawing-peak-96935.herokuapp.com/api/users", function (req, res) {
+  app.post("/api/usersCreate", function (req, res) {
     db.localUser.create({
-      username: req.body.username,
-      password: req.body.password
-    }).then(function(dbusers) {
-      // if name
-      res.json(dbusers);
-    })
-      .catch(function(err) {
+        username: req.body.username,
+        password: req.body.password
+      }).then(function (dbusers) {
+        res.json(dbusers);
+      })
+      .catch(function (err) {
         res.json(err);
       });
   });
 
-  
-  app.post('https://thawing-peak-96935.herokuapp.com/ToneRoute', (req, res) => {
+
+  app.post('/ToneRoute', (req, res) => {
     var screenName = req.body.name;
     twitterContent(screenName)
-    .then(function (content) {
-      Tone(content).then(function (analysis) {
-        res.json(analysis);
-          })
-        });
-      })
-      
-    };
+      .then(function (content) {
+        Tone(content).then(function (analysis) {
+          res.json(analysis);
+        })
+      });
+  })
 
+  app.get("/api/reactTest", function (req, res) {
+    db.localUser.findAll({}).then((results) => {
+      res.json(results);
+    })
+  });
+
+};

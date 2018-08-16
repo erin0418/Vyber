@@ -1,4 +1,3 @@
-// var Text = require("../public/tone")
 module.exports = function (Tweets) {
   return new Promise((resolve, reject) => {
 
