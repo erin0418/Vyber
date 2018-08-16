@@ -7,7 +7,7 @@ import Manage from "./components/manage/manage";
 import Search from "./components/search/search";
 import Tone from "./components/tone/tone";
 import Personality from "./components/personality/personality";
-import FaceReg from "./components/faceReq/face";
+import Face from "./components/face/face.js";
 
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path="/search" component={Search} />
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
-          <Route exact path="/face" component={FaceReg} />
+          <Route exact path="/face" component={Face} />
           </div>
       </Router>
     );
