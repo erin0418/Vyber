@@ -8,6 +8,7 @@ import Search from "./components/search/search";
 import Tone from "./components/tone/tone";
 import Personality from "./components/personality/personality";
 import Face from "./components/face/face.js";
+import Footer from "./components/footer/footer";
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
           <Route exact path="/face" component={Face} />
+          <Footer/>
           </div>
       </Router>
     );
