@@ -12,7 +12,9 @@ const Display = props => (
             <hr/>
                 <div className="col s4 l6" id="contentDump">
                         <div id="sentToneList">
-        
+                        {props.response.map(response => {
+                            <div> {response} </div>
+                        })}
                     </div>
                 </div>
             </div>
