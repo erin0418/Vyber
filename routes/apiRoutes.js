@@ -21,7 +21,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/users", function (req, res) {
-    db.localUser.findOne({
+    db.User.findOne({
       where: {
         username: req.body.username
       }
@@ -30,7 +30,7 @@ module.exports = function (app) {
     });
   });
   app.post("/api/usersCreate", function (req, res) {
-    db.localUser.create({
+    db.User.create({
         username: req.body.username,
         password: req.body.password
       }).then(function (dbusers) {
