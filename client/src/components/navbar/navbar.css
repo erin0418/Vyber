@@ -1,0 +1,45 @@
+ .nav-item_title {
+    font-size: 12px;
+    line-height: 0px;
+    display:block;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+ }
+
+ .home-icon {
+    margin:-8px;
+    margin-left: 3px;
+ }
+
+ .tone-icon {
+    margin:-8px;
+    margin-left: 3px;
+ }
+
+ .personality-icon {
+    margin:-8px;
+    margin-left: 15px;
+ }
+
+ .face-icon {
+    margin:-8px;
+    margin-left: 0px;
+ }
+
+ .account-icon {
+    margin:-8px;
+    margin-left: 9px;
+ }
+
+ .search-icon {
+    margin:-8px;
+    margin-left: 2px;
+ }
+
+ .brand-logo {
+     margin-left: 20px;
+ }
+
+ a {
+     font-family: 'Roboto', sans-serif;
+ }

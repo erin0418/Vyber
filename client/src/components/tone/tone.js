@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserInputs from './children/userinput'
 import Display from './children/display'
-
+import "./tone.css";
 
 
 export default class Tone extends Component {

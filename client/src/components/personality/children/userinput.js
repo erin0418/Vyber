@@ -4,7 +4,7 @@ const UserInputs = props => (
     <div>
         <br/><br/><br/>
         <div className="container" id="modalContainer">
-            <div className="row tone-title">Tone Analyzer</div>
+            <div className="row tone-title">Personality Analyzer</div>
             <div className="row">
                 <div className="col s4">
 
@@ -22,7 +22,7 @@ const UserInputs = props => (
                 </div>
                 <div className="col s4" id="twitterLogin">
                     <a className="waves-effect waves-light btn-large" id="modalButton">
-                        <i className="material-icons left">record_voice_over</i>Get My Tweets</a>
+                        <i className="material-icons left">insert_chart</i>Get My Tweets</a>
                 </div>
                 <div className="col s4">
                     <div onClick={props.handleInput}> click me to hide modal </div>
