@@ -24,7 +24,7 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     })
-      .then((response, password) => {
+      .then((response) => {
         return response.json();
       })
       .then(body => {
@@ -57,31 +57,23 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <Router>
+    return <Router>
         <div>
           <NavBar />
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return (
-                <SignIn
-                  handleAccountFunc={this.handleAccount}
-                  handleAccountCreateFunc={this.handleAccountCreate}
-                />
-              );
-            }}
-          />
+          <Route exact path="/" render={() => {
+              return <SignIn handleAccountFunc={this.handleAccount} handleAccountCreateFunc={this.handleAccountCreate} />;
+            }} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/" render={() => {
+              return <Home account={this.state.currentAccount} handlePost />;
+            }} />
           <Route exact path="/manage" component={Manage} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
           <Route exact path="/face" component={Face} />
         </div>
-      </Router>
-    );
+      </Router>;
   }
 }
 
