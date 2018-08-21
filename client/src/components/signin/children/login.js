@@ -1,17 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LogIn = props => (
   <div className="toneRouteForm">
-    <form
-      action="/api/users"
-      method="post"
-      enctype="application/x-www-form-urlencoded"
-    >
-      <input name="username" type="text" />
-      <input name="password" type="text" />
-
-      <button type="submit">Submit</button>
-    </form>
+    <input name="username" type="text" onChange={props.handleInputChange} />
+    <input name="password" type="text" onChange={props.handleInputChange} />
+    <button onClick={props.handleAccountApp}>
+      <Link to="/home"> Sign In </Link>
+    </button>
   </div>
 );
 
