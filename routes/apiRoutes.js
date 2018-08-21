@@ -26,6 +26,7 @@ module.exports = function (app) {
         username: req.body.username
       }
     }).then(function (dbusers) {
+      console.log(dbusers)
       res.json(dbusers);
     });
   });
@@ -39,6 +40,24 @@ module.exports = function (app) {
       .catch(function (err) {
         res.json(err);
       });
+  });
+  app.post("/api/usersCreate", function (req, res) {
+    db.User.create({
+        username: req.body.username,
+        password: req.body.password
+      }).then(function (dbusers) {
+        res.send(dbusers);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
+  app.post("/api/posts", function (req, res) {
+    db.Post.create({
+        Link: req.body.link,
+      }).then(function (dbPost) {
+      res.json(dbPost);
+    });
   });
 
 

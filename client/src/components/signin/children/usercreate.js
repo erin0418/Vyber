@@ -1,19 +1,13 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 const UserCreate = props => (
-<div className="toneRouteForm">
-<h1> Create User </h1>
-    <form
-      action="/api/usersCreate"
-      method="post"
-      enctype="application/x-www-form-urlencoded"
-    >
-      <input name="username" type="text" />
-      <input name="password" type="text" />
-
-      <button type="submit">Submit</button>
-    </form>
+  <div className="toneRouteForm">
+    <input name="username" type="text" onChange={props.handleInputChange} />
+    <input name="password" type="text" onChange={props.handleInputChange} />
+    <button onClick={props.handleAccountCreateApp}>
+      <Link to="/home"> Create Account </Link>
+    </button>
   </div>
 );
 
