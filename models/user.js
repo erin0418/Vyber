@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var localUser = sequelize.define("localUser", {
+    var User = sequelize.define("User", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -19,7 +19,18 @@ module.exports = function (sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
-        
+
     });
-    return localUser;
- };
+      User.associate = function (models) {
+          // Associating Author with Posts
+          // When an Author is deleted, also delete any associated Posts
+          User.hasMany(models.Post, {
+              onDelete: "cascade"
+          });
+          User.hasMany(models.Comment, {
+              onDelete: "cascade"
+          });
+      };
+
+    return User;
+};
