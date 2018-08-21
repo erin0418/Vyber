@@ -9,7 +9,8 @@ export default class Personality extends Component {
     results: []
   };
   handleInput = ()=>{
-     console.log("display page")
+     console.log("display page");
+     this.setState({hideInputs: true});
   }
   render() {
     return (
