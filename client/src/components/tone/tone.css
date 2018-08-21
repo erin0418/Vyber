@@ -1,13 +1,30 @@
 #modalContainer {
-    /* position: absolute; */
     z-index: 2;
-    background: lightgrey;
+    border-radius: 7px;
+    background: #ffb300;
     padding: 25px;
     text-align: center;
-    /* left: 10%; */
     top: 25%;
-    box-shadow: 0px 2px 10px 0px black;
+    visibility: visible;
+    width: 75%; /* Full width */
+    height: 40%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    box-shadow: 0px 2px 5px 0px rgb(100, 100, 100);
 }
+
+.tone-title {
+    color:white;
+    font-size: 30pt;
+    font-weight:lighter;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+}
+
 
 #modalButton {
     background-color: #8ce3d4;
@@ -26,6 +43,11 @@
     color: white !important;
 }
 
+label {
+    font-weight:lighter;
+    font-family: 'Roboto', sans-serif;
+}
+
 /* label focus color */
 
 .input-field input:focus+label {
@@ -38,4 +60,19 @@
     color: #e65100 !important;
     border-bottom: 1px solid #e65100 !important;
     box-shadow: 0 1px 0 0 #e65100 !important
+}
+
+.dialogIsOpen #page-wrap {
+    /* Blur and de-color */
+    -webkit-filter: blur(5px) grayscale(50%);
+    /* Recede */
+    -webkit-transform: scale(0.9);
+}
+
+.dialogIsOpen #modalContainer {
+    /* Regular size and visible */
+    transform: scale(1); /* prefix me */
+    opacity: 1; 
+    /* Clickable */
+    pointer-events: auto;
 }

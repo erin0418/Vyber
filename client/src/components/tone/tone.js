@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserInputs from './children/userinput'
 import Display from './children/display'
-
+import "./tone.css";
 
 
 export default class Tone extends Component {
@@ -9,9 +9,12 @@ export default class Tone extends Component {
     hideInputs: false,
     results: []
   };
+
   handleInput = ()=>{
-     console.log("display page")
-  }
+     console.log("display page");
+     this.setState({hideInputs: true});
+  };
+
   render() {
     return (
       <div>
@@ -22,5 +25,5 @@ export default class Tone extends Component {
         }
       </div>
     )
-  }
+  };
 }
