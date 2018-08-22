@@ -7,31 +7,31 @@ export default class NavBar extends Component {
     return (
       <div>
         <nav>
-          <div class="nav-wrapper amber darken-1">
+          <div className="nav-wrapper amber darken-1">
             <a
               href="/"
-              class="brand-logo"
-            >VYBER<i class="material-icons vyber-icon">pie_chart</i>
+              className="brand-logo"
+            >VYBER<i className="material-icons vyber-icon">pie_chart</i>
             </a>
 
             <ul className="right hide-on-med-and-down">
               <li>
-                <Link class="icon-container" to="/home"><i class="material-icons home-icon">home</i><span class="nav-item_title">Home</span></Link>
+                <Link className="icon-container" to="/home"><span className="nav-item_title"><i className="material-icons home-icon">home</i>Home</span></Link>
               </li>
               <li>
-                <Link class="icon-container" to="/tone"><i class="material-icons tone-icon">record_voice_over</i><span class="nav-item_title">Tone</span></Link>
+                <Link className="icon-container" to="/tone"><span className="nav-item_title"><i className="material-icons tone-icon">record_voice_over</i>Tone</span></Link>
               </li>
               <li>
-                <Link class="icon-container" to="/personality"><i class="material-icons personality-icon">insert_chart</i><span class="nav-item_title">Personality</span></Link>
+                <Link className="icon-container" to="/personality"><span className="nav-item_title"><i className="material-icons personality-icon">insert_chart</i>Personality</span></Link>
               </li>
               <li>
-                <Link class="icon-container" to="/face"><i class="material-icons face-icon">photo_camera</i><span class="nav-item_title">Face</span></Link>
+                <Link className="icon-container" to="/face"><span className="nav-item_title"><i className="material-icons face-icon">photo_camera</i>Face</span></Link>
               </li>
               <li>
-                <Link class="icon-container" to="/accmanage"><i class="material-icons account-icon">account_circle</i><span class="nav-item_title">Account</span></Link>
+                <Link className="icon-container" to="/accmanage"><span className="nav-item_title"><i className="material-icons account-icon">account_circle</i>Account</span></Link>
               </li>
               <li>
-                <Link class="icon-container" to="/search"><i class="material-icons search-icon">search</i><span class="nav-item_title">Search</span></Link>
+                <Link className="icon-container" to="/search"><span className="nav-item_title"><i className="material-icons search-icon">search</i>Search</span></Link>
               </li>
             </ul>
           </div>
