@@ -7,10 +7,13 @@ import FacePic from "./face_thumb.jpg";
 import PersonalityPic from "./personality_thumb.jpg"
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 5b7a317e51e5db39df38215fbd20f8955021d40f
 export default class Home extends Component {
   state = { link: "", selectedPost: 0, comment:"", post:[] };
   handleInputChange = event => {
@@ -28,6 +31,7 @@ export default class Home extends Component {
   render() {
     return(
       <div>
+          <br/><br/>
         <div className="container">
         <div className="row">
             <div class="col s10 m5 l4">
@@ -39,8 +43,8 @@ export default class Home extends Component {
                         <p>Navigate to our Personality Page for a full personality analysis based on your online posts.</p>
                     </div>
                     <div className="card-action center">
-                        <Link to="/personality" className="btn amber darken1 waves-effect waves-orange" >
-                            <i className="material-icons left">insert_chart</i>Personality Page</Link>
+                        <Link to="/personality" className="btn cardBtn amber darken1 waves-effect waves-orange" >
+                            <i className="material-icons white-text left">insert_chart</i>Personality Page</Link>
                     </div>
                 </div>
             </div>
@@ -55,8 +59,8 @@ export default class Home extends Component {
                         <p>Navigate to our Tone Page for an analysis that guages the general attitude of your inputed text.</p>
                     </div>
                     <div className="card-action center">
-                        <Link to="/tone" className="btn amber darken1 waves-effect waves-orange" >
-                            <i className="material-icons left">record_voice_over</i>Tone Page</Link>
+                        <Link to="/tone" className="btn cardBtn amber darken1 waves-effect waves-orange" >
+                            <i className="material-icons white-text left">record_voice_over</i>Tone Page</Link>
                     </div>
                 </div>
             </div>
@@ -70,8 +74,8 @@ export default class Home extends Component {
                         <p>Navigate to our Image Page to view the emotional pie chart, age, and smile data for your image.</p>
                     </div>
                     <div className="card-action center">
-                        <Link to="/face" className="btn amber darken1 waves-effect waves-orange" >
-                            <i className="material-icons left">photo_camera</i>Image Page</Link>
+                        <Link to="/face" className="btn cardBtn amber darken1 waves-effect waves-orange" >
+                            <i className="material-icons white-text left">photo_camera</i>Image Page</Link>
                     </div>
                 </div>
             </div>
