@@ -7,13 +7,6 @@ import FacePic from "./face_thumb.jpg";
 import PersonalityPic from "./personality_thumb.jpg"
 
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 5b7a317e51e5db39df38215fbd20f8955021d40f
 export default class Home extends Component {
   state = { link: "", selectedPost: 0, comment:"", post:[] };
   handleInputChange = event => {
