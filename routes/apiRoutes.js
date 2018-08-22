@@ -6,7 +6,7 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-  app.post('/twitterName', (req, res) => {
+  app.post('/personality', (req, res) => {
     console.log(req.body.name);
     var screenName = req.body.name;
 
@@ -84,7 +84,7 @@ module.exports = function (app) {
   });
 
 
-  app.post('/ToneRoute', (req, res) => {
+  app.post('/tone', (req, res) => {
     var screenName = req.body.name;
     twitterContent(screenName)
       .then(function (content) {

@@ -8,6 +8,7 @@ import Search from "./components/search/search";
 import Tone from "./components/tone/tone";
 import Personality from "./components/personality/personality";
 import Face from "./components/face/face.js";
+import Footer from "./components/footer/footer";
 
 class App extends Component {
   state = {
