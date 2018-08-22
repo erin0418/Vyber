@@ -25,7 +25,7 @@ export default class Home extends Component {
             <div className="col s10 m5 l4">
                 <div className="card">
                     <div className="card-image">
-                        <img src="images/placeholder_thumb.jpg"/>
+                        <img src="/../../..public/images/face_thumb.jpg"/>
                     </div>
                     <div className="card-content">
                         <p>Navigate to our Tone Page for an analysis that guages the general attitude of your inputed text.</p>
