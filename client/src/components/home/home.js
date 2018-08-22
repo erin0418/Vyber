@@ -8,7 +8,7 @@ import PersonalityPic from "./personality_thumb.jpg"
 
 
 
-import React, { Component } from "react";
+
 
 
 export default class Home extends Component {
