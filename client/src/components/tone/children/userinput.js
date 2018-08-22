@@ -10,7 +10,7 @@ const UserInputs = props => (
 
                 </div>
                 <div className="col s4 input-field" id="twitterName">
-                    <input className="input-field" type="text" name="twitterName" id="twitterInput" />
+                    <input className="input-field" type="text" name="twitterName" id="twitterInput" onChange={props.handleInput} />
                     <label for="twitterInput">Please enter your Twitter username</label>
                 </div>
                 <div className="col s4">
@@ -21,7 +21,7 @@ const UserInputs = props => (
 
                 </div>
                 <div className="col s4" id="twitterLogin">
-                    <a className="waves-effect waves-light btn-large" onClick={props.handleInput} id="modalButton">
+                    <a className="waves-effect waves-light btn-large" onClick={props.handlePage} id="modalButton">
                         <i className="material-icons left">record_voice_over</i>Get My Tweets</a>
                 </div>
                 {/* <div className="col s4">

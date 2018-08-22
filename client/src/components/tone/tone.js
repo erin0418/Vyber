@@ -10,17 +10,17 @@ export default class Tone extends Component {
     results: []
   };
 
-  handleInput = ()=>{
-     console.log("display page");
+  handlePage = ()=>{
      this.setState({hideInputs: true});
   };
+
 
   render() {
     return (
       <div>
         {
           (this.state.hideInputs === false)
-          ? <UserInputs handleInput={this.handleInput}/>
+          ? <UserInputs handlePage={this.handlePage}/>
           : <Display results={this.state.results}/>
         }
       </div>
