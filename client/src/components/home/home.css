@@ -1,0 +1,8 @@
+.cardBtn {
+    color:white !important;
+}
+
+.cardBtn:hover {
+    color: #e65100 !important;
+    transition: .1s;
+} 

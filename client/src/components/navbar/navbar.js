@@ -28,7 +28,7 @@ export default class NavBar extends Component {
                 <Link className="icon-container" to="/face"><span className="nav-item_title"><i className="material-icons face-icon">photo_camera</i>Face</span></Link>
               </li>
               <li>
-                <Link className="icon-container" to="/accmanage"><span className="nav-item_title"><i className="material-icons account-icon">account_circle</i>Account</span></Link>
+                <Link className="icon-container" to="/manage"><span className="nav-item_title"><i className="material-icons account-icon">account_circle</i>Account</span></Link>
               </li>
               <li>
                 <Link className="icon-container" to="/search"><span className="nav-item_title"><i className="material-icons search-icon">search</i>Search</span></Link>
