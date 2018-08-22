@@ -3,9 +3,9 @@
     "username": "root",
     "password": "root",
     "database": "testvybr",
-    "host": "localhost",
+    "host": "VYBERTEST",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
