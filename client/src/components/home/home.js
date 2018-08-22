@@ -1,6 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Home extends Component {
+  state = { link: "", selectedPost: 0, comment:"", post:[] };
+  handleInputChange = event => {
+    //used for setting link& comment
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({ [name]: value });
+  };
+  makePost = ()=>{
+    this.props.handlePost(this.state.link)
+  }
+  
+ 
+
   render() {
     return(
       <div>
@@ -54,7 +67,7 @@ export default class Home extends Component {
         </div>
     </div>
       </div>
-    )
+    );
   }
 }
 

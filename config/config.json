@@ -2,10 +2,10 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "testvybr",
-    "host": "VYBERTEST",
+    "database": "localvyber",
+    "host": "localhost",
     "dialect": "mysql",
-    "port": 8889
+    "port": 3306
   },
   "test": {
     "username": "root",
