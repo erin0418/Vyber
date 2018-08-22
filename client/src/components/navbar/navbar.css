@@ -4,42 +4,44 @@
     display:block;
     color: white;
     font-family: 'Roboto', sans-serif;
+    text-align: center;
  }
 
  .home-icon {
     margin:-8px;
-    margin-left: 3px;
+    margin-left: -9px;
  }
 
  .tone-icon {
     margin:-8px;
-    margin-left: 3px;
+    margin-left: -5px;
  }
 
  .personality-icon {
     margin:-8px;
-    margin-left: 15px;
+    margin-left: -12px;
  }
 
  .face-icon {
     margin:-8px;
-    margin-left: 0px;
+    margin-left: -9px;
  }
 
  .account-icon {
     margin:-8px;
-    margin-left: 9px;
+    margin-left: -9px;
  }
 
  .search-icon {
     margin:-8px;
-    margin-left: 2px;
+    margin-left: -10px;
  }
 
  .brand-logo {
      margin-left: 20px;
  }
 
- a {
-     font-family: 'Roboto', sans-serif;
- }
+ .icon-container:hover, .nav-item_title:hover {
+    color: #e65100;
+    transition: .1s;
+} 
