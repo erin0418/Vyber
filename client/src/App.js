@@ -25,7 +25,7 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     })
-      .then((response, password) => {
+      .then(response => {
         return response.json();
       })
       .then(body => {
@@ -56,6 +56,25 @@ class App extends Component {
         this.setState({ currentAccount: body });
       });
   };
+  handlePost = link => {
+    //function to allow a user to create a post
+    fetch("/api/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        Link: link,
+        UserId: this.state.currentAccount.id
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(body => {
+        console.log(body);
+      });
+  };
 
   render() {
     return (
@@ -74,9 +93,28 @@ class App extends Component {
               );
             }}
           />
-          <Route exact path="/home" component={Home} />
+          <Route
+            exact
+            path="/home"
+            render={() => {
+              return (
+                <Home
+                  account={this.state.currentAccount}
+                  handlePost={this.handlePost}
+                  handleComment={this.handleComment}
+                />
+              );
+            }}
+          />
+
+          <Route
+            exact
+            path="/search"
+            render={() => {
+              return <Search account={this.state.currentAccount} />;
+            }}
+          />
           <Route exact path="/manage" component={Manage} />
-          <Route exact path="/search" component={Search} />
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
           <Route exact path="/face" component={Face} />
