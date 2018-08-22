@@ -58,17 +58,3 @@ label {
     box-shadow: 0 1px 0 0 #e65100 !important
 }
 
-.dialogIsOpen #page-wrap {
-    /* Blur and de-color */
-    -webkit-filter: blur(5px) grayscale(50%);
-    /* Recede */
-    -webkit-transform: scale(0.9);
-}
-
-.dialogIsOpen #modalContainer {
-    /* Regular size and visible */
-    transform: scale(1); /* prefix me */
-    opacity: 1; 
-    /* Clickable */
-    pointer-events: auto;
-}

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import UserCreate from "./children/usercreate.js";
 import LogIn from "./children/login.js";
+import "./signin.css";
+import VyberScreens from "./VyberScreens.png";
 
 export default class SignIn extends Component {
   state = {
@@ -36,14 +38,14 @@ export default class SignIn extends Component {
   pageRender = () => {
     //this is triggered by out handleSelectFunc and renders the
     // page the client has called for
-    if (this.state.page === "Create Account") {
+    if (this.state.page === "CREATE ACCOUNT") {
       return (
         <UserCreate
           handleInputChange={this.handleInputChange}
           handleAccountCreateApp={this.handleAccountCreateApp}
         />
       );
-    } else if (this.state.page === "Sign In") {
+    } else if (this.state.page === "SIGN IN") {
       return (
         <LogIn
           handleInputChange={this.handleInputChange}
@@ -54,11 +56,14 @@ export default class SignIn extends Component {
   };
   render() {
     return (
-      <div>
-        <h1> select wether you want to sign in or create an account</h1>
-        <div onClick={this.handleSelect}>Sign In</div>
-        <div onClick={this.handleSelect}>Create Account</div>
+      <div className="signinBody">
+        <h3 className="center white-text">VYBER</h3>
+        <br/>
+        <div className="signInDiv" onClick={this.handleSelect}>SIGN IN</div>
+        <div className="createDiv" onClick={this.handleSelect}>CREATE ACCOUNT</div>
+        <br/>
         <div>{this.pageRender()}</div>
+        <img className="signinPic" src={VyberScreens} />
       </div>
     );
   }
