@@ -4,7 +4,7 @@ import "./footer.css";
 const Footer = props => (
 
     // footer container 
-    <div>
+    <div className="footer-container">
         <footer className="page-footer amber darken-1" >
             <div className="footer-copyright center">
                 <div className="container">
@@ -13,8 +13,6 @@ const Footer = props => (
             </div>
         </footer>
     </div>
-
-
 );
 
 export default Footer;
