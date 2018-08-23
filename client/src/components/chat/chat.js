@@ -71,11 +71,11 @@ export default class Chat extends Component {
                 <form onSubmit={this.onAddMessage}>
                     <input type="text" ref={node => this.input = node}/>
                     <input type="submit"/>
-                    <ul>
+                    {/* <ul>
                     {this.state.messages.map(message =>
                         <li key={message.id}>{message.text}</li>
                     )}
-                    </ul>
+                    </ul> */}
                 </form>
                 </div>
                 <button className="collapsible amber darken-1" onClick={this.collapseChat}>Double Click to Chat</button>
