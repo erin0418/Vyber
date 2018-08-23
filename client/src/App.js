@@ -37,11 +37,13 @@ class App extends Component {
         }
       });
   };
-  handleAccountCreate = (username, password) => {
+  handleAccountCreate = (email, fullname, username, password,) => {
     //used for account creation
     fetch("/api/usersCreate", {
       method: "POST",
       body: JSON.stringify({
+        email: email,
+        fullname: fullname,
         username: username,
         password: password
       }),
