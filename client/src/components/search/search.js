@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchAccount from "./children/searchaccount";
 import SearchPosts from "./children/searchposts";
 import SearchDisplay from "./children/searchdisplay";
+import Chat from "../chat/chat";
 
 export default class Search extends Component {
   state = {
@@ -90,6 +91,7 @@ export default class Search extends Component {
     return (
       <div>
         <div>{this.pageRender()}</div>
+        <Chat />
       </div>
     );
   }
