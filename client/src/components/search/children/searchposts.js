@@ -26,7 +26,11 @@ export default class SearchPosts extends Component {
     }
     selectPost = (event) => {
         const postId = event.target.getAttribute('id')
-        this.props.setSelectedPost(postId)
+        const link = event.target.getAttribute('link')
+        const title = event.target.getAttribute('title')
+        console.log(link, title)
+
+        this.props.setSelectedPost(postId,link,title)
           
     }
   render(){
@@ -41,7 +45,7 @@ export default class SearchPosts extends Component {
                     console.log(post)
                     return(
 
-                        <div id={post.id} key={i} onClick={this.selectPost}>{post.Link}</div>
+                        <div id={post.id} link={post.Link} title={post.Title} key={i} onClick={this.selectPost}>{post.Title}:   {post.Link}</div>
                     )
                 })}
             </div>

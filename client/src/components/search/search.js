@@ -9,7 +9,9 @@ export default class Search extends Component {
     accountName: "",
     searchedAccount: [],
     selectedPost: 0,
-    commentBody: ""
+    commentBody: "",
+    selectedPostTitle: "",
+    selectedPostLink: ""
   };
   handleInput = event => {
     //used for setting link& comment
@@ -17,6 +19,7 @@ export default class Search extends Component {
     const name = event.target.name;
     this.setState({ [name]: value });
   };
+
   handleSearchAccount = () => {
     fetch("/api/users", {
       method: "POST",
@@ -33,13 +36,15 @@ export default class Search extends Component {
       .then(body => {
         this.setState({
           searchedAccount: body,
-      page: "post"
+          page: "post"
         });
       });
   };
-  setSelectedPost = postId => {
+  setSelectedPost = (postId, link, title) => {
     this.setState({
       selectedPost: postId,
+      selectedPostLink: link,
+      selectedPostTitle: title,
       page: "display"
     });
   };
@@ -59,7 +64,7 @@ export default class Search extends Component {
         return response.json();
       })
       .then(body => {
-        this.setState({page: "display"})
+        this.setState({ page: "display" })
         console.log(body);
       });
   };
@@ -82,6 +87,8 @@ export default class Search extends Component {
           selectedPost={this.state.selectedPost}
           handleInput={this.handleInput}
           handleComment={this.handleComment}
+          postTitle={this.state.selectedPostTitle}
+          postLink={this.state.selectedPostLink}
         />
       );
     }

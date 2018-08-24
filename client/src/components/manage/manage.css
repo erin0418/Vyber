@@ -1,7 +1,7 @@
 .usernav {
     background-color: #ffb300;
     width: 25%;
-    height: 570px;
+    height: 100%;
     padding-top:10px;
     overflow: auto;
 }

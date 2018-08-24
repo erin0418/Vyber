@@ -21,7 +21,7 @@ export default class SignIn extends Component {
   handleAccountApp = event => {
     //passes username to app for sign in
     event.preventDefault();
-    this.props.handleAccountFunc(this.state.username, this.state.password, this.state.email, this.state.fullname);
+    this.props.handleAccountFunc(this.state.username,this.state.password);
   };
   handleAccountCreateApp = event => {
     //passes username and password to app for creation
