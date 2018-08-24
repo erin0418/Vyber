@@ -18,7 +18,7 @@ export default class Tone extends Component {
       [name]: value
     });
   };
-
+  
   handlePage = ()=>{
     fetch("/tone", {
         method: "POST",
@@ -33,8 +33,14 @@ export default class Tone extends Component {
         return response.json();
       })
       .then(body => {
+        console.log(body.utterances_tone);
+        let textArray = []
+        for (let i =0; i< body.utterances_tone.length; i++){
+          textArray.push(body.utterances_tone[i].utterance_text)
+          // textArray.push(body.utterance_tone[i].tones)
+        }
         this.setState({
-          results: body,
+          results: textArray,
           hideInputs: true
         });
       });
@@ -44,11 +50,16 @@ export default class Tone extends Component {
   render() {
     return (
       <div>
-        {
-          (this.state.hideInputs === false)
-          ? <UserInputs handlePage={this.handlePage} handleInput={this.handleInput}/>
-          : <Display results={this.state.results}/>
-        }
+        
+          {this.state.hideInputs === false}
+          <UserInputs
+             handlePage={this.handlePage} 
+             handleInput={this.handleInput}
+          /> 
+        {this.state.results.map(result => (
+           <Display results={result}/>
+          ))}
+      
       </div>
     )
   };
