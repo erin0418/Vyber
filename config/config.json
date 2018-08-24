@@ -2,10 +2,10 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "localvyber",
+    "database": "zvyberlocal",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
