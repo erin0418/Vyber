@@ -7,6 +7,8 @@ import VyberScreens from "./VyberScreens.png";
 export default class SignIn extends Component {
   state = {
     page: "",
+    email:"",
+    fullname:"",
     username: "",
     password: ""
   };
@@ -19,12 +21,14 @@ export default class SignIn extends Component {
   handleAccountApp = event => {
     //passes username to app for sign in
     event.preventDefault();
-    this.props.handleAccountFunc(this.state.username, this.state.password);
+    this.props.handleAccountFunc(this.state.username,this.state.password);
   };
   handleAccountCreateApp = event => {
     //passes username and password to app for creation
     event.preventDefault();
     this.props.handleAccountCreateFunc(
+      this.state.email,
+      this.state.fullname,
       this.state.username,
       this.state.password
     );

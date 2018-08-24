@@ -37,11 +37,13 @@ class App extends Component {
         }
       });
   };
-  handleAccountCreate = (username, password) => {
+  handleAccountCreate = (email, fullname, username, password,) => {
     //used for account creation
     fetch("/api/usersCreate", {
       method: "POST",
       body: JSON.stringify({
+        email: email,
+        fullname: fullname,
         username: username,
         password: password
       }),
@@ -56,25 +58,7 @@ class App extends Component {
         this.setState({ currentAccount: body });
       });
   };
-  handlePost = link => {
-    //function to allow a user to create a post
-    fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        Link: link,
-        UserId: this.state.currentAccount.id
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(body => {
-        console.log(body);
-      });
-  };
+  
 
   render() {
     return (
@@ -114,7 +98,18 @@ class App extends Component {
               return <Search account={this.state.currentAccount} />;
             }}
           />
-          <Route exact path="/manage" component={Manage} />
+          < Route
+          exact
+          path = "/manage"
+          render = {
+            () => {
+              return <Manage account = {
+                this.state.currentAccount
+              }
+              />;
+            }
+          }
+          />
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
           <Route exact path="/face" component={Face} />
