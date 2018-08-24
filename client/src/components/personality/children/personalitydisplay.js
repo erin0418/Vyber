@@ -152,7 +152,7 @@ export default class Display extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="personalityContainer" >
         <div className="row">
           <div className="col s3">
             <p>Personality Traits:</p>

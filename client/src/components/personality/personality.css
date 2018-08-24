@@ -76,3 +76,9 @@ label {
     /* Clickable */
     pointer-events: auto;
 }
+
+.personalityContainer {
+    overflow: auto;
+    height: 700px;
+    
+}
