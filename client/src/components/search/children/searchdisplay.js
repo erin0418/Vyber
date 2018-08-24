@@ -26,9 +26,7 @@ export default class SearchDisplay extends Component {
                      this.setState({
                          comments: body
                      });
-                 });
-                 if (this.props.postTitle === "Personality") {
-                     fetch("/personality", {
+                     return fetch("/tone", {
                              method: "POST",
                              body: JSON.stringify({
                                  name: this.props.postLink
@@ -37,14 +35,18 @@ export default class SearchDisplay extends Component {
                                  "Content-Type": "application/json"
                              }
                          })
-                         .then(response => {
-                             return response.json();
+                         
+                        }).then(response => {
+                         return response.json();
                          })
                          .then(body => {
                              this.setState({
                                  results: body
-                            });
-                         });
+                             });
+                         }).catch((error)=>{
+                         console.log(error)});
+                 if (this.props.postTitle === "Personality") {
+                    
                  } else if (this.props.postTitle === "Tone") {
                      fetch("/tone", {
                              method: "POST",
