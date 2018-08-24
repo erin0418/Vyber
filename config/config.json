@@ -5,7 +5,7 @@
     "database": "localvyber2",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
