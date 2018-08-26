@@ -3,50 +3,42 @@ import "./chat.css";
 import * as firebase from "firebase";
 
 const config = {
-    apiKey: "AIzaSyCI720lyTp5dXaS_HwubygZfT9moJio5HU",
-    authDomain: "vybr-47de0.firebaseapp.com",
-    databaseURL: "https://vybr-47de0.firebaseio.com",
-    projectId: "vybr-47de0",
-    storageBucket: "vybr-47de0.appspot.com",
-    messagingSenderId: "787523706427"
-};
+    apiKey: "AIzaSyCBjQyfcraeRZHxOP67Uf1C1yEMEFwI0k4",
+    authDomain: "vybr-b1111.firebaseapp.com",
+    databaseURL: "https://vybr-b1111.firebaseio.com",
+    projectId: "vybr-b1111",
+    storageBucket: "vybr-b1111.appspot.com",
+    messagingSenderId: "182545839420"
+  };
+  firebase.initializeApp(config);
 
-firebase.initializeApp(config);
+ const database = firebase.database();
 
-const database = firebase.database();
-// import DB from "./data/database"
-  
-    // Initialize Firebase
-
-
-export default class Chat extends Component {
-        state = {
-            userName: "",
-            messages: "",
-        };        
+ export default class Chat extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
     
-      componentWillMount() {
-        const messagesRef = database.ref('messages')
-          .orderByKey()
-          .limitToLast(100);
-    
-        messagesRef.on('child_added', snapshot => {
-          const message = { text: snapshot.val(), id: snapshot.key };
-    
-          this.setState(prevState => ({
-            messages: [ message, ...prevState.messages ],
-          }));
-        });
-      }
-    
-      onAddMessage(event) {
-        event.preventDefault();
-    
-        database.ref('messages').push(this.input.value);
-    
-        this.input.value = '';
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
 
+        handleChange(event) {
+            this.setState({value: event.target.value});
+        }
+    
+        handleSubmit(event) {
+            event.preventDefault();
+            database.ref().push({
+                message: this.state.value
+            });
+        }
+        writeMessages(message){
+            database.ref().on("child_added", function(snapshot) {
+                // storing the snapshot.val() in a variable for convenience
+                this.setState.messages = snapshot.val().message;
+            })
+        }
         collapseChat = () => {
             var coll = document.getElementsByClassName("collapsible");
             var i;
@@ -67,18 +59,13 @@ export default class Chat extends Component {
         return (
             <div className="chat-bar">
                 <div className="content">
-                <p>This is where the firebase messages will go.</p>
-                <form onSubmit={this.onAddMessage}>
-                    <input type="text" ref={node => this.input = node}/>
-                    <input type="submit"/>
-                    {/* <ul>
-                    {this.state.messages.map(message =>
-                        <li key={message.id}>{message.text}</li>
-                    )}
-                    </ul> */}
+                <p>{this.state.message}</p>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    <input type="submit" value="Submit" />
                 </form>
                 </div>
                 <button className="collapsible amber darken-1" onClick={this.collapseChat}>Double Click to Chat</button>
             </div>
         )}
-    }
+    } 
