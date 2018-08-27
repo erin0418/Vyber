@@ -8,6 +8,7 @@ import Search from "./components/search/search";
 import Tone from "./components/tone/tone";
 import Personality from "./components/personality/personality";
 import Face from "./components/face/face.js";
+import Chat from "./components/chat/chat"
 import Footer from "./components/footer/footer.js";
 
 class App extends Component {
@@ -113,6 +114,7 @@ class App extends Component {
           <Route exact path="/tone" component={Tone} />
           <Route exact path="/personality" component={Personality} />
           <Route exact path="/face" component={Face} />
+          <Chat userName={this.state.currentAccount}/>
           <Footer />
         </div>
       </Router>

@@ -98,7 +98,6 @@ export default class Search extends Component {
     return (
       <div>
         <div>{this.pageRender()}</div>
-        {/* <Chat /> */}
       </div>
     );
   }

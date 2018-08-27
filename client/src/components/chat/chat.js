@@ -17,8 +17,7 @@ const config = {
  export default class Chat extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: '', messages: []};
-    
+        this.state = {value: '', messages: [], userName: ''};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -89,7 +88,7 @@ const config = {
                 {this.state.messages.map((item) => {
                     return (
                     <li key={this.id}>
-                        <li>{item}</li>
+                        <li>{this.props.userName}:{item}</li>
                     </li>
                     )
                 })}

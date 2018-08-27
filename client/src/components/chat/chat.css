@@ -8,7 +8,7 @@
     text-align: center;
     outline: none;
     font-size: 15px;
-    position: relative;
+    /* position: relative; */
     right:0;
     left:auto;
     font-family: 'Roboto', sans-serif;
@@ -31,7 +31,8 @@
 
 .chat-bar {
     width: 170px;
-    position: relative;
+    position: absolute;
+    bottom:50px;
 }
 
 li {
