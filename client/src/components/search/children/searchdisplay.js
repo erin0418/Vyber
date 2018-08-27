@@ -88,7 +88,7 @@ export default class SearchDisplay extends Component {
             <div className="containerfluid">
                 <div className="row background">
                 <h4>{this.props.searchedAccount.username} {this.props.postTitle}'s results:</h4>
-                    <div className="col s8 innerBackground overFlow">
+                    <div className="col s8 m8 innerBackground overFlow">
                         {
                             (this.state.toneRendered === false)
                                 ? null
