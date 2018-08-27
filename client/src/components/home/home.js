@@ -23,7 +23,7 @@ export default class Home extends Component {
 
   render() {
     return(
-      <div>
+      <div className="navShift">
           <br/><br/>
         <div className="container">
         <div className="row">
