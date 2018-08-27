@@ -95,7 +95,7 @@ const config = {
                 </ul>
                 <form onSubmit={this.handleSubmit} ref={(ref) => this.formRef = ref}>
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
-                    <input type="submit" value="Submit" />
+                    <input className="amber darken-1" type="submit" value="SEND" />
                 </form>
                 </div>
                 <button className="collapsible amber darken-1" onClick={this.collapseChat}>Double Click to Chat</button>
