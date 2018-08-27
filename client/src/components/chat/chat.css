@@ -1,0 +1,65 @@
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 15px;
+    /* position: relative; */
+    right:0;
+    left:auto;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+}
+
+.collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #8ce3d4;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    position : relative; 
+    bottom:0;
+}
+
+#messageContent {
+    max-height: 100px;
+    overflow: auto;
+    position : relative; 
+}
+
+.chat-bar {
+    width: 170px;
+    position: absolute;
+    bottom:50px;
+    right:0;
+}
+
+li {
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+}
+
+form{
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    position : relative; 
+    bottom:0;
+}
+
+#text-box {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 15px;
+}

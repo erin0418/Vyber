@@ -65,12 +65,25 @@ label {
 
 .faceNav {
     background-color: #ffb300;
-    height: 570px;
+    height: 750px;
     width: 400px;
     padding-top:10px;
     margin-left:-192px;
     overflow: auto;
 }
+
+.selector1 {
+    color:white;
+    border: 1px solid #fff;
+    width: 85%;
+    font-size: 20px;
+    padding:10px;
+    font-weight:lighter;
+    font-family: 'Roboto', sans-serif;
+    /* margin-top:225px; */
+    margin-left:20px;
+}
+
 
 .selector {
     color:white;
@@ -83,7 +96,18 @@ label {
     margin-left:20px;
 }
 
-.selector:hover {
+.textStats {
+    color:white;
+    border: 1px solid #fff;
+    width: 85%;
+    font-size: 20px;
+    padding:10px;
+    font-weight:lighter;
+    font-family: 'Roboto', sans-serif;
+    margin-left:20px;
+}
+
+.selector:hover, .selector1:hover {
     color: #e65100;
     transition: .1s;
     border: 1px solid #e65100;
@@ -91,7 +115,7 @@ label {
 
 .resultDisplay {
     background-color: white;
-    margin-top:100px;
+    margin-top:125px;
     height:569px;
     overflow:auto;
 }   
@@ -100,13 +124,27 @@ label {
     position:absolute;
     color:#ffb300;
     border:2px solid #ffb300;
-    width:45%;
-    top:75px;
-    left:32%;
+    width:35%;
+    top:13%;
+    left:38%;
     text-align:center;
     margin:0px;
     font-weight:bold;
     font-family: 'Roboto', sans-serif;
-    font-size:40px;
+    font-size:30px;
+}
 
+.chartInfo {
+    position:absolute;
+    color:#ffb300;
+    border:2px solid #ffb300;
+    text-align:left;
+    width:15%;
+    top:33%;
+    left:77%;
+    padding:10px;
+    font-weight:bold;
+    font-family: 'Roboto', sans-serif;
+    font-size:20px;
+    z-index:1;
 }

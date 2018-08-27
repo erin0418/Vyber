@@ -12,6 +12,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "firebase": "^5.4.0",
     "login-with-twitter": "^1.2.0",
     "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^1.5.3",
@@ -19,11 +20,17 @@
     "passport": "^0.4.0",
     "passport-twitter": "^1.0.4",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "save": "^2.3.2",
 =======
     "react-d3-basic": "^1.6.11",
     "react-minimal-pie-chart": "^3.2.0",
 >>>>>>> 962c09290869dc1202d6407022003cbccb4b46fe
+=======
+    "save": "^2.3.2",
+    "react-d3-basic": "^1.6.11",
+    "react-minimal-pie-chart": "^3.2.0",
+>>>>>>> cc5a714b9797a4b35bf25342b41f87f489fc6c55
     "sequelize": "^4.38.0",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.9.0"

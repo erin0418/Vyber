@@ -68,7 +68,7 @@ export default class Home extends Component {
                     </div>
                     <div className="card-action center">
                         <Link to="/face" className="btn cardBtn amber darken1 waves-effect waves-orange" >
-                            <i className="material-icons white-text left">photo_camera</i>Image Page</Link>
+                            <i className="material-icons white-text left">photo_camera</i>Face Page</Link>
                     </div>
                 </div>
             </div>
