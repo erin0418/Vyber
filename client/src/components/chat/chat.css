@@ -31,3 +31,6 @@
     position: relative;
 }
 
+li {
+    text-align: right;
+}

@@ -17,28 +17,53 @@ const config = {
  export default class Chat extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '', messages: []};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
-
+// Watches for message to be submitted
         handleChange(event) {
             this.setState({value: event.target.value});
-        }
-    
+        }   
+// Saves the message to the firebase database    
         handleSubmit(event) {
             event.preventDefault();
             database.ref().push({
                 message: this.state.value
             });
+            // Need to reset form this doesn't work
+            this.formRef.reset();
         }
-        writeMessages(message){
-            database.ref().on("child_added", function(snapshot) {
-                // storing the snapshot.val() in a variable for convenience
-                this.setState.messages = snapshot.val().message;
-            })
+// Looks for all connections to the database page once chat box is clicked
+        componentDidMount() {
+            const connectionsRef = database.ref("/connections");
+            const connectedRef = database.ref(".info/connected");
+
+            connectedRef.on("value", function(snap) {
+                
+                if (snap.val()) {
+
+                var con = connectionsRef.push(true);
+
+                con.onDisconnect().remove();
+                }
+            });
+            this.writeMessages()
         }
+// TODO: Writes messages to the empty chat box from the firebase database
+        writeMessages = () => { 
+            database.ref().on("child_added", snapshot => {
+                const messageArray = [];
+                snapshot.forEach((snap) => {
+                    messageArray.push(snap.val())
+                    console.log(messageArray) 
+                  })
+                  this.setState({messages: messageArray})
+                   
+                })
+        }
+// Chat box opens and closes on double click
         collapseChat = () => {
             var coll = document.getElementsByClassName("collapsible");
             var i;
@@ -59,8 +84,17 @@ const config = {
         return (
             <div className="chat-bar">
                 <div className="content">
-                <p>{this.state.message}</p>
-                <form onSubmit={this.handleSubmit}>
+                Chat:
+                <ul>
+                {this.state.messages.map((item) => {
+                    return (
+                    <li key={this.id}>
+                        <li>{this.props.user}:{item}</li>
+                    </li>
+                    )
+                })}
+                </ul>
+                <form onSubmit={this.handleSubmit} ref={(ref) => this.formRef = ref}>
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
                     <input type="submit" value="Submit" />
                 </form>
