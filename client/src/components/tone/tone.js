@@ -67,7 +67,7 @@ export default class Tone extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navShift">
         {/* hide modal */}
         {this.state.hideInputs === false ? (
           <UserInputs

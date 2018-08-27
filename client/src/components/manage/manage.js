@@ -105,7 +105,7 @@ export default class Manage extends Component {
   };
   render() {
     return (
-      <div className="manageBody containerfluid">
+      <div className="manageBody containerfluid navShift">
         <div className="row">
           <div className="usernav col s3">
             <div className="userInfo">
