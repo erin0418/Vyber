@@ -10,6 +10,10 @@
     box-shadow: 0px 2px 5px 0px rgb(100, 100, 100);
 }
 
+.navShift {
+    margin-top:64px;
+}
+
 .tone-title {
     color:white;
     font-size: 30pt;
@@ -64,11 +68,12 @@ label {
 }
 
 .faceNav {
+    position:relative;
     background-color: #ffb300;
     height: 750px;
     width: 400px;
     padding-top:10px;
-    margin-left:-192px;
+    margin-left:0px;
     overflow: auto;
 }
 
@@ -115,36 +120,33 @@ label {
 
 .resultDisplay {
     background-color: white;
-    margin-top:125px;
-    height:569px;
+    height:600px;
+    width:100%;
     overflow:auto;
 }   
 
 .chartTitle {
-    position:absolute;
+    position:relative;
     color:#ffb300;
     border:2px solid #ffb300;
-    width:35%;
-    top:13%;
-    left:38%;
+    width:50%;
+    margin:auto;
+    margin-top:15px;
     text-align:center;
-    margin:0px;
     font-weight:bold;
     font-family: 'Roboto', sans-serif;
     font-size:30px;
+    z-index:2;
 }
 
 .chartInfo {
-    position:absolute;
+    position:relative;
     color:#ffb300;
     border:2px solid #ffb300;
     text-align:left;
-    width:15%;
-    top:33%;
-    left:77%;
     padding:10px;
     font-weight:bold;
     font-family: 'Roboto', sans-serif;
     font-size:20px;
-    z-index:1;
+    z-index:3;
 }

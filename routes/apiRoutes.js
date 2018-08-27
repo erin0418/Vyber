@@ -19,6 +19,16 @@ module.exports = function (app) {
       });
 
   });
+  app.post("/api/usersId", function (req, res) {
+    db.User.findOne({
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbusers) {
+      console.log(dbusers)
+      res.json(dbusers);
+    });
+  });
 
   app.post("/api/users", function (req, res) {
     db.User.findOne({
@@ -68,7 +78,8 @@ module.exports = function (app) {
     db.Comment.create({
       body: req.body.link,
       UserId: req.body.UserId,
-      PostId: req.body.PostId
+      PostId: req.body.PostId,
+      username: req.body.username
     }).then(function (dbPost) {
       res.json(dbPost);
     });

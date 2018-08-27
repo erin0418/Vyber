@@ -23,4 +23,15 @@ export default class Face extends Component {
       </div>
     )
   }
+render() {
+  return (
+    <div className="navShift">
+      {
+        (this.state.hideInputs === false)
+          ? <UserInputs handlePage={this.handlePage} handleInput={this.handleInput} />
+          : <Display results={this.state.results} imgUrl={this.state.imgUrl} />
+      }
+    </div>
+  )
+}
 }

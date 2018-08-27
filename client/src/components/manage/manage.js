@@ -36,6 +36,8 @@ export default class Manage extends Component {
     this.setState({ page: "updateAccount" })
   }
   pageRender = () => {
+
+    
     switch (this.state.page) {
       case "createPost":
         return <CreatePost handlePost={this.handlePost} handleInput={this.handleInputChange} completeMessage={this.state.completeMessage} handleClick={this.handleClick} />
@@ -97,7 +99,7 @@ export default class Manage extends Component {
   };
   render() {
     return (
-      <div className="manageBody containerfluid">
+      <div className="manageBody containerfluid navShift">
         <div className="row">
           <div className="usernav col s3">
             <div className="userInfo">
