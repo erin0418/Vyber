@@ -18,7 +18,12 @@
     "nouislider": "^11.1.0",
     "passport": "^0.4.0",
     "passport-twitter": "^1.0.4",
+<<<<<<< HEAD
     "save": "^2.3.2",
+=======
+    "react-d3-basic": "^1.6.11",
+    "react-minimal-pie-chart": "^3.2.0",
+>>>>>>> 962c09290869dc1202d6407022003cbccb4b46fe
     "sequelize": "^4.38.0",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.9.0"
