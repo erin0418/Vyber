@@ -3,8 +3,9 @@ import Chart from "react-google-charts";
 
 const imgStyle = {
     width: 350,
-    border: "5px solid #8ce3d4"
-}
+    border: "5px solid #8ce3d4",
+    // position:"fixed"
+};
 
 const pieOptions = {
     title: "",
@@ -29,7 +30,7 @@ const pieOptions = {
             color: "c864f5"
         },
         {
-            color: "b0b0b0"
+            color: "8ce3d4"
         }
     ],
     legend: {
@@ -52,6 +53,23 @@ const pieOptions = {
     fontName: "Roboto"
 };
 
+let emotionData = [];
+let emotionBox = "";
+
+let skinData = [];
+let skinBox = "";
+
+let smileData = [];
+let smileBox = "";
+
+let maleBeautyData = [];
+let maleBeautyBox = "";
+
+let femaleBeautyData = [];
+let femaleBeautyBox = "";
+
+let infoData = [];
+let infoBox = "";
 
 export default class Display extends Component {
     state = {
@@ -84,14 +102,72 @@ export default class Display extends Component {
         smile: {
             threshold: 0,
             value: 0
-        }
+        },
+        chart:[
+            ["VYBER","Value"],
+            ["VYBER", 100]
+        ],
+        chartHeader:"VYBER Facial Analysis",
+        chartInfo:"Click headings under image to see analysis results"
     };
 
+    infoHandler = () => {
+        this.setState({
+            chart:infoData,
+            chartHeader:"VYBER Facial Analysis",
+            chartInfo:infoBox,
+        });
+    };
 
+    emotionHandler = () => {
+        this.setState({
+            chart:emotionData,
+            chartHeader:"VISIBLE EMOTIONS",
+            chartInfo:emotionBox,
+        });
+    };
 
+    skinHandler = () => {
+        this.setState({
+            chart:skinData,
+            chartHeader:"SKIN STATUS",
+            chartInfo:skinBox
+        });
+    };
+
+    maleBeautyHandler = () => {
+        this.setState({
+            chart:maleBeautyData,
+            chartHeader:"MALE BEAUTY SCORE",
+            chartInfo:maleBeautyBox
+        });
+    };
+
+    femaleBeautyHandler = () => {
+        this.setState({
+            chart:femaleBeautyData,
+            chartHeader:"FEMALE BEAUTY SCORE",
+            chartInfo:femaleBeautyBox
+        });
+    };
+
+    smileHandler = () => {
+        this.setState({
+            chart:smileData,
+            chartHeader:"SMILE VISIBILITY",
+            chartInfo:smileBox
+        });
+    };
 
     componentDidMount() {
-        console.log(this.props.results.faces[0].attributes.age)
+        console.log(this.props.results.faces[0].attributes.age);
+        console.log("FQ Value: " + this.props.results.faces[0].attributes.facequality.value);
+        console.log("FQ Threshold: " + this.props.results.faces[0].attributes.facequality.threshold);
+
+        if ((this.props.results.faces[0].attributes.facequality.value)<(this.props.results.faces[0].attributes.facequality.threshold)) {
+            alert("Be Advised: Face Quality for this image is below 70%. The results for this image may not be as accurate.");
+        };
+
         this.setState({
             age: this.props.results.faces[0].attributes.age.value,
             gender: this.props.results.faces[0].attributes.gender.value,
@@ -114,7 +190,7 @@ export default class Display extends Component {
             },
             skinStatus: {
                 acne: this.props.results.faces[0].attributes.skinstatus.acne,
-                darkCircle: this.props.results.faces[0].attributes.skinstatus.darkCircle,
+                darkCircle: this.props.results.faces[0].attributes.skinstatus.dark_circle,
                 health: this.props.results.faces[0].attributes.skinstatus.health,
                 stain: this.props.results.faces[0].attributes.skinstatus.stain
             },
@@ -125,88 +201,96 @@ export default class Display extends Component {
         });
     }
 
-    
     render() {
-        const emotionChartHeader = "EMOTIONAL BREAKDOWN";
-        const emotionData = [
+        emotionData = [
             ["Emotion", "Value"],
-            ["Anger", this.state.emotion.anger],
-            ["Disgust", this.state.emotion.disgust],
-            ["Fear", this.state.emotion.fear],
-            ["Happiness", this.state.emotion.happiness],
-            ["Sadness", this.state.emotion.sadness],
-            ["Surprise", this.state.emotion.surprise],
-            ["Neutral", this.state.emotion.neutral]
+            [`Anger: ${(this.state.emotion.anger)}%`, this.state.emotion.anger],
+            [`Disgust: ${(this.state.emotion.disgust)}%`, this.state.emotion.disgust],
+            [`Fear: ${(this.state.emotion.fear)}%`, this.state.emotion.fear],
+            [`Happiness: ${(this.state.emotion.happiness)}%`, this.state.emotion.happiness],
+            [`Sadness: ${(this.state.emotion.sadness)}%`, this.state.emotion.sadness],
+            [`Surprise: ${(this.state.emotion.surprise)}%`, this.state.emotion.surprise],
+            [`Neutral: ${(this.state.emotion.neutral)}%`, this.state.emotion.neutral]
         ];
 
-        const skinChartHeader = "SKIN STATUS";
-        const skinData = [
+        emotionBox = `Anger: ${(this.state.emotion.anger)}%
+        Disgust: ${(this.state.emotion.disgust)}%
+        Fear: ${(this.state.emotion.fear)}%
+        Happiness: ${(this.state.emotion.happiness)}%
+        Sadness: ${(this.state.emotion.sadness)}%
+        Surprise: ${(this.state.emotion.surprise)}%
+        Neutral: ${(this.state.emotion.neutral)}%`;
+
+        skinData = [
             ["Skin Statue", "Value"],
-            ["Acne", this.state.skinStatus.acne],
-            ["Dark Circle", this.state.skinStatus.darkCircle],
-            ["Health", this.state.skinStatus.health],
-            ["Stain", this.state.skinStatus.stain]
+            [`Blemishes: ${(this.state.skinStatus.acne)}%`, this.state.skinStatus.acne],
+            [`Dark Circle: ${(this.state.skinStatus.darkCirle)}%`, this.state.skinStatus.darkCircle],
+            [`Health: ${(this.state.skinStatus.health)}%`, this.state.skinStatus.health],
+            [`Stain: ${(this.state.skinStatus.stain)}%`, this.state.skinStatus.stain]
         ];
 
-        const smileChartHeader = "SMILE INTENSITY";
-        const smileData = [
+        skinBox = `
+            Health: ${(this.state.skinStatus.health)}%
+            Blemishes: ${(this.state.skinStatus.acne)}%
+            Dark Circle: ${(this.state.skinStatus.darkCircle)}%
+            Stain: ${(this.state.skinStatus.stain)}%
+                  `;
+        
+        smileData = [
             ["Smile Intensity", "Value"],
-            ["Smile", this.state.smile.value],
-            ["No Smile", (100 - this.state.smile.value)],
+            [`Smile Visibility: ${(this.state.smile.value)}%`, this.state.smile.value],
+            [`No Smile: ${(100 - this.state.smile.value)}%`, (100 - this.state.smile.value)],
         ];
 
-        const maleBeautyChartHeader = "MALE BEAUTY SCORE";
-        const maleBeautyData = [
+        smileBox = `Smile Visibility for this image is ${(this.state.smile.value)}%`;
+
+        maleBeautyData = [
             ["Male Beauty Score", "Value"],
-            ["Male Beauty Score", this.state.beauty.maleScore],
-            ["ugo factor", (100 - this.state.beauty.maleScore)],
+            [`Beauty Score: ${(this.state.beauty.maleScore)}%`, this.state.beauty.maleScore],
+            [`Remainder: ${(100 - this.state.beauty.maleScore)}%`, (100 - this.state.beauty.maleScore)],
         ];
 
-        const femaleBeautyChartHeader = "FEMALE BEAUTY SCORE";
-        const femaleBeautyData = [
+        maleBeautyBox = `Men would rate this face with a Beauty Score of ${(this.state.beauty.maleScore)}%`;
+
+        femaleBeautyData = [
             ["Female Beauty Score", "Value"],
-            ["Female Beauty Score", this.state.beauty.femaleScore],
-            ["ugo factor", (100 - this.state.beauty.femaleScore)],
+            [`Beauty Score: ${(this.state.beauty.femaleScore)}%`, this.state.beauty.femaleScore],
+            [`Remainder ${(100 - this.state.beauty.femaleScore)}%`, (100 - this.state.beauty.femaleScore)],
+        ];
+        
+        femaleBeautyBox = `Women would rate this face with a Beauty Score of ${(this.state.beauty.femaleScore)}%`;
+
+        infoData = [
+            ["Face Quality", "Value"],
+            [`Face Quality: ${(this.state.faceQuality.value)}%`, this.state.faceQuality.value],
+            [`Remainder: ${((100 - this.state.faceQuality.value))}%`, (100 - this.state.faceQuality.value)],
         ];
 
+        infoBox = `Face Quality for this image is ${this.state.faceQuality.value}%. The higher the Face Quality the more accurate the results.`;
+            
         return (
             <div className="container">
                 <div className="row faceRow">
-
                     <div className="col s4 faceNav">
                         <img src={this.props.imgUrl} alt="userImage" style={imgStyle} />
-                        <p className="selector">Age: {this.state.age}</p>
-                        <p className="selector">Gender: {this.state.gender}</p>
-                        <p className="selector" onClick="">
-                        Male Beauty Score: {this.state.beauty.maleScore}<br/>
-                        Female Beauty Score: {this.state.beauty.femaleScore}
+                        <p className="selector1" onClick={this.infoHandler}>
+                            Age: {this.state.age}<br/>
+                            Gender: {this.state.gender}<br/>
+                            Face Quality: {this.state.faceQuality.value}%
                         </p>
-                        <p className="selector" onClick="">Emotion:
-                        Anger: {this.state.emotion.anger}<br/>
-                        Disgust: {this.state.emotion.disgust}<br/>
-                        Fear: {this.state.emotion.fear}<br/>
-                        Happiness: {this.state.emotion.happiness}<br/>
-                        Sadness: {this.state.emotion.sadness}<br/>
-                        Surprise: {this.state.emotion.surprise}<br/>
-                        Neutral: {this.state.emotion.neutral}
-                        </p>
-                        <p className="selector" onClick="">
-                        Smile Intensity: {this.state.smile.value}<br/>
-                        No Smile: {(100 - this.state.smile.value)}
-                        </p>
-                        <p className="selector" onClick="">Skin Status:
-                        Acne: {this.state.skinStatus.acne}<br/>
-                        Dark Circle: {this.state.skinStatus.darkCircle}<br/>
-                        Health: {this.state.skinStatus.health}<br/>
-                        Stain: {this.state.skinStatus.stain}<br/>
-                        </p>
-                        <p className="selector">Face Quality: {this.state.faceQuality.value}</p>
+                        <p className="selector" onClick={this.emotionHandler}>Visible Emotions</p>
+                        <p className="selector" onClick={this.maleBeautyHandler}>Male Beauty Score</p>
+                        <p className="selector" onClick={this.femaleBeautyHandler}>Female Beauty Score</p>
+                        <p className="selector" onClick={this.skinHandler}>Skin Status</p>
+                        <p className="selector" onClick={this.smileHandler}>Smile Visibility</p>
                     </div>
-                    <p className="chartTitle">{skinChartHeader}</p>
+                    
                     <div className="col s8 resultDisplay">
+                    <p className="chartTitle">{this.state.chartHeader}</p>
+                    <p className="chartInfo">{this.state.chartInfo}</p>
                         <Chart
                             chartType="PieChart"
-                            data={skinData}
+                            data={this.state.chart}
                             options={pieOptions}
                             graph_id="PieChart"
                             width={"100%"}
