@@ -7,6 +7,11 @@
     text-align: center;
  }
 
+ .vLogo {
+     height:51px;
+     margin-top:5px;
+ }
+
  .home-icon {
     margin:-8px;
     margin-left: -9px;

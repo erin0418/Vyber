@@ -3,9 +3,10 @@
     "username": "root",
     "password": "root",
     "database": "testvybr",
+    "database": "vyberlocal",
     "host": "localhost",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
