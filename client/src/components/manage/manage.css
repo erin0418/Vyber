@@ -1,0 +1,104 @@
+.usernav {
+    background-color: #ffb300;
+    height: 600px;
+    padding-top:10px;
+    overflow: auto;
+}
+
+.manageBtn {
+    background-color: #ffb300;
+    color: #fff;
+    border: 1px solid #fff;
+    text-align: center;
+    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding:5px;
+    width: 90%;
+    margin-left:20px;
+    margin-right:5px;
+}
+
+.manageBtn:hover {
+    color: #e65100;
+    transition: .1s;
+    border: 1px solid #e65100;
+}
+
+.nav-home-icon,
+.nav-friend-icon,
+.nav-create-icon,
+.nav-review-icon,
+.nav-comment-icon {
+    margin-left: 20px;
+    vertical-align:-4px;
+}
+
+.accountPic {
+    width:90%;
+    margin-left:20px;
+    margin-right:5px;
+}
+
+.userInfo {
+    position: relative;
+    color: white;
+}
+
+.manageUsername {
+    position: absolute;
+    bottom: 0px;
+    left: 35px;
+    color:white;
+    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+}
+
+.manageFullname {
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    color:white;
+    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+}
+
+.updateAccount {
+    color: #ffb300;
+    width: 80%;
+}
+
+
+.updatelabel {
+    color: #ffb300 !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+.manageHeader {
+    color: #ffb300;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:30px;
+
+}
+
+.manage-input input:focus+label {
+    color: #e65100 !important;
+}
+
+/* label underline focus color */
+
+.namage-input input:focus {
+    color: #e65100 !important;
+    border-bottom: 1px solid #e65100 !important;
+    box-shadow: 0 1px 0 0 #e65100 !important
+}
+
+.success {
+    background-color: white;
+    color:#ffb300;
+    font-family: 'Roboto', sans-serif;
+    text-align:center;
+    font-size:30px;
+    margin-top:20px;
+}
