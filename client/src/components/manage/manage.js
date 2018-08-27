@@ -42,6 +42,8 @@ export default class Manage extends Component {
     this.setState({ page: "updateAccount" })
   }
   pageRender = () => {
+
+    
     switch (this.state.page) {
       case "createPost":
         return <CreatePost handlePost={this.handlePost} handleInput={this.handleInputChange} completeMessage={this.state.completeMessage} handleClick={this.handleClick} />
