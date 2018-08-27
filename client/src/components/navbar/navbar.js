@@ -5,7 +5,7 @@ import "./navbar.css";
 export default class NavBar extends Component {
   render() {
     return (
-      <div>
+      <div className="mainNav">
         <nav>
           <div className="nav-wrapper amber darken-1">
             <a
