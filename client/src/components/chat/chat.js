@@ -12,7 +12,8 @@ const config = {
   };
   firebase.initializeApp(config);
 
- const database = firebase.database();
+const database = firebase.database();
+const messageArray = [];
 
  export default class Chat extends Component {
     constructor(props) {
@@ -28,11 +29,10 @@ const config = {
 // Saves the message to the firebase database    
         handleSubmit(event) {
             event.preventDefault();
-            database.ref().push({
+            database.ref("/messages").push({
                 message: this.state.value
             });
             // Need to reset form this doesn't work
-            this.formRef.reset();
         }
 // Looks for all connections to the database page once chat box is clicked
         componentDidMount() {
@@ -40,11 +40,8 @@ const config = {
             const connectedRef = database.ref(".info/connected");
 
             connectedRef.on("value", function(snap) {
-                
                 if (snap.val()) {
-
                 var con = connectionsRef.push(true);
-
                 con.onDisconnect().remove();
                 }
             });
@@ -52,15 +49,14 @@ const config = {
         }
 // TODO: Writes messages to the empty chat box from the firebase database
         writeMessages = () => { 
-            database.ref().on("child_added", snapshot => {
-                const messageArray = [];
+            database.ref("/messages").on("child_added", snapshot => {
+               
                 snapshot.forEach((snap) => {
                     messageArray.push(snap.val())
-                    console.log(messageArray) 
+                   
                   })
                   this.setState({messages: messageArray})
-                   
-                })
+                })          
         }
 // Chat box opens and closes on double click
         collapseChat = () => {
@@ -83,22 +79,21 @@ const config = {
         return (
             <div className="chat-bar">
                 <div className="content">
-                Chat:
-                <ul>
+                <ul id="messageContent">
                 {this.state.messages.map((item) => {
                     return (
-                    <li key={this.id}>
-                        <li>{this.props.userName}:{item}</li>
+                    <li key={this.state.id}>
+                        <li>{this.props.userName}: {item}</li>
                     </li>
                     )
                 })}
                 </ul>
-                <form onSubmit={this.handleSubmit} ref={(ref) => this.formRef = ref}>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <form onSubmit={this.handleSubmit} id="form">
+                    <input id="text-box" type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input className="amber darken-1" type="submit" value="SEND" />
                 </form>
                 </div>
-                <button className="collapsible amber darken-1" onClick={this.collapseChat}>Double Click to Chat</button>
+                <button id="chat"className="collapsible amber darken-1" onClick={this.collapseChat}>Double Click to Chat</button>
             </div>
         )}
-    } 
+    }

@@ -26,7 +26,15 @@
     background-color: #8ce3d4;
     text-align: left;
     font-family: 'Roboto', sans-serif;
-    font-weight: lighter
+    font-weight: lighter;
+    position : relative; 
+    bottom:0;
+}
+
+#messageContent {
+    max-height: 100px;
+    overflow: auto;
+    position : relative; 
 }
 
 .chat-bar {
@@ -36,8 +44,22 @@
     right:0;
 }
 
-li, form{
+li {
     text-align: right;
     font-family: 'Roboto', sans-serif;
-    font-weight: lighter
+    font-weight: lighter;
+}
+
+form{
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    position : relative; 
+    bottom:0;
+}
+
+#text-box {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 15px;
 }
