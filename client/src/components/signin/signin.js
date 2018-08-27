@@ -60,7 +60,7 @@ export default class SignIn extends Component {
   };
   render() {
     return (
-      <div className="signinBody">
+      <div className="signinBody navShift">
         <h3 className="center white-text">VYBER</h3>
         <br/>
         <div className="signInDiv" onClick={this.handleSelect}>SIGN IN</div>

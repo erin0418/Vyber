@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import SearchAccount from "./children/searchaccount";
 import SearchPosts from "./children/searchposts";
 import SearchDisplay from "./children/searchdisplay";
+import "./search.css"
+
 
 export default class Search extends Component {
   state = {
@@ -48,26 +50,7 @@ export default class Search extends Component {
       page: "display"
     });
   };
-  handleComment = () => {
-    fetch("/api/comments", {
-      method: "POST",
-      body: JSON.stringify({
-        link: this.state.commentBody,
-        UserId: this.props.account.id,
-        PostId: this.state.selectedPost
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(body => {
-        this.setState({ page: "display" })
-        console.log(body);
-      });
-  };
+ 
   pageRender = () => {
     //this is triggered by out handleSelectFunc and renders the
     // page the client has called for
@@ -89,13 +72,14 @@ export default class Search extends Component {
           handleComment={this.handleComment}
           postTitle={this.state.selectedPostTitle}
           postLink={this.state.selectedPostLink}
+          account={this.props.account}
         />
       );
     }
   };
   render() {
     return (
-      <div>
+      <div className="navShift">
         <div>{this.pageRender()}</div>
       </div>
     );

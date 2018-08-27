@@ -286,17 +286,18 @@ export default class Display extends Component {
                     </div>
                     
                     <div className="col s8 resultDisplay">
-                    <p className="chartTitle">{this.state.chartHeader}</p>
-                    <p className="chartInfo">{this.state.chartInfo}</p>
-                        <Chart
-                            chartType="PieChart"
-                            data={this.state.chart}
-                            options={pieOptions}
-                            graph_id="PieChart"
-                            width={"100%"}
-                            height={"400px"}
-                            legend_toggle
-                        />
+                        <p className="chartTitle">{this.state.chartHeader}</p>
+                        <br/>
+                            <Chart
+                                chartType="PieChart"
+                                data={this.state.chart}
+                                options={pieOptions}
+                                graph_id="PieChart"
+                                width={"100%"}
+                                height={"400px"}
+                                legend_toggle
+                                />
+                      <p className="chartInfo">{this.state.chartInfo}</p>  
                     </div>
 
                 </div>
