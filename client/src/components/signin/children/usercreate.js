@@ -5,6 +5,14 @@ const UserCreate = props => (
   <div className="toneRouteForm">
   <h4 className="center white-text">Choose a User Name and Password</h4>
   <br/>
+  <div className="input-field">
+      <input name="email" type="text" onChange={props.handleInputChange} />
+      <label htmlFor="email" className="white-text" id="p1">Email</label>
+    </div>
+    <div className="input-field">
+      <input name="fullname" type="text" onChange={props.handleInputChange} />
+      <label htmlFor="fullname" className="white-text" id="p1">Full Name</label>
+    </div>
     <div className="input-field">
       <input name="username" type="text" onChange={props.handleInputChange} />
       <label htmlFor="username" className="white-text" id="p1">User Name</label>

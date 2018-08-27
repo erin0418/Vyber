@@ -4,6 +4,7 @@ export default class SearchDisplay extends Component {
     state={
         postInfo:[],
         comments:[],
+        results:[]
     }
     componentDidMount(){
         //will need to also take the post id and load the "tone or personality" Api will the link inside of that "Post"
@@ -25,7 +26,62 @@ export default class SearchDisplay extends Component {
                      this.setState({
                          comments: body
                      });
-                 });
+                     return fetch("/tone", {
+                             method: "POST",
+                             body: JSON.stringify({
+                                 name: this.props.postLink
+                             }),
+                             headers: {
+                                 "Content-Type": "application/json"
+                             }
+                         })
+                         
+                        }).then(response => {
+                         return response.json();
+                         })
+                         .then(body => {
+                             this.setState({
+                                 results: body
+                             });
+                         }).catch((error)=>{
+                         console.log(error)});
+                 if (this.props.postTitle === "Personality") {
+                    
+                 } else if (this.props.postTitle === "Tone") {
+                     fetch("/tone", {
+                             method: "POST",
+                             body: JSON.stringify({
+                                 name: this.props.postLink
+                             }),
+                             headers: {
+                                 "Content-Type": "application/json"
+                             }
+                         })
+                         .then(response => {
+                             return response.json();
+                         })
+                         .then(body => {
+                             this.setState({
+                                 results: body
+                             });
+                         });
+                     
+                 } else if (this.props.postTitle === "Face Recognition") {
+                     fetch('https://api-us.faceplusplus.com/facepp/v3/detect?api_key=28GCWA3CC2Cha_cEslK-nGp7O4MkEeAW&api_secret=45j6-poXO9N1XKLORfqQ-RNujaAjKjPu&image_url=' +
+                             this.props.postLink +
+                             '&return_attributes=gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus', {
+                                 method: 'POST'
+                             })
+                         .then(response => {
+                             return response.json()
+                         })
+                         .then(body => {
+                             console.log(body)
+                             this.setState({
+                                 results: body
+                             });
+                         });
+                 }
     }
   render(){
       return(

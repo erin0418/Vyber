@@ -11,7 +11,8 @@
     position: relative;
     right:0;
     left:auto;
-    /* top:0 */
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
 }
 
 .collapsible:hover {
@@ -22,8 +23,10 @@
     padding: 0 18px;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #8ce3d4;
     text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter
 }
 
 .chat-bar {

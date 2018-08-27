@@ -89,7 +89,7 @@ const config = {
                 {this.state.messages.map((item) => {
                     return (
                     <li key={this.id}>
-                        <li>{this.props.user}:{item}</li>
+                        <li>{item}</li>
                     </li>
                     )
                 })}

@@ -1,10 +1,12 @@
 import React from "react";
 import "./footer.css";
+import Chat from "../chat/chat"
 
 const Footer = props => (
 
     // footer container 
-    <div className="footer-container">
+    <div className="footerClass">
+        <Chat />
         <footer className="page-footer amber darken-1" >
             <div className="footer-copyright center">
                 <div className="container">
