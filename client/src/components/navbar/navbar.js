@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import NavLogo from "./vyber_nav_logo.png";
 import "./navbar.css";
 
 export default class NavBar extends Component {
@@ -11,7 +12,7 @@ export default class NavBar extends Component {
             <a
               href="/"
               className="brand-logo"
-            >VYBER<i className="material-icons vyber-icon">pie_chart</i>
+            ><img className="vLogo" src={NavLogo}/>
             </a>
 
             <ul className="right hide-on-med-and-down">

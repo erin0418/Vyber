@@ -1,26 +1,32 @@
 import React from "react";
+import "./tonedisplay.css";
+
 
 const Display = props => (
   <div>
-    {props.results.utterances_tone.map(result => {
-      console.log(result);
-      return (
         <div>
-          <div class="col s12 m7">
-            <h2 class="header">Horizontal Card</h2>
-            <div class="card-stacked">
-              <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+          <div className="container">
+          <div className="col s12 m7">
+            {/* <h2 className="header">Tweet:</h2> */}
+            <div className="card-stacked" id="card">
+              <div className="card-content black-text">
+                <p id="cardtext"> {props.results.text} </p>
               </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
+              {/* <div className="card-action">
+            </div> */}
             </div>
+              
+                {props.results.tone.map(result => (
+                  <div className="chip">
+                     <p className="flow-text">{result}</p>
+                  </div>
+                ))}
+
+                {/* <hr></hr> */}
+              
           </div>
-        </div>
-  )
-})}
+          </div>
+        </div> 
   </div>
 );
-
 export default Display;

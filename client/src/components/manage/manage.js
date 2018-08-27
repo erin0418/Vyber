@@ -77,7 +77,7 @@ export default class Manage extends Component {
         return response.json();
       })
       .then(body => {
-        this.setState({ completeMessage: "post has been created" })
+        this.setState({ completeMessage: "Your post has been created!" })
       });
   };
   handleAccountChange = (event) => {
@@ -100,18 +100,18 @@ export default class Manage extends Component {
         return response.json();
       })
       .then(body => {
-        this.setState({ completeMessageAccount: "Account has been updated" })
+        this.setState({ completeMessageAccount: "Your account has been updated!" })
       });
   };
   render() {
     return (
       <div className="manageBody containerfluid">
         <div className="row">
-          <div className="usernav col s4">
+          <div className="usernav col s3">
             <div className="userInfo">
               <img className="accountPic" src={avatar}></img>
               <p className="manageFullname">{this.props.account.fullname}</p>
-              <p className="manageUsername">@{this.props.account.email}</p>
+              <p className="manageUsername">@{this.props.account.username}</p>
             </div>
             <p className="manageBtn" onClick={this.updateAccount}><i className="material-icons nav-home-icon">home</i> Edit Account</p>
             <p className="manageBtn" onClick={this.createNewPost}><i className="material-icons nav-create-icon">create</i> Create New Post</p>

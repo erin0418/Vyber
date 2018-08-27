@@ -115,5 +115,93 @@ h1 {
     
 }
 
+@media screen and (max-width: 768px) {
+    .signInDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        width: 21%;
+        margin-left:20px;
+        margin-right:5px;
+        float:left;
+    }
 
+    .createDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        margin-left:24%;
+        width: 21%;
+    }
 
+}
+
+@media screen and (max-width: 400px) {
+    .signInDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        width: 20%;
+        margin-left:20px;
+        margin-right:5px;
+        float:left;
+    }
+
+    .createDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        margin-left:27%;
+        width: 29%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .signInDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        width: 20%;
+        margin-left:20px;
+        margin-right:5px;
+        float:left;
+    }
+
+    .createDiv {
+        background-color: #ffb300;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding:5px;
+        margin-left:27%;
+        width: 29%;
+    }
+}
