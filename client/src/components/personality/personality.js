@@ -42,7 +42,7 @@ export default class Personality extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navShift">
         {this.state.hideInputs === false ? (
           <UserInputs
             handlePage={this.handlePage}

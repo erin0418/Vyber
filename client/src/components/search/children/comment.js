@@ -84,7 +84,6 @@ export default class SearchDisplay extends Component {
                     <div className="col s6 input-field" id="twitterName">
                         <input className="input-field" type="text" name="commentBody" id="twitterInput" onChange={this.handleCommentInput} />
                         <label for="twitterInput">Leave a Comment</label>
-                        v>
                             </div>
 
                     <div className="col s4">
