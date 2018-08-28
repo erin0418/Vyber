@@ -31,9 +31,9 @@
     bottom:0;
 }
 
-#messageContent {
+.messageContent {
     max-height: 100px;
-    overflow: auto;
+    overflow: scroll;
     position : relative; 
 }
 
@@ -62,4 +62,8 @@ form{
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     font-size: 15px;
+}
+
+#1 {
+    text-align: left;
 }

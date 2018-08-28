@@ -14,11 +14,12 @@ const config = {
 
 const database = firebase.database();
 const messageArray = [];
+const userNameArray = [];
 
  export default class Chat extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: '', messages: [], userName: ''};
+        this.state = {value: '', messages: [], userName: []};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -30,7 +31,8 @@ const messageArray = [];
         handleSubmit(event) {
             event.preventDefault();
             database.ref("/messages").push({
-                message: this.state.value
+                message: this.state.value,
+                userName: this.props.userName
             });
             // Need to reset form this doesn't work
         }
@@ -48,15 +50,27 @@ const messageArray = [];
             this.writeMessages()
         }
 // TODO: Writes messages to the empty chat box from the firebase database
+        
         writeMessages = () => { 
             database.ref("/messages").on("child_added", snapshot => {
                
                 snapshot.forEach((snap) => {
-                    messageArray.push(snap.val())
-                   
+                    if(snap.key == "message"){
+                        messageArray.push(snap.val());
+                        if (messageArray.length > 5) {
+                            messageArray.shift(); 
+                        }
+                    }
+                    else{
+                        userNameArray.push(snap.val());
+                        if (userNameArray.length > 5) {
+                            userNameArray.shift(); 
+                        }
+                    }
                   })
                   this.setState({messages: messageArray})
-                })          
+                  this.setState({userName: userNameArray})
+            })          
         }
 // Chat box opens and closes on double click
         collapseChat = () => {
@@ -78,12 +92,21 @@ const messageArray = [];
     render() {
         return (
             <div className="chat-bar">
-                <div className="content">
-                <ul id="messageContent">
+                <div className="content row">
+                <ul id="messageContent" className="col s6">
+                {this.state.userName.map((item1) => {
+                    return (
+                    <li key={this.state.id}>
+                        <li>{item1}: </li>
+                    </li>
+                    )
+                })}
+                </ul>
+                <ul id="messageContent" className="col s6">
                 {this.state.messages.map((item) => {
                     return (
                     <li key={this.state.id}>
-                        <li>{this.props.userName}: {item}</li>
+                        <li>{item}</li>
                     </li>
                     )
                 })}
