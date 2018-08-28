@@ -35,6 +35,7 @@ const userNameArray = [];
                 userName: this.props.userName
             });
             // Need to reset form this doesn't work
+            this.refs.formInput.value = '';
         }
 // Looks for all connections to the database page once chat box is clicked
         componentDidMount() {
@@ -49,8 +50,7 @@ const userNameArray = [];
             });
             this.writeMessages()
         }
-// TODO: Writes messages to the empty chat box from the firebase database
-        
+// Writes messages to the empty chat box from the firebase database
         writeMessages = () => { 
             database.ref("/messages").on("child_added", snapshot => {
                
@@ -93,26 +93,26 @@ const userNameArray = [];
         return (
             <div className="chat-bar">
                 <div className="content row">
-                <ul id="messageContent" className="col s6">
-                {this.state.userName.map((item1) => {
+                <ul id="messageContent" className="col s3">
+                {this.state.userName.map((item) => {
                     return (
                     <li key={this.state.id}>
-                        <li>{item1}: </li>
+                        <li>{item}: </li>
                     </li>
                     )
                 })}
                 </ul>
-                <ul id="messageContent" className="col s6">
-                {this.state.messages.map((item) => {
+                <ul id="messageContent" className="col s9">
+                {this.state.messages.map((item1) => {
                     return (
                     <li key={this.state.id}>
-                        <li>{item}</li>
+                        <li>{item1}</li>
                     </li>
                     )
                 })}
                 </ul>
                 <form onSubmit={this.handleSubmit} id="form">
-                    <input id="text-box" type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input id="text-box" type="text" ref="formInput" value={this.state.value} onChange={this.handleChange}/>
                     <input className="amber darken-1" type="submit" value="SEND" />
                 </form>
                 </div>
