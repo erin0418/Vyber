@@ -3,7 +3,7 @@ import React from "react";
 const UserInputs = props => (
     <div>
         <br/><br/><br/>
-        <div className="container" id="modalContainer">
+        <div className="container navShift" id="modalContainer">
             <div className="row tone-title">Tone Analyzer</div>
             <div className="row">
                 <div className="col s4">

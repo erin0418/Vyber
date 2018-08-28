@@ -3,7 +3,7 @@ import "./tonedisplay.css";
 
 
 const Display = props => (
-  <div className="container fluid">
+  <div className="container fluid navShift">
     {console.log(props)}
 
 
