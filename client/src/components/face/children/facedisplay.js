@@ -269,7 +269,7 @@ export default class Display extends Component {
         infoBox = `Face Quality for this image is ${this.state.faceQuality.value}%. The higher the Face Quality the more accurate the results.`;
             
         return (
-            <div className="container">
+            <div className="container" id="searchChart">
                 <div className="row faceRow">
                     <div className="col s4 faceNav">
                         <img src={this.props.imgUrl} alt="userImage" style={imgStyle} />

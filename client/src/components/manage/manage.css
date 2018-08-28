@@ -1,6 +1,6 @@
 .usernav {
     background-color: #ffb300;
-    height: 600px;
+    height: 800px;
     padding-top:10px;
     overflow: auto;
 }
@@ -101,4 +101,39 @@
     text-align:center;
     font-size:30px;
     margin-top:20px;
+}
+
+.viewSelector {
+    color:#ffb300;
+    border: 1px solid #ffb300;
+    width: 100%;
+    font-size: 15px;
+    margin:10px;
+    padding:10px;
+    font-weight:bold;
+    font-family: 'Roboto', sans-serif;
+    margin-left:-15%;
+}
+
+.vpHeading {
+    color:#ffb300;
+    border: 2px solid #ffb300;
+    width: 100%;
+    font-size: 30px;
+    margin:5px;
+    padding:10px;
+    margin-left:-15%;
+    font-weight:bold;
+    font-family: 'Roboto', sans-serif;
+    overflow:auto;
+}
+
+.vpDiv {
+    height:800px;
+}
+
+.viewSelector:hover {
+    color: #e65100;
+    transition: .1s;
+    border: 1px solid #e65100;
 }

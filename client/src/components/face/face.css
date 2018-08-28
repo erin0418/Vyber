@@ -71,7 +71,7 @@ label {
     position:relative;
     background-color: #ffb300;
     height: 750px;
-    width: 400px;
+    width: 300px;
     padding-top:10px;
     margin-left:0px;
     overflow: auto;
@@ -150,3 +150,17 @@ label {
     font-size:20px;
     z-index:3;
 }
+
+/* #searchChart {
+    -webkit-align-self: left;
+    align-self: left;
+}
+
+@media screen and (max-height: 65vh) {
+    #searchChart {
+        -webkit-align-self: left;
+        align-self: left;
+    }
+} */
+
+/* test */

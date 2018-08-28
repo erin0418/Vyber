@@ -29,13 +29,15 @@ export default class ViewPosts extends Component {
   
   render() {
     return (
-      <div className="col sm6">
+      <div className="col sm6 vpDiv">
+        <br/>
+        <h4 className="vpHeading">PREVIOUS POSTS</h4>
+        <br/>
             <div>
                 {this.state.posts.map((post, i) => {
                     console.log(post)
                     return (
-
-                        <div id={post.id} key={i} onClick={this.selectPost}>{post.Link}</div>
+                         <div className="viewSelector" id={post.id} key={i} onClick={this.selectPost}>{post.Link}</div>    
                     )
                 })}
             </div>
