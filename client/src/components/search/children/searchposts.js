@@ -55,7 +55,7 @@ export default class SearchPosts extends Component {
                                 <div class="col s6 m6 ">
                                     <div class="card">
                                         <div class="card-image">
-                                            <img src={PersonalityPic} />
+                                            <img alt="Personality" src={PersonalityPic} />
                                             <span class="card-title">Personality Post</span>
                                             <a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id={post.id} link={post.Link} title={post.Title} onClick={this.selectPost}>add</i></a>
                                         </div>
@@ -72,7 +72,7 @@ export default class SearchPosts extends Component {
                                 <div class="col s6 m6 ">
                                     <div class="card">
                                         <div class="card-image">
-                                            <img src={FacePic} />
+                                            <img alt="Face" src={FacePic} />
                                             <span class="card-title">Face Post</span>
                                             <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" id={post.id} link={post.Link} title={post.Title} onClick={this.selectPost}>add</i></a>
                                         </div>
@@ -87,7 +87,7 @@ export default class SearchPosts extends Component {
                                 <div class="col s6 m6">
                                     <div class="card">
                                         <div class="card-image">
-                                            <img src={TonePic} />
+                                            <img alt="Tone" src={TonePic} />
                                             <span class="card-title">Tone Post</span>
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons" id={post.id} link={post.Link} title={post.Title} onClick={this.selectPost}>add</i></a>
                                         </div>

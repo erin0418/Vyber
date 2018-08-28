@@ -105,7 +105,7 @@ export default class SearchDisplay extends Component {
                                 : <FaceDisplay results={this.state.results} imgUrl={this.props.postLink}/>
                         }
                     </div>
-                    <div className="col s4 innerBackground">
+                    <div className="col s4 m4 innerBackground">
                     <Comment selectedPost={this.props.selectedPost} account={this.props.account}/>
                     </div>
                 </div>

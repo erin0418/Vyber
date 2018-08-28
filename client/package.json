@@ -6,10 +6,11 @@
     "firebase": "^5.4.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-google-charts": "^3.0.6",
+    "react-google-charts": "^3.0.8",
     "react-materialize": "^2.4.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "watson-developer-cloud": "^3.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
