@@ -12,7 +12,7 @@ export default class NavBar extends Component {
             <a
               href="/"
               className="brand-logo"
-            ><img className="vLogo" src={NavLogo}/>
+            ><img className="vLogo" alt="VYBER Logo" src={NavLogo}/>
             </a>
 
             <ul className="right hide-on-med-and-down">

@@ -30,7 +30,7 @@ export default class Home extends Component {
             <div class="col s10 m5 l4">
                 <div className="card">
                     <div className="card-image">
-                        <img src={PersonalityPic}/>
+                        <img alt="Personality" src={PersonalityPic}/>
                     </div>
                     <div className="card-content">
                         <p>Navigate to our Personality Page for a full personality analysis based on your online posts.</p>
@@ -46,7 +46,7 @@ export default class Home extends Component {
             <div className="col s10 m5 l4">
                 <div className="card">
                     <div className="card-image">
-                        <img src={TonePic}/>
+                        <img alt="Tone" src={TonePic}/>
                     </div>
                     <div className="card-content">
                         <p>Navigate to our Tone Page for an analysis that guages the general attitude of your inputed text.</p>
@@ -61,7 +61,7 @@ export default class Home extends Component {
             <div className="col s10 m5 l4">
                 <div className="card">
                     <div class="card-image">
-                        <img src={FacePic}/>
+                        <img alt="Face" src={FacePic}/>
                     </div>
                     <div className="card-content">
                         <p>Navigate to our Image Page to view the emotional pie chart, age, and smile data for your image.</p>

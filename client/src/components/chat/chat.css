@@ -31,21 +31,15 @@
     bottom:0;
 }
 
-#messageContent {
-    max-height: 100px;
-    overflow: auto;
-    position : relative; 
-}
-
 .chat-bar {
-    width: 170px;
-    position: absolute;
+    width: 370px;
+    position: fixed;
     bottom:50px;
     right:0;
+    z-index: 2;
 }
 
 li {
-    text-align: right;
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
 }

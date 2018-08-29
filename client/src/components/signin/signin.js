@@ -63,7 +63,7 @@ export default class SignIn extends Component {
         <div className="createDiv" onClick={this.handleSelect}>CREATE ACCOUNT</div>
         <br/>
         <div>{this.pageRender()}</div>
-        <img className="signinPic" src={VyberScreens} />
+        <img className="signinPic" alt="Vyber Screens" src={VyberScreens} />
       </div>
     );
   }

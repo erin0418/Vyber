@@ -103,7 +103,7 @@ export default class Manage extends Component {
         <div className="row">
           <div className="usernav col s3">
             <div className="userInfo">
-              <img className="accountPic" src={avatar}></img>
+              <img className="accountPic" alt="User Avatar" src={avatar}></img>
               <p className="manageFullname">{this.props.account.fullname}</p>
               <p className="manageUsername">@{this.props.account.username}</p>
             </div>
