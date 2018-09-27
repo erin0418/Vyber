@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import avatar from "./avatar_thumb.jpg";
 import "./manage.css";
-import CreatePost from "./children/createpost";
-import ViewPosts from "./children/viewposts";
-import UpdateAccount from "./children/updateaccount";
-
-
 
 export default class Manage extends Component {
   state = {
@@ -123,7 +117,6 @@ export default class Manage extends Component {
           </div>
         </div>
       </div>
-
     )
   }
 }

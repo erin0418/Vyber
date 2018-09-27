@@ -42,28 +42,8 @@ module.exports = function (app) {
   });
   app.post("/api/usersCreate", function (req, res) {
     db.User.create({
-        email: req.body.email,
-        fullname: req.body.fullname,
         username: req.body.username,
         password: req.body.password
-      }).then(function (dbusers) {
-        res.json(dbusers);
-      })
-      .catch(function (err) {
-        console.log(err)
-        res.json(err);
-      });
-  });
-  app.post("/api/usersEdit", function (req, res) {
-    db.User.update({
-        email: req.body.email,
-        fullname: req.body.fullname,
-        username: req.body.username,
-        password: req.body.password
-      },{
-        where:{
-          id: req.body.id
-      }
       }).then(function (dbusers) {
         res.json(dbusers);
       })
@@ -75,7 +55,6 @@ module.exports = function (app) {
 
   app.post("/api/posts", function (req, res) {
     db.Post.create({
-        Title: req.body.Title,
         Link: req.body.Link,
         UserId: req.body.UserId,
       }).then(function (dbPost) {

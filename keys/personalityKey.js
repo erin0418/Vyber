@@ -1,7 +1,7 @@
 var personalityAuth = {
   version: "2017-10-13",
-  username: "83502de7-02a1-42b4-b8cc-e58e44b100c3",
-  password: "5nkWUd66v1wk"
+  username: "5538cbe9-7251-46a1-906f-c4e87aecbc9f",
+  password: "ckguLUDxBLFW"
 };
 
 module.exports = personalityAuth;

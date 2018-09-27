@@ -11,9 +11,7 @@ export default class Search extends Component {
     accountName: "",
     searchedAccount: [],
     selectedPost: 0,
-    commentBody: "",
-    selectedPostTitle: "",
-    selectedPostLink: ""
+    commentBody: ""
   };
   handleInput = event => {
     //used for setting link& comment
@@ -21,7 +19,6 @@ export default class Search extends Component {
     const name = event.target.name;
     this.setState({ [name]: value });
   };
-
   handleSearchAccount = () => {
     fetch("/api/users", {
       method: "POST",
@@ -38,15 +35,13 @@ export default class Search extends Component {
       .then(body => {
         this.setState({
           searchedAccount: body,
-          page: "post"
+      page: "post"
         });
       });
   };
-  setSelectedPost = (postId, link, title) => {
+  setSelectedPost = postId => {
     this.setState({
       selectedPost: postId,
-      selectedPostLink: link,
-      selectedPostTitle: title,
       page: "display"
     });
   };

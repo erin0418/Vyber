@@ -7,8 +7,7 @@
 
 .toneRouteForm {
     text-align: center;
-    margin-left:20px;
-    width:  46% !important; 
+    width:  45% !important; 
     height:  100px !important; 
 }
 
@@ -76,8 +75,7 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     padding:5px;
-    width: 23%;
-    margin-left:20px;
+    width: 25%;
     margin-right:5px;
     float:left;
 }
@@ -98,7 +96,7 @@ h1 {
     font-size: 20px;
     padding:5px;
     margin-left:25%;
-    width: 23%;
+    width: 20%;
 }
 
 .createDiv:hover {
