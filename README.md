@@ -10,7 +10,7 @@ VYBER
 
 ## Table of contents
 
-- [Intorduction](#introduction)
+- [Introduction](#introduction)
 - [Features](#features)
 - [API usage](#api-usage)
 - [Build](#build)
