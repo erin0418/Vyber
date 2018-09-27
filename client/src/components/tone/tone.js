@@ -45,8 +45,8 @@ export default class Tone extends Component {
 
 
   render() {
-    return (<
-      div > {
+    return (
+      <div > {
         (this.state.hideInputs === false) ?
           < UserInputs handlePage={
             this.handlePage
@@ -59,8 +59,7 @@ export default class Tone extends Component {
             this.state.results
           }
           />
-      } <
-      /div>
+      } </div>
     )
   };
 }

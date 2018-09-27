@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "vyberlocal",
+    "database": "vyberpresent",
     "host": "localhost",
     "dialect": "mysql",
     "port": 8889

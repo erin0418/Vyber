@@ -93,7 +93,7 @@ const userNameArray = [];
         return (
             <div className="chat-bar">
                 <div className="content row">
-                <ul id="messageContent" className="col s3">
+                <ul id="messageContent" className="col s5">
                 {this.state.userName.map((item) => {
                     return (
                     <li key={this.state.id}>
@@ -102,7 +102,7 @@ const userNameArray = [];
                     )
                 })}
                 </ul>
-                <ul id="messageContent" className="col s9">
+                <ul id="messageContent" className="col s7">
                 {this.state.messages.map((item1) => {
                     return (
                     <li key={this.state.id}>
